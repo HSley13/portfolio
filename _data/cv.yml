@@ -53,29 +53,29 @@ cv:
           - Built a full-stack mobile task management app with a C++ (Drogon) REST API backend and React Native (Expo) frontend
           - Integrated Moodle LMS API to automatically sync course assignments directly into the app
           - Deployed on Android with JWT authentication and self-hosted backend tunneled via Cloudflare
-        url: https://HSley13.github.io/al-folio/projects/1_task_management/
+        url: https://HSley13.github.io/portfolio/projects/1_task_management/
 
       - name: Cross-Platform Chat App
         highlights:
           - Built high-performance real-time messaging system with voice notes, file sharing, groups, and typing indicators
           - Engineered backend concurrency in C++/Qt and responsive frontend in QML
-        url: https://HSley13.github.io/al-folio/projects/2_chat_app/
+        url: https://HSley13.github.io/portfolio/projects/2_chat_app/
 
       - name: Maestro Hand Gesture Controller
         highlights:
           - Two-stream BiLSTM real-time gesture classification pipeline with CI/CD. NDHU Excellent Award 2026
-        url: https://HSley13.github.io/al-folio/projects/6_maestro/
+        url: https://HSley13.github.io/portfolio/projects/6_maestro/
 
       - name: NDHU Second Hand Book Store
         highlights:
           - Led full backend architecture (Go) from scratch with REST API design, service logic, and integration with TypeScript frontend and Python AI tooling
           - Implemented AI-based book condition classification model in the backend pipeline
-        url: https://HSley13.github.io/al-folio/projects/5_second_hand_book/
+        url: https://HSley13.github.io/portfolio/projects/5_second_hand_book/
 
       - name: JsonFS
         highlights:
           - C++ FUSE virtual filesystem mounting JSON files and live REST APIs as navigable POSIX paths
-        url: https://HSley13.github.io/al-folio/projects/7_jsonfs/
+        url: https://HSley13.github.io/portfolio/projects/7_jsonfs/
 
     Skills:
       - name: Languages
