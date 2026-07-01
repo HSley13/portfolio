@@ -1,0 +1,183 @@
+% 中文履歷
+% 由 _data/cv_zh.yml 自動生成 — 請勿直接編輯
+\documentclass[9.5pt,a4paper]{article}
+
+%% ─── PACKAGES ────────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=1.2cm, bottom=1.2cm, left=1.6cm, right=1.6cm]{geometry}
+\usepackage{fontspec}
+\usepackage[hidelinks, colorlinks=false]{hyperref}
+\usepackage{xcolor}
+
+%% ─── FONT (PingFang TC — macOS system font with full CJK support) ────────────
+\IfFontExistsTF{PingFang TC}{%
+  \setmainfont{PingFang TC}%
+}{%
+  \IfFontExistsTF{Heiti TC}{%
+    \setmainfont{Heiti TC}%
+  }{%
+    \setmainfont{Arial Unicode MS}%
+  }%
+}
+
+%% ─── COLOURS ─────────────────────────────────────────────────────────────────
+\definecolor{namecolor}{HTML}{0F172A}
+\definecolor{accent}{HTML}{1D4ED8}
+\definecolor{subtle}{HTML}{64748B}
+
+%% ─── PAGE GEOMETRY ───────────────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+
+%% ─── SECTION HEADING ─────────────────────────────────────────────────────────
+\newcommand{\cvsection}[1]{%
+  \vspace{0.7ex plus 0.2ex}%
+  {\small\bfseries\color{accent}{#1}}%
+  \vspace{-0.5ex}%
+  \par\noindent{\color{accent}\hrule height 0.5pt}%
+  \vspace{0.3ex}%
+}
+
+%% ─── COMPACT LIST ────────────────────────────────────────────────────────────
+\setlength{\leftmargini}{1.5em}
+\let\origitemize\itemize
+\renewcommand{\itemize}{%
+  \origitemize
+  \setlength{\itemsep}{0pt}%
+  \setlength{\topsep}{1pt}%
+  \setlength{\parsep}{0pt}%
+  \setlength{\partopsep}{0pt}%
+}
+
+\begin{document}
+
+<%- sections = cv['sections'] || {} -%>
+
+%% ━━━ HEADER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+  {\huge\bfseries\color{namecolor} <%= t cv['name'] %>}\\[0.4em]
+  {\small\color{subtle}%
+    \textbf{<%= t cv['label'] %>}\enspace\textbar\enspace
+    \href{mailto:<%= cv['email'] %>}{<%= t cv['email'] %>}\enspace\textbar\enspace
+    <%= t cv['phone'].to_s %>\enspace\textbar\enspace
+    <%= t cv['location'] %>%
+  }
+\end{center}
+\vspace{0.4em}
+
+%% ━━━ 個人摘要 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<%- unless cv['summary'].to_s.strip.empty? -%>
+{\small <%= t cv['summary'] %>}
+\vspace{0.5em}
+
+<%- end -%>
+%% ━━━ 教育背景 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<%- edu_list = sections['Education'] || [] -%>
+<%- unless edu_list.empty? -%>
+\cvsection{教育背景}
+<%- edu_list.each do |edu| -%>
+<%- p = period(edu['start_date'], edu['end_date']) -%>
+\begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+  \textbf{<%= t edu['institution'] %>} & {\small\textit{<%= p %>}} \\[1pt]
+  {\small\textit{<%= t [edu['studyType'], edu['area']].compact.join('，') %>}} &
+  {\small\textit{<%= t edu['location'].to_s %>}}
+\end{tabular*}
+<%- if edu['highlights'] && !edu['highlights'].empty? -%>
+\begin{itemize}
+<%- edu['highlights'].each do |h| -%>
+  \item {\small <%= t h %>}
+<%- end -%>
+\end{itemize}
+<%- end -%>
+\vspace{2pt}
+<%- end -%>
+<%- end -%>
+
+%% ━━━ 工作經歷 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<%- exp_list = sections['Experience'] || [] -%>
+<%- unless exp_list.empty? -%>
+\cvsection{工作經歷}
+<%- exp_list.each do |exp| -%>
+<%- p = period(exp['start_date'], exp['end_date']) -%>
+\begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+  \textbf{<%= t exp['company'] %>} & {\small\textit{<%= p %>}} \\[1pt]
+  {\small\textit{<%= t exp['position'].to_s %>}} &
+  {\small\textit{<%= t exp['location'].to_s %>}}
+\end{tabular*}
+<%- if exp['highlights'] && !exp['highlights'].empty? -%>
+\begin{itemize}
+<%- exp['highlights'].each do |h| -%>
+  \item {\small <%= t h %>}
+<%- end -%>
+\end{itemize}
+<%- end -%>
+\vspace{2pt}
+<%- end -%>
+<%- end -%>
+
+%% ━━━ 技術技能 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<%- skill_list = sections['Skills'] || [] -%>
+<%- unless skill_list.empty? -%>
+\cvsection{技術技能}
+<%- skill_list.each do |sk| -%>
+{\small\textbf{<%= t sk['name'] %>：}\enspace{}<%= t sk['keywords'].to_s %>}\\[3pt]
+<%- end -%>
+\vspace{0.1em}
+<%- end -%>
+
+%% ━━━ 語言能力 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<%- lang_list = sections['Languages'] || [] -%>
+<%- unless lang_list.empty? -%>
+\cvsection{語言能力}
+{\small <%=
+  lang_list.map { |l|
+    "\\textbf{#{t l['language']}}（#{t l['fluency']}）"
+  }.join("\\enspace\\textbullet\\enspace ")
+%>}
+\vspace{0.1em}
+
+<%- end -%>
+%% ━━━ 獲獎紀錄 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<%- award_list = sections['Awards'] || [] -%>
+<%- unless award_list.empty? -%>
+\cvsection{獲獎紀錄}
+<%- award_list.each do |aw| -%>
+\begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+  \textbf{<%= t aw['title'] %>} & {\small\textit{<%= d aw['date'] %>}} \\[1pt]
+  {\small\color{subtle}\textit{<%= t aw['awarder'].to_s %>}} &
+\end{tabular*}
+<%- if aw['summary'] && !aw['summary'].strip.empty? -%>
+{\small <%= t aw['summary'] %>}
+<%- end -%>
+\vspace{2pt}
+<%- end -%>
+<%- end -%>
+
+%% ━━━ 專案經歷 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<%- proj_list = sections['Projects'] || [] -%>
+<%- unless proj_list.empty? -%>
+\cvsection{專案經歷}
+<%- proj_list.each do |pr| -%>
+<%- p = period(pr['start_date'], pr['end_date']) -%>
+\begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+  \textbf{<%= t pr['name'] %>}%
+<%- if pr['url'] && !pr['url'].to_s.strip.empty? -%>
+  \enspace{\small\href{<%= pr['url'] %>}{\color{accent}\textit{[GitHub]}}}%
+<%- end -%>
+  & {\small\textit{<%= p %>}}
+\end{tabular*}
+<%- if pr['summary'] && !pr['summary'].strip.empty? -%>
+{\small\textit{<%= t pr['summary'] %>}}
+<%- end -%>
+<%- if pr['highlights'] && !pr['highlights'].empty? -%>
+\begin{itemize}
+<%- pr['highlights'].each do |h| -%>
+  \item {\small <%= t h %>}
+<%- end -%>
+\end{itemize}
+<%- end -%>
+\vspace{2pt}
+<%- end -%>
+<%- end -%>
+
+\end{document}

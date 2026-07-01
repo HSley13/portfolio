@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://HSley13.github.io/portfolio/sitemap.xml
