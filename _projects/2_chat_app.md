@@ -2,7 +2,7 @@
 layout: page
 title: Cross-Platform Chat App
 description: Real-time messaging system with C++/Go backend and QML/C++ client deployed across Android, iOS, desktop, and WebAssembly.
-img:
+img: assets/img/chatApp.png
 importance: 2
 category: desktop
 lang: en
@@ -14,7 +14,7 @@ github: https://github.com/HSley13/chatApp_client
 </div>
 
 <div style="margin-bottom: 1.5rem;">
-  <a href="https://github.com/HSley13/chatApp_client" target="_blank" rel="noopener" class="btn btn-sm z-depth-0" role="button">GitHub Repository →</a>
+  <a href="https://github.com/HSley13/chatApp_client" target="_blank" rel="noopener" class="btn z-depth-1" role="button"><i class="fa-brands fa-github"></i>&nbsp; GitHub Repository →</a>
 </div>
 
 Built a **high-performance real-time communication system** a concurrent C++/Qt backend combined with a responsive QML frontend, deployed across multiple platforms from a single shared codebase.

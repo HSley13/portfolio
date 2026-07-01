@@ -2,7 +2,7 @@
 layout: page
 title: NDHU Task Management
 description: 結合 Moodle 同步與 C++ 後端的跨平台作業截止管理平台。
-img:
+img: assets/img/ndhu-task-managment-1400.webp
 importance: 1
 category: mobile
 lang: zh-Hant

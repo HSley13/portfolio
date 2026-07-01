@@ -2,7 +2,7 @@
 layout: page
 title: Maestro Hand Gesture Controller
 description: 雙流 BiLSTM 即時手勢分類系統。東華大學專題優秀獎 2026。
-img: maestro-1400.webp
+img: assets/img/maestro-1400.webp
 importance: 6
 category: AI
 lang: zh-Hant

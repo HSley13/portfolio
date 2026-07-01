@@ -2,7 +2,7 @@
 layout: page
 title: Maestro Hand Gesture Controller
 description: Two-stream BiLSTM architecture for real-time gesture classification with CI/CD-driven research workflow. NDHU Undergraduate Project Excellent Award 2026.
-img: maestro-1400.webp
+img: assets/img/maestro-1400.webp
 importance: 6
 category: AI
 lang: en
@@ -14,10 +14,10 @@ github: https://github.com/ntsrigaud/Maestro
 </div>
 
 <div style="margin-bottom: 1.5rem;">
-  <a href="https://github.com/ntsrigaud/Maestro" target="_blank" rel="noopener" class="btn btn-sm z-depth-0" role="button">GitHub Repository →</a>
+  <a href="https://github.com/ntsrigaud/Maestro" target="_blank" rel="noopener" class="btn z-depth-1" role="button"><i class="fa-brands fa-github"></i>&nbsp; GitHub Repository →</a>
 </div>
 
-<img src="/assets/img/maestro-1400.webp" alt="Maestro Hand Gesture Controller" style="width:100%;border-radius:6px;margin-bottom:1.5rem;">
+<img src="{{ '/assets/img/maestro-1400.webp' | relative_url }}" alt="Maestro Hand Gesture Controller" style="width:100%;border-radius:6px;margin-bottom:1.5rem;">
 
 Collaborated on the research and implementation of a **two-stream Bidirectional LSTM (BiLSTM)** architecture that translates physical hand movements into meaningful digital commands in real time. Awarded the **NDHU Undergraduate Project Excellent Award 2026**.
 

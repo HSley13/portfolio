@@ -2,7 +2,7 @@
 layout: page
 title: Cross-Platform Chat App
 description: 以 C++/Go 後端與 QML/C++ 客戶端打造的即時通訊系統。
-img:
+img: assets/img/chatApp.png
 importance: 2
 category: desktop
 lang: zh-Hant

@@ -14,7 +14,7 @@ github: https://github.com/HSley13/JsonFS
 </div>
 
 <div style="margin-bottom: 1.5rem;">
-  <a href="https://github.com/HSley13/JsonFS" target="_blank" rel="noopener" class="btn btn-sm z-depth-0" role="button">GitHub Repository →</a>
+  <a href="https://github.com/HSley13/JsonFS" target="_blank" rel="noopener" class="btn z-depth-1" role="button"><i class="fa-brands fa-github"></i>&nbsp; GitHub Repository →</a>
 </div>
 
 Created **JsonFS**, a systems-level C++ tool that bridges application-layer data models and POSIX filesystem abstractions allowing JSON files and live REST API responses to be mounted and navigated as ordinary files and directories.

@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /zh-hant/repositories/
-title: 程式庫
+title: GitHub 程式庫
 description: 我的專案原始碼。
 lang: zh-Hant
 ---

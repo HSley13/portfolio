@@ -2,7 +2,7 @@
 layout: page
 title: NDHU Second Hand Book Store
 description: 具備 AI 書況分類、CI/CD 與正式部署的校園二手書市集平台。
-img: ndhu_shbs-1400.webp
+img: assets/img/ndhu_shbs-1400.webp
 importance: 5
 category: web
 lang: zh-Hant

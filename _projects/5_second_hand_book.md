@@ -2,7 +2,7 @@
 layout: page
 title: NDHU Second Hand Book Store
 description: Full-stack campus marketplace with AI-based book condition classification, CI/CD pipelines, and production deployment via Vercel and Tailscale.
-img: ndhu_shbs-1400.webp
+img: assets/img/ndhu_shbs-1400.webp
 importance: 5
 category: web
 lang: en
@@ -14,10 +14,10 @@ github: https://github.com/ntsrigaud/NDHU-SHBS
 </div>
 
 <div style="margin-bottom: 1.5rem;">
-  <a href="https://github.com/ntsrigaud/NDHU-SHBS" target="_blank" rel="noopener" class="btn btn-sm z-depth-0" role="button">GitHub Repository →</a>
+  <a href="https://github.com/ntsrigaud/NDHU-SHBS" target="_blank" rel="noopener" class="btn z-depth-1" role="button"><i class="fa-brands fa-github"></i>&nbsp; GitHub Repository →</a>
 </div>
 
-<img src="/assets/img/ndhu_shbs-1400.webp" alt="NDHU Second Hand Book Store" style="width:100%;border-radius:6px;margin-bottom:1.5rem;">
+<img src="{{ '/assets/img/ndhu_shbs-1400.webp' | relative_url }}" alt="NDHU Second Hand Book Store" style="width:100%;border-radius:6px;margin-bottom:1.5rem;">
 
 A comprehensive full-stack campus marketplace for buying and selling second-hand textbooks among NDHU students, with a standout **AI-based condition classification model** that automatically rates book quality from user-uploaded images. Built as a Software Engineering course project (Spring 2026).
 

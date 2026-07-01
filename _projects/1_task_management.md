@@ -2,7 +2,7 @@
 layout: page
 title: NDHU Task Management
 description: Cross-platform assignment deadline management platform with Moodle sync and C++ backend.
-img: ndhu-task-managment-1400.webp
+img: assets/img/ndhu-task-managment-1400.webp
 importance: 1
 category: mobile
 lang: en
@@ -14,7 +14,7 @@ github: https://github.com/HSley13/ndhu-task-management
 </div>
 
 <div style="margin-bottom: 1.5rem;">
-  <a href="https://github.com/HSley13/ndhu-task-management" target="_blank" rel="noopener" class="btn btn-sm z-depth-0" role="button">GitHub Repository →</a>
+  <a href="https://github.com/HSley13/ndhu-task-management" target="_blank" rel="noopener" class="btn z-depth-1" role="button"><i class="fa-brands fa-github"></i>&nbsp; GitHub Repository →</a>
 </div>
 
 Built a **full-stack mobile task management app** with a C++ (Drogon) REST API backend and React Native (Expo) frontend helping students stay on top of coursework with real-time Moodle sync.

@@ -14,7 +14,7 @@ github: https://github.com/HSley13/dotenvpp
 </div>
 
 <div style="margin-bottom: 1.5rem;">
-  <a href="https://github.com/HSley13/dotenvpp" target="_blank" rel="noopener" class="btn btn-sm z-depth-0" role="button">GitHub Repository →</a>
+  <a href="https://github.com/HSley13/dotenvpp" target="_blank" rel="noopener" class="btn z-depth-1" role="button"><i class="fa-brands fa-github"></i>&nbsp; GitHub Repository →</a>
 </div>
 
 Designed and implemented **dotenvpp**, a reusable C++ configuration utility library that simplifies `.env` file loading, value validation, defaults management, and runtime environment configuration for C++ applications.
