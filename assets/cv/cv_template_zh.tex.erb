@@ -60,7 +60,8 @@
     \textbf{<%= t cv['label'] %>}\enspace\textbar\enspace
     \href{mailto:<%= cv['email'] %>}{<%= t cv['email'] %>}\enspace\textbar\enspace
     <%= t cv['phone'].to_s %>\enspace\textbar\enspace
-    <%= t cv['location'] %>%
+    <%= t cv['location'] %><%- if cv['website'] && !cv['website'].to_s.strip.empty? -%>\enspace\textbar\enspace
+    \href{<%= cv['website'] %>}{<%= cv['website'].sub('https://', '') %>}<%- end -%>%
   }
 \end{center}
 \vspace{0.4em}
@@ -162,7 +163,7 @@
 \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
   \textbf{<%= t pr['name'] %>}%
 <%- if pr['url'] && !pr['url'].to_s.strip.empty? -%>
-  \enspace{\small\href{<%= pr['url'] %>}{\color{accent}\textit{[GitHub]}}}%
+  \enspace{\small\href{<%= pr['url'] %>}{\color{accent}\textit{[Portfolio]}}}%
 <%- end -%>
   & {\small\textit{<%= p %>}}
 \end{tabular*}
