@@ -2,11 +2,11 @@
 layout: page
 title: NDHU Task Management
 description: Cross-platform assignment deadline management platform with Moodle sync and C++ backend.
-img: ndhu-task-managment.png
+img: ndhu-task-managment-1400.webp
 importance: 1
 category: mobile
 lang: en
-github: HSley13/ndhu-task-management
+github: https://github.com/HSley13/ndhu-task-management
 ---
 
 <div style="text-align: right; margin-bottom: 1.5rem;">

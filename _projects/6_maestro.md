@@ -6,7 +6,7 @@ img: maestro-1400.webp
 importance: 6
 category: AI
 lang: en
-github: ntsrigaud/Maestro
+github: https://github.com/ntsrigaud/Maestro
 ---
 
 <div style="text-align: right; margin-bottom: 1.5rem;">

@@ -6,7 +6,7 @@ img:
 importance: 1
 category: mobile
 lang: zh-Hant
-github: HSley13/ndhu-task-management
+github: https://github.com/HSley13/ndhu-task-management
 permalink: /zh-hant/projects/ndhu-task-management/
 ---
 

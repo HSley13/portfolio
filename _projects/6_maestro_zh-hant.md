@@ -6,7 +6,7 @@ img: maestro-1400.webp
 importance: 6
 category: AI
 lang: zh-Hant
-github: ntsrigaud/Maestro
+github: https://github.com/ntsrigaud/Maestro
 permalink: /zh-hant/projects/maestro-hand-gesture-controller/
 ---
 

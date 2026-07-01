@@ -6,7 +6,7 @@ img:
 importance: 8
 category: systems
 lang: zh-Hant
-github: HSley13/dotenvpp
+github: https://github.com/HSley13/dotenvpp
 permalink: /zh-hant/projects/dotenvpp/
 ---
 

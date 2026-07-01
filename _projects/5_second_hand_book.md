@@ -6,7 +6,7 @@ img: ndhu_shbs-1400.webp
 importance: 5
 category: web
 lang: en
-github: ntsrigaud/NDHU-SHBS
+github: https://github.com/ntsrigaud/NDHU-SHBS
 ---
 
 <div style="text-align: right; margin-bottom: 1.5rem;">

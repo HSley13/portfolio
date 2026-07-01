@@ -6,7 +6,7 @@ img:
 importance: 2
 category: desktop
 lang: zh-Hant
-github: HSley13/chatApp_client
+github: https://github.com/HSley13/chatApp_client
 permalink: /zh-hant/projects/cross-platform-chat-app/
 ---
 

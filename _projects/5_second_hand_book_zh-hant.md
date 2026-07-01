@@ -6,7 +6,7 @@ img: ndhu_shbs-1400.webp
 importance: 5
 category: web
 lang: zh-Hant
-github: ntsrigaud/NDHU-SHBS
+github: https://github.com/ntsrigaud/NDHU-SHBS
 permalink: /zh-hant/projects/ndhu-second-hand-book-store/
 ---
 

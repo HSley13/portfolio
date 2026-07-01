@@ -6,7 +6,7 @@ img:
 importance: 2
 category: desktop
 lang: en
-github: HSley13/chatApp_client
+github: https://github.com/HSley13/chatApp_client
 ---
 
 <div style="text-align: right; margin-bottom: 1.5rem;">

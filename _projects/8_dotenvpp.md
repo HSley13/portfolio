@@ -6,7 +6,7 @@ img:
 importance: 8
 category: systems
 lang: en
-github: HSley13/dotenvpp
+github: https://github.com/HSley13/dotenvpp
 ---
 
 <div style="text-align: right; margin-bottom: 1.5rem;">
