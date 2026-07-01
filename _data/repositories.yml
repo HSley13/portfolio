@@ -1,14 +1,8 @@
-github_users:
-  - torvalds
-  - alshedivat
-
-repo_description_lines_max: 2
-
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - HSley13/ndhu-task-management
+  - HSley13/chatApp_client
+  - ntsrigaud/Maestro
+  - ntsrigaud/NDHU-SHBS
+  - HSley13/JsonFS
+  - HSley13/dotenvpp
+  - HSley13/BigDataProject

@@ -2,33 +2,43 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+lang: en
+subtitle: Software Engineer
 
 profile:
   align: right
-  image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image: DSC00595.jpg
+  image_circular: true # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Hualien, Taiwan</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+selected_papers: false # includes a list of papers marked as "selected={true}"
+social: false # includes social icons at the bottom of the page
 
 announcements:
-  enabled: true # includes a list of news items
+  enabled: false # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
-  enabled: true
+  enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](https://www.reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+<div style="text-align: right; margin-bottom: 1.5rem;">
+  <strong>English</strong> | <a href="/zh-hant/">繁體中文</a>
+</div>
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+> *"What I cannot create, I do not understand." Richard Feynman*
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+I build systems from scratch not because it is always necessary, but because understanding the ground floor changes how you think about everything built above it.
+
+My work spans **C++, Go, TypeScript, and Python** across domains: real-time computer vision pipelines, cross-platform mobile applications, full-stack web platforms, and developer tooling. I have been awarded the **NDHU Undergraduate Project Excellent Award** for [Maestro](https://github.com/ntsrigaud/Maestro) and placed **1st in the school-wide Big Data Competition** results that came from asking better questions, not just writing more code.
+
+What ties it all together is a belief in solid foundations: clean architecture, reproducible builds, and DevOps practices that let you move fast without accumulating invisible debt. Mastering the fundamentals of systems programming and deployment gives you the freedom to explore almost any domain confidently.
+
+Beyond engineering, I read widely and study languages. Learning Chinese immersed in Taiwan did not just teach me Mandarin; it reshaped how I approach difficulty. Sitting with confusion long enough for it to become clarity is a skill that transfers everywhere.
+
+I have shipped projects that failed and thrown out entire architectures. Those taught me more than the successes. The only real failure is never having tried at all.
+

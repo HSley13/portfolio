@@ -1,17 +1,16 @@
 ---
 layout: page
-title: projects
-permalink: /projects/
-lang: en
-description: A growing collection of my projects spanning systems, mobile, web, AI, and developer tooling.
-nav: true
-nav_order: 3
+title: 專案
+permalink: /zh-hant/projects/
+lang: zh-Hant
+description: 我做過的系統、行動、網頁、AI 與工具專案。
+nav: false
 display_categories: [mobile, web, desktop, AI, systems]
 horizontal: false
 ---
 
 <div style="text-align: right; margin-bottom: 1.5rem;">
-  <strong>English</strong> | <a href="/zh-hant/projects/">繁體中文</a>
+  <a href="/projects/">English</a> | <strong>繁體中文</strong>
 </div>
 
 <!-- pages/projects.md -->
@@ -25,7 +24,6 @@ horizontal: false
   {% assign language_projects = site.projects | where: "lang", page.lang %}
   {% assign categorized_projects = language_projects | where: "category", category %}
   {% assign sorted_projects = categorized_projects | sort: "importance" %}
-  <!-- Generate cards for each project -->
   {% if page.horizontal %}
   <div class="container">
     <div class="row row-cols-1 row-cols-md-2">
@@ -35,24 +33,17 @@ horizontal: false
     </div>
   </div>
   {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
+  <div class="grid">
     {% for project in sorted_projects %}
       {% include projects.liquid %}
     {% endfor %}
   </div>
   {% endif %}
   {% endfor %}
-
 {% else %}
-
-<!-- Display projects without categories -->
-
-{% assign sorted_projects = site.projects | sort: "importance" %}
-
-  <!-- Generate cards for each project -->
-
-{% if page.horizontal %}
-
+  {% assign language_projects = site.projects | where: "lang", page.lang %}
+  {% assign sorted_projects = language_projects | sort: "importance" %}
+  {% if page.horizontal %}
   <div class="container">
     <div class="row row-cols-1 row-cols-md-2">
     {% for project in sorted_projects %}
@@ -61,7 +52,7 @@ horizontal: false
     </div>
   </div>
   {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
+  <div class="grid">
     {% for project in sorted_projects %}
       {% include projects.liquid %}
     {% endfor %}

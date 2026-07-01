@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - main
+      - my-portfolio
     paths:
       - "assets/**"
       - "**.bib"

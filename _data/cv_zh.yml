@@ -1,0 +1,97 @@
+cv_zh:
+  name: Sley HORTES
+  label: 軟體工程師
+  email: sleyhortes13@gmail.com
+  phone: "+886 905 811513"
+  location: 台灣，花蓮
+  image: DSC00595.jpg
+  summary: 軟體工程師，擁有跨多個領域的實際生產系統開發經驗 涵蓋高效能 C++ 後端、跨平台行動應用、全端網頁平台與深度學習流水線。精通 C++、Go、TypeScript 與 Python，深調整潔的架構設計。
+
+  sections:
+    Education:
+      - institution: 國立東華大學
+        location: 台灣，花蓮
+        area: 資訊工程學系
+        studyType: 學士
+        start_date: 2023-09-01
+        end_date: 2027-06-01
+        highlights:
+          - "相關課程：R 語言、大數據、C++、資料結構、演算法、影像處理、機器學習、可擴展運算"
+
+      - institution: 國立中央大學
+        location: 台灣，桃園
+        area: 中文語言中心
+        studyType: 中文語言
+        start_date: 2022-09-01
+        end_date: 2023-08-31
+
+    Experience:
+      - company: 國立東華大學
+        position: 大數據競賽 第一名
+        location: 台灣，花蓮
+        start_date: 2025-12-01
+        end_date: 2025-12-31
+        highlights:
+          - 以 XGBoost 分類 Moodle 學習參與模式
+          - 運用 FFT 與 scalogram 提取頻域特徵
+          - 建立 Gemini 驅動的 AI 助理，提供個人化學習回遈
+
+    Awards:
+      - title: 大學專題優秀獎 Maestro
+        date: 2026-05-01
+        awarder: 國立東華大學
+        summary: 雙流 BiLSTM 即時手勢分類系統。
+
+      - title: 第一名 大數據競賽
+        date: 2025-12-01
+        awarder: 國立東華大學
+
+    Projects:
+      - name: NDHU 課業管理系統
+        highlights:
+          - 建立全端行動任務管理應用，後端為 C++ (Drogon) REST API，前端為 React Native (Expo)
+          - 整合 Moodle LMS API 自動同步課程作業
+          - 部署於 Android，後端透過 Cloudflare 隧道自行架設
+        url: https://HSley13.github.io/al-folio/projects/1_task_management/
+
+      - name: 跨平台聊天應用
+        highlights:
+          - 建立高效能即時消息系統，支援語音訊息、檔案分享、群組與輸入提示功能
+          - C++/Qt 後端並發處理 + QML 響應式前端
+        url: https://HSley13.github.io/al-folio/projects/2_chat_app/
+
+      - name: Maestro 手勢控制器
+        highlights:
+          - 雙流 BiLSTM 即時手勢分類，CI/CD 自動化部署。東華大學專題優秀獎 2026
+        url: https://HSley13.github.io/al-folio/projects/6_maestro/
+
+      - name: NDHU 二手書店
+        highlights:
+          - 從零開始設計建構全端後端（Go），包含 REST API 設計、服務邏輯，以及與 TypeScript 前端和 Python AI 工具的整合
+          - 在後端流水線中實現 AI 書況分類模型
+        url: https://HSley13.github.io/al-folio/projects/5_second_hand_book/
+
+      - name: JsonFS
+        highlights:
+          - C++ FUSE 虛擬檔案系統，將 JSON 檔案與即時 REST API 掛載為可瀏覽的 POSIX 路徑
+        url: https://HSley13.github.io/al-folio/projects/7_jsonfs/
+
+    Skills:
+      - name: 程式語言
+        keywords: "C/C++, TypeScript, Python, SQL, JavaScript, R, Go"
+
+      - name: 框架
+        keywords: "React, React Native, Node.js, Qt, Flask, Drogon"
+
+      - name: 工具
+        keywords: "Docker, AWS, GCP, Git, Redis, PostgreSQL, MongoDB, Cloudflare"
+
+    Languages:
+      - language: 法語
+        fluency: 母語
+      - language: 英語
+        fluency: 專業
+      - language: 西班牙語
+        fluency: 中階
+      - language: 中文
+        fluency: 中階

@@ -1,15 +1,13 @@
 ---
 layout: page
-permalink: /repositories/
-title: repositories
-description: Source code for my projects.
-nav: true
-nav_order: 4
-lang: en
+permalink: /zh-hant/repositories/
+title: 程式庫
+description: 我的專案原始碼。
+lang: zh-Hant
 ---
 
 <div style="text-align: right; margin-bottom: 1.5rem;">
-  <strong>English</strong> | <a href="/zh-hant/repositories/">繁體中文</a>
+  <a href="/repositories/">English</a> | <strong>繁體中文</strong>
 </div>
 
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
