@@ -4,6 +4,7 @@ permalink: /zh-hant/repositories/
 title: GitHub 程式庫
 description: 我的專案原始碼。
 lang: zh-Hant
+nav: false
 ---
 
 <div style="text-align: right; margin-bottom: 1.5rem;">
