@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.5174d798.chunk.css",
-    "main.js": "/portfolio/static/js/main.7e9d59da.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.7e9d59da.chunk.js.map",
+    "main.js": "/portfolio/static/js/main.993487bf.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.993487bf.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.aa1db941.js",
     "runtime-main.js.map": "/portfolio/static/js/runtime-main.aa1db941.js.map",
     "static/js/2.defddd09.chunk.js": "/portfolio/static/js/2.defddd09.chunk.js",
     "static/js/2.defddd09.chunk.js.map": "/portfolio/static/js/2.defddd09.chunk.js.map",
     "index.html": "/portfolio/index.html",
-    "precache-manifest.c04a1050ea31b0ae34f105665271e721.js": "/portfolio/precache-manifest.c04a1050ea31b0ae34f105665271e721.js",
+    "precache-manifest.6ef3c0dd1099e5f4ac17d5db58372156.js": "/portfolio/precache-manifest.6ef3c0dd1099e5f4ac17d5db58372156.js",
     "service-worker.js": "/portfolio/service-worker.js",
     "static/css/main.5174d798.chunk.css.map": "/portfolio/static/css/main.5174d798.chunk.css.map",
     "static/media/index.css": "/portfolio/static/media/Montserrat-Regular.ee653992.ttf",
-    "static/media/Sley_Hortes_Resume.pdf": "/portfolio/static/media/Sley_Hortes_Resume.36575d11.pdf",
+    "static/media/Sley_Hortes_Resume.pdf": "/portfolio/static/media/Sley_Hortes_Resume.eb52ceb7.pdf",
     "static/media/address_image.svg": "/portfolio/static/media/address_image.16559172.svg",
     "static/media/animated_logo.svg": "/portfolio/static/media/animated_logo.dcd6dee2.svg",
     "static/media/blogs_image.svg": "/portfolio/static/media/blogs_image.058eca4c.svg",
@@ -56,6 +56,6 @@
     "static/js/runtime-main.aa1db941.js",
     "static/js/2.defddd09.chunk.js",
     "static/css/main.5174d798.chunk.css",
-    "static/js/main.7e9d59da.chunk.js"
+    "static/js/main.993487bf.chunk.js"
   ]
 }
