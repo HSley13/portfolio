@@ -62,8 +62,6 @@ const phone = contactPageData.phoneSection?.subtitle ?? "";
 const location = contactPageData.addressSection?.subtitle ?? "";
 const portfolioUrl = seo?.og?.url ?? greeting.portfolio_repository;
 
-const stripBulletPrefix = (text) => text.replace(/^\s*⚡\s*/, "");
-
 const styles = StyleSheet.create({
   page: {
     paddingTop: 26,
@@ -143,7 +141,7 @@ const Bullets = ({ items }) =>
     View,
     null,
     items.map((text, i) =>
-      e(Text, { key: i, style: styles.bullet }, `• ${stripBulletPrefix(text)}`)
+      e(Text, { key: i, style: styles.bullet }, `• ${text}`)
     )
   );
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./DegreeCard.css";
 import { Fade, Flip } from "react-reveal";
+import BulletText from "../bulletText/BulletText";
 
 class DegreeCard extends Component {
   render() {
@@ -47,11 +48,15 @@ class DegreeCard extends Component {
               </div>
             </div>
             <div className="body-content">
-              {degree.descriptions.map((sentence) => {
+              {degree.descriptions.map((sentence, i) => {
                 return (
-                  <p className="content-list" style={{ color: theme.text }}>
-                    {sentence}
-                  </p>
+                  <BulletText
+                    key={i}
+                    text={sentence}
+                    theme={theme}
+                    className="content-list"
+                    style={{ color: theme.text }}
+                  />
                 );
               })}
               {degree.website_link && (

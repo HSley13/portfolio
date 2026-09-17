@@ -2,9 +2,8 @@ import React from "react";
 import "./Greeting.css";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
-import { greeting } from "../../portfolio";
+import { greeting, contactPageData } from "../../portfolio";
 import { Fade } from "react-reveal";
-import FeelingProud from "./FeelingProud";
 
 export default function Greeting(props) {
   const theme = props.theme;
@@ -45,11 +44,18 @@ export default function Greeting(props) {
             </div>
           </div>
           <div className="greeting-image-div">
-            {/* <img
-							alt="saad sitting on table"
-							src={require("../../assets/images/feelingProud.svg")}
-						></img> */}
-            <FeelingProud theme={theme} />
+            <div className="hero-photo-wrap">
+              <div
+                className="hero-photo-backdrop"
+                style={{ backgroundColor: theme.highlight }}
+              />
+              <img
+                className="hero-photo"
+                style={{ borderColor: theme.body }}
+                src={require(`../../assets/images/${contactPageData.contactSection.profile_image_path}`)}
+                alt={greeting.title}
+              />
+            </div>
           </div>
         </div>
       </div>
