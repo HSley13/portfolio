@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "id": "hsley13-sigil",
+      "name": "Sigil",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "url": "https://github.com/HSley13/Sigil",
+      "description": "Local-first C++20 signal daemon — a lock-free signal bus and rule engine connecting sensor/event sources to actions entirely on-device, no cloud round-trip.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "CMake",
+          "iconifyClass": "simple-icons:cmake"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-hotelops",
+      "name": "HotelOps",
+      "createdAt": "2026-08-22T00:00:00Z",
+      "url": "https://github.com/HSley13/HotelOps",
+      "description": "Digital operations platform for a hotel chain — real-time room status board, GPS-verified staff clock-in, linen tracking, and cross-device sync across manager and housekeeping apps, replacing Excel sheets and a magnetic scheduling board.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "React",
+          "iconifyClass": "simple-icons:react"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-ndhu-task-management",
+      "name": "NDHU Task Management",
+      "createdAt": "2026-02-20T00:00:00Z",
+      "url": "https://github.com/HSley13/ndhu-task-management",
+      "description": "Full-stack mobile task management app — local-first Expo/React Native client with offline SQLite sync, and a C++ (Drogon) REST API backend with JWT auth and automatic Moodle LMS assignment import.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
+        }
+      ]
+    },
+    {
+      "id": "ntsrigaud-maestro",
+      "name": "Maestro",
+      "createdAt": "2025-09-09T00:00:00Z",
+      "url": "https://github.com/ntsrigaud/Maestro",
+      "description": "Two-stream BiLSTM real-time hand-gesture recognition system for hands-free presentation control — MediaPipe Hands feature pipeline, PySide6 control UI, cross-platform packaged app. NDHU Undergraduate Project Excellent Award, 2026.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ]
+    },
+    {
+      "id": "ntsrigaud-ndhu-shbs",
+      "name": "NDHU Second-Hand Book Store",
+      "createdAt": "2026-06-03T00:00:00Z",
+      "url": "https://github.com/ntsrigaud/NDHU-SHBS",
+      "description": "Campus marketplace for NDHU students to buy and sell used textbooks. Led the Go/Fiber backend architecture and REST API design end to end, and integrated an AI-based book condition classification model into the pipeline.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "Go",
+          "iconifyClass": "simple-icons:go"
+        },
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-jsonfs",
+      "name": "JsonFS",
+      "createdAt": "2026-03-09T00:00:00Z",
+      "url": "https://github.com/HSley13/JsonFS",
+      "description": "C++ FUSE virtual filesystem that mounts JSON files and live REST APIs as a navigable POSIX directory tree — schema-enforced writes rejected at the syscall layer, atomic write-back, and live URL mounting with TTL refresh.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        }
+      ]
+    }
+  ]
+}

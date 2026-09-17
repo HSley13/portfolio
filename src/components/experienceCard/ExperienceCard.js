@@ -13,15 +13,17 @@ class ExperienceCard extends Component {
         className="experience-list-item"
         style={{ marginTop: index === 0 ? 30 : 50 }}
       >
-        <Fade left duration={2000} distance="40px">
-          <div className="experience-card-logo-div">
-            <img
-              className="experience-card-logo"
-              src={require(`../../assets/images/${experience["logo_path"]}`)}
-              alt=""
-            />
-          </div>
-        </Fade>
+        {experience["logo_path"] && (
+          <Fade left duration={2000} distance="40px">
+            <div className="experience-card-logo-div">
+              <img
+                className="experience-card-logo"
+                src={require(`../../assets/images/${experience["logo_path"]}`)}
+                alt=""
+              />
+            </div>
+          </Fade>
+        )}
         <div className="experience-card-stepper">
           <div
             style={{
