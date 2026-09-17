@@ -1,0 +1,107 @@
+.project-detail-main {
+  width: 100%;
+  text-align: center;
+}
+
+.project-detail-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 50px 20px 60px;
+  text-align: left;
+}
+
+.project-detail-back {
+  display: inline-block;
+  margin-bottom: 24px;
+  font-family: "Google Sans Regular";
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.project-detail-back:hover {
+  text-decoration: underline;
+}
+
+.project-detail-title {
+  font-size: 42px;
+  font-family: "Google Sans Medium";
+  margin: 0 0 12px;
+  line-height: 1.15;
+}
+
+.project-detail-tagline {
+  font-size: 19px;
+  font-family: "Google Sans Regular";
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+.project-detail-languages {
+  margin-bottom: 10px;
+}
+
+.project-detail-section {
+  margin-top: 44px;
+}
+
+.project-detail-section h2 {
+  font-size: 22px;
+  font-family: "Google Sans Medium";
+  margin-bottom: 14px;
+}
+
+.project-detail-section p {
+  font-size: 17px;
+  line-height: 1.7;
+  font-family: "Google Sans Regular";
+  margin: 0;
+}
+
+.project-detail-highlights {
+  padding-left: 22px;
+  margin: 0;
+}
+
+.project-detail-highlights li {
+  font-size: 16px;
+  line-height: 1.7;
+  font-family: "Google Sans Regular";
+  margin-bottom: 12px;
+}
+
+.project-detail-cta {
+  margin-top: 52px;
+  text-align: center;
+}
+
+.project-detail-notfound {
+  padding: 120px 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .project-detail-content {
+    padding: 30px 16px 40px;
+  }
+
+  .project-detail-title {
+    font-size: 30px;
+  }
+
+  .project-detail-tagline {
+    font-size: 16px;
+  }
+
+  .project-detail-section {
+    margin-top: 32px;
+  }
+
+  .project-detail-section h2 {
+    font-size: 19px;
+  }
+
+  .project-detail-section p,
+  .project-detail-highlights li {
+    font-size: 15px;
+  }
+}
