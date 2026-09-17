@@ -43,7 +43,11 @@ class Contact extends Component {
                 </p>
                 <SocialMedia theme={theme} />
                 <div className="resume-btn-div">
-                  <Button text="See My Resume" href="/resume" theme={theme} />
+                  <Button
+                    text="See My Resume"
+                    href={`${process.env.PUBLIC_URL}/resume`}
+                    theme={theme}
+                  />
                 </div>
               </div>
             </div>
@@ -82,14 +86,6 @@ class Contact extends Component {
                 >
                   {phoneSection["subtitle"]}
                 </p>
-                <div className="address-btn-div">
-                  <Button
-                    text="Visit on Google Maps"
-                    newTab={true}
-                    href={addressSection.location_map_link}
-                    theme={theme}
-                  />
-                </div>
               </div>
             </div>
           </Fade>
