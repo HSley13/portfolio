@@ -87,7 +87,7 @@ export default class ResumePage extends Component {
               {/* Download Button */}
               <div className="download-btn">
                 <Button
-                  text="📃 Download Resume"
+                  text="📄 Download Resume"
                   newTab={true}
                   href={myResumePdf}
                   theme={theme}

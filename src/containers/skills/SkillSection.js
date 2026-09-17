@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Skills.css";
 import SoftwareSkill from "../../components/softwareSkills/SoftwareSkill";
+import BulletText from "../../components/bulletText/BulletText";
 import { skills } from "../../portfolio";
 import { Fade } from "react-reveal";
 import DataScienceImg from "./DataScienceImg";
@@ -28,10 +29,6 @@ class SkillSection extends Component {
             <div key={i} className="skills-main-div">
               <Fade left duration={2000}>
                 <div className="skills-image-div">
-                  {/* <img
-                    alt="Ashutosh is Analysing Data"
-                    src={require(`../../assets/images/${skill.imagePath}`)}
-                  ></img> */}
                   <GetSkillSvg fileName={skill.fileName} theme={theme} />
                 </div>
               </Fade>
@@ -49,13 +46,13 @@ class SkillSection extends Component {
                   <div>
                     {skill.skills.map((skillSentence, i) => {
                       return (
-                        <p
+                        <BulletText
                           key={i}
+                          text={skillSentence}
+                          theme={theme}
                           className="subTitle skills-text"
                           style={{ color: theme.secondaryText }}
-                        >
-                          {skillSentence}
-                        </p>
+                        />
                       );
                     })}
                   </div>

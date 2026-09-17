@@ -51,9 +51,9 @@ const skills = {
       title: "Systems & Backend",
       fileName: "DataScienceImg",
       skills: [
-        "⚡ Architecting high-performance C++ backends and REST APIs with Drogon and Go",
-        "⚡ Building local-first, concurrent systems: lock-free signal buses, rule engines, and POSIX-level filesystems via FUSE",
-        "⚡ Designing clean, testable service architecture with an emphasis on maintainability",
+        "Architecting high-performance C++ backends and REST APIs with Drogon and Go",
+        "Building local-first, concurrent systems: lock-free signal buses, rule engines, and POSIX-level filesystems via FUSE",
+        "Designing clean, testable service architecture with an emphasis on maintainability",
       ],
       softwareSkills: [
         {
@@ -98,9 +98,9 @@ const skills = {
       title: "Full Stack Development",
       fileName: "FullStackImg",
       skills: [
-        "⚡ Building responsive, production web front ends with React and TypeScript",
-        "⚡ Developing cross-platform mobile applications with React Native (Expo)",
-        "⚡ Creating application backends and APIs with Node.js and Flask",
+        "Building responsive, production web front ends with React and TypeScript",
+        "Developing cross-platform mobile applications with React Native (Expo)",
+        "Creating application backends and APIs with Node.js and Flask",
       ],
       softwareSkills: [
         {
@@ -166,9 +166,9 @@ const skills = {
       title: "Cloud & Data",
       fileName: "CloudInfraImg",
       skills: [
-        "⚡ Deploying and operating services across AWS, GCP, and Cloudflare",
-        "⚡ Running fully automated CI/CD pipelines via GitHub Actions",
-        "⚡ Working with relational and document databases at production scale",
+        "Deploying and operating services across AWS, GCP, and Cloudflare",
+        "Running fully automated CI/CD pipelines via GitHub Actions",
+        "Working with relational and document databases at production scale",
       ],
       softwareSkills: [
         {
@@ -245,8 +245,8 @@ const degrees = {
       alt_name: "National Dong Hwa University",
       duration: "Sep 2023 - Jun 2027",
       descriptions: [
-        "⚡ Relevant coursework: R (Beginner & Intermediate), Big Data, C++, Data Structures, Algorithms, Image Processing, Machine Learning, Scalable Computing.",
-        "⚡ Currently taking: Advanced Computer Vision, Introduction to Generative AI, Distributed Systems, Database Systems.",
+        "Relevant coursework: R (Beginner & Intermediate), Big Data, C++, Data Structures, Algorithms, Image Processing, Machine Learning, Scalable Computing.",
+        "Currently taking: Advanced Computer Vision, Introduction to Generative AI, Distributed Systems, Database Systems.",
       ],
       website_link: "https://web.ndhu.edu.tw/",
     },
@@ -256,7 +256,7 @@ const degrees = {
       alt_name: "National Central University",
       duration: "Sep 2022 - Aug 2023",
       descriptions: [
-        "⚡ Studied Mandarin Chinese at the Chinese Language Center, Taoyuan, Taiwan.",
+        "Studied Mandarin Chinese at the Chinese Language Center, Taoyuan, Taiwan.",
       ],
       website_link: "https://www.ncu.edu.tw/",
     },
