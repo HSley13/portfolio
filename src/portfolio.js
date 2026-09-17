@@ -9,7 +9,7 @@ const settings = {
 const seo = {
   title: "Sley Hortes' Portfolio",
   description:
-    "Software Engineer with hands-on experience architecting and shipping production systems across multiple domains — from high-performance C++ backends and cross-platform mobile applications to full-stack web platforms and deep learning pipelines.",
+    "Software Engineer with hands-on experience architecting and shipping production systems across multiple domains, from high-performance C++ backends and cross-platform mobile applications to full-stack web platforms and deep learning pipelines.",
   og: {
     title: "Sley Hortes Portfolio",
     type: "website",
@@ -23,7 +23,7 @@ const greeting = {
   logo_name: "SleyHortes",
   nickname: "",
   subTitle:
-    "Software Engineer architecting and shipping production systems across multiple domains — from high-performance C++ backends and cross-platform mobile applications to full-stack web platforms and deep learning pipelines. Proficient in C++, Go, TypeScript, and Python, with a strong emphasis on clean architecture.",
+    "Software Engineer architecting and shipping production systems across multiple domains, from high-performance C++ backends and cross-platform mobile applications to full-stack web platforms and deep learning pipelines. Proficient in C++, Go, TypeScript, and Python, with a strong emphasis on clean architecture.",
   resumeLink: "",
   portfolio_repository: "https://github.com/HSley13/portfolio",
   githubProfile: "https://github.com/HSley13",
@@ -51,7 +51,7 @@ const skills = {
       fileName: "DataScienceImg",
       skills: [
         "⚡ Architecting high-performance C++ backends and REST APIs with Drogon and Go",
-        "⚡ Building local-first, concurrent systems — lock-free signal buses, rule engines, and POSIX-level filesystems via FUSE",
+        "⚡ Building local-first, concurrent systems: lock-free signal buses, rule engines, and POSIX-level filesystems via FUSE",
         "⚡ Designing clean, testable service architecture with an emphasis on maintainability",
       ],
       softwareSkills: [
@@ -245,6 +245,7 @@ const degrees = {
       duration: "Sep 2023 - Jun 2027",
       descriptions: [
         "⚡ Relevant coursework: R (Beginner & Intermediate), Big Data, C++, Data Structures, Algorithms, Image Processing, Machine Learning, Scalable Computing.",
+        "⚡ Currently taking: Advanced Computer Vision, Introduction to Generative AI, Distributed Systems, Database Systems.",
       ],
       website_link: "https://web.ndhu.edu.tw/",
     },
@@ -268,24 +269,39 @@ const certifications = {
 // Experience Page
 const experience = {
   title: "Experience",
-  subtitle: "Competitions and Volunteering",
+  subtitle: "Awards, Competitions, and Volunteering",
   description:
     "I build production systems spanning C++ backends, mobile apps, and deep learning pipelines. Alongside coursework, I compete in data science competitions and volunteer as a research assistant in NDHU's Intelligent Computing and Mobile Network Lab.",
   header_image_path: "experience.svg",
   sections: [
     {
-      title: "Competitions",
+      title: "Awards",
       work: true,
       experiences: [
         {
-          title: "1st Place — Big Data Competition",
+          title: "Undergraduate Project Excellent Award",
+          company: "National Dong Hwa University",
+          company_url: "https://web.ndhu.edu.tw/",
+          duration: "May 2026",
+          location: "Hualien, Taiwan",
+          description:
+            "Awarded for Maestro, a two-stream BiLSTM real-time gesture classification system for hands-free presentation control.",
+          color: "#9b1578",
+        },
+      ],
+    },
+    {
+      title: "Competitions",
+      experiences: [
+        {
+          title: "1st Place, Big Data Competition",
           company: "National Dong Hwa University",
           company_url: "https://web.ndhu.edu.tw/",
           duration: "Dec 2025",
           location: "Hualien, Taiwan",
           description:
             "Classified Moodle engagement patterns using XGBoost. Extracted frequency-domain features via FFT and scalogram analysis. Built a Gemini-powered AI assistant for personalized student and instructor feedback.",
-          color: "#9b1578",
+          color: "#0879bf",
         },
       ],
     },
@@ -294,12 +310,12 @@ const experience = {
       experiences: [
         {
           title: "Research Assistant",
-          company: "NDHU CSIE — Intelligent Computing and Mobile Network Lab",
+          company: "NDHU CSIE: Intelligent Computing and Mobile Network Lab",
           company_url: "https://web.ndhu.edu.tw/",
           duration: "Sep 2026 - Present",
           location: "Hualien, Taiwan",
           description: "Volunteering as a research assistant.",
-          color: "#0879bf",
+          color: "#0071C5",
         },
       ],
     },
@@ -310,7 +326,7 @@ const experience = {
 const projectsHeader = {
   title: "Projects",
   description:
-    "Production systems across C++ backends, mobile and web full-stack platforms, and deep learning pipelines — most built and shipped end to end.",
+    "Production systems across C++ backends, mobile and web full-stack platforms, and deep learning pipelines, most built and shipped end to end.",
   avatar_image_path: "projects_image.svg",
 };
 
@@ -328,7 +344,7 @@ const publications = {
 const contactPageData = {
   contactSection: {
     title: "Contact Me",
-    profile_image_path: "animated_ashutosh.png",
+    profile_image_path: "sley_hortes.png",
     description:
       "I am available by email and phone. I can help with C++, Go, TypeScript, Python, full-stack web, mobile, and machine learning projects.",
   },
