@@ -20,6 +20,7 @@ const seo = {
 //Home Page
 const greeting = {
   title: "Sley Hortes",
+  role: "Software Engineer",
   logo_name: "SleyHortes",
   nickname: "",
   subTitle:
@@ -266,6 +267,15 @@ const certifications = {
   certifications: [],
 };
 
+const spokenLanguages = {
+  languages: [
+    { name: "French", level: "Native" },
+    { name: "English", level: "Professional" },
+    { name: "Spanish", level: "Intermediate" },
+    { name: "Chinese", level: "Intermediate, B1" },
+  ],
+};
+
 // Experience Page
 const experience = {
   title: "Experience",
@@ -380,6 +390,7 @@ export {
   competitiveSites,
   degrees,
   certifications,
+  spokenLanguages,
   experience,
   projectsHeader,
   publicationsHeader,

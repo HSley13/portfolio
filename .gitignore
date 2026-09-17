@@ -6,6 +6,10 @@
 /build
 .pnp.js
 
+# generated resume PDF (regenerated from src/portfolio.js by scripts/generate-resume.js,
+# see the generate-resume/prestart/prebuild npm scripts)
+/src/assets/docs/Sley_Hortes_Resume.pdf
+
 # testing
 /coverage
 
