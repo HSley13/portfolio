@@ -1,99 +1,73 @@
 {
   "data": [
     {
-      "id": "R_kgDOJWL0-g",
-      "name": "mdp-diffusion",
-      "createdAt": "2023-04-13T04:18:19Z",
-      "url": "https://github.com/ashutosh1919/mdp-diffusion",
-      "description": "Text-guided image editing by manipulating diffusion path without any training.",
+      "id": "hsley13-sigil",
+      "name": "Sigil",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "url": "https://github.com/HSley13/Sigil",
+      "description": "Local-first C++20 signal daemon — a lock-free signal bus and rule engine connecting sensor/event sources to actions entirely on-device, no cloud round-trip.",
       "isFork": false,
       "languages": [
         {
-          "name": "Python",
-          "iconifyClass": "logos-python"
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
         },
         {
-          "name": "Shell",
-          "iconifyClass": "simple-icons:shell"
-        },
-        {
-          "name": "Jupyter Notebook",
-          "iconifyClass": "logos-jupyter"
+          "name": "CMake",
+          "iconifyClass": "simple-icons:cmake"
         }
       ]
     },
     {
-      "id": "R_kgDOG_vYHA",
-      "name": "explainable-cnn",
-      "createdAt": "2022-03-13T20:41:33Z",
-      "url": "https://github.com/ashutosh1919/explainable-cnn",
-      "description": "📦 PyTorch based visualization package for generating layer-wise explanations for CNNs.",
+      "id": "hsley13-hotelops",
+      "name": "HotelOps",
+      "createdAt": "2026-08-22T00:00:00Z",
+      "url": "https://github.com/HSley13/HotelOps",
+      "description": "Digital operations platform for a hotel chain — real-time room status board, GPS-verified staff clock-in, linen tracking, and cross-device sync across manager and housekeeping apps, replacing Excel sheets and a magnetic scheduling board.",
       "isFork": false,
       "languages": [
         {
-          "name": "Python",
-          "iconifyClass": "logos-python"
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "React",
+          "iconifyClass": "simple-icons:react"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
         }
       ]
     },
     {
-      "id": "MDEwOlJlcG9zaXRvcnkyNDU0NjcyNzQ=",
-      "name": "masterPortfolio",
-      "createdAt": "2020-03-06T16:26:54Z",
-      "url": "https://github.com/ashutosh1919/masterPortfolio",
-      "description": "🔥 The Complete Customizable Software Developer Portfolio Template which lets you showcase your work and provides each and every detail about you as Software Developer.",
+      "id": "hsley13-ndhu-task-management",
+      "name": "NDHU Task Management",
+      "createdAt": "2026-02-20T00:00:00Z",
+      "url": "https://github.com/HSley13/ndhu-task-management",
+      "description": "Full-stack mobile task management app — local-first Expo/React Native client with offline SQLite sync, and a C++ (Drogon) REST API backend with JWT auth and automatic Moodle LMS assignment import.",
       "isFork": false,
       "languages": [
         {
-          "name": "HTML",
-          "iconifyClass": "logos-html-5"
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
         },
         {
-          "name": "CSS",
-          "iconifyClass": "logos-css-3"
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
         },
         {
-          "name": "JavaScript",
-          "iconifyClass": "logos-javascript"
-        },
-        {
-          "name": "Dockerfile",
-          "iconifyClass": "simple-icons:docker"
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
         }
       ]
     },
     {
-      "id": "R_kgDOG0_8uQ",
-      "name": "react-awesome-shapes",
-      "createdAt": "2022-02-11T14:50:20Z",
-      "url": "https://github.com/ashutosh1919/react-awesome-shapes",
-      "description": "🌀 Insert Awesome Shapes into Your React Site with Ease.",
-      "isFork": false,
-      "languages": [
-        {
-          "name": "HTML",
-          "iconifyClass": "logos-html-5"
-        },
-        {
-          "name": "CSS",
-          "iconifyClass": "logos-css-3"
-        },
-        {
-          "name": "Shell",
-          "iconifyClass": "simple-icons:shell"
-        },
-        {
-          "name": "JavaScript",
-          "iconifyClass": "logos-javascript"
-        }
-      ]
-    },
-    {
-      "id": "R_kgDOGcPKSQ",
-      "name": "neuro-symbolic-sudoku-solver",
-      "createdAt": "2021-11-26T17:56:07Z",
-      "url": "https://github.com/ashutosh1919/neuro-symbolic-sudoku-solver",
-      "description": "⚙️ Solving sudoku using Deep Reinforcement learning in combination with powerful symbolic representations.",
+      "id": "ntsrigaud-maestro",
+      "name": "Maestro",
+      "createdAt": "2025-09-09T00:00:00Z",
+      "url": "https://github.com/ntsrigaud/Maestro",
+      "description": "Two-stream BiLSTM real-time hand-gesture recognition system for hands-free presentation control — MediaPipe Hands feature pipeline, PySide6 control UI, cross-platform packaged app. NDHU Undergraduate Project Excellent Award, 2026.",
       "isFork": false,
       "languages": [
         {
@@ -103,20 +77,38 @@
       ]
     },
     {
-      "id": "MDEwOlJlcG9zaXRvcnkzMjU5NDM1MTE=",
-      "name": "react-liquidswipe",
-      "createdAt": "2021-01-01T08:31:51Z",
-      "url": "https://github.com/ashutosh1919/react-liquidswipe",
-      "description": "🚀 Smooth Liquid Swipe Animation to transition between different components.",
+      "id": "ntsrigaud-ndhu-shbs",
+      "name": "NDHU Second-Hand Book Store",
+      "createdAt": "2026-06-03T00:00:00Z",
+      "url": "https://github.com/ntsrigaud/NDHU-SHBS",
+      "description": "Campus marketplace for NDHU students to buy and sell used textbooks. Led the Go/Fiber backend architecture and REST API design end to end, and integrated an AI-based book condition classification model into the pipeline.",
       "isFork": false,
       "languages": [
         {
-          "name": "JavaScript",
-          "iconifyClass": "logos-javascript"
+          "name": "Go",
+          "iconifyClass": "simple-icons:go"
         },
         {
-          "name": "CSS",
-          "iconifyClass": "logos-css-3"
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-jsonfs",
+      "name": "JsonFS",
+      "createdAt": "2026-03-09T00:00:00Z",
+      "url": "https://github.com/HSley13/JsonFS",
+      "description": "C++ FUSE virtual filesystem that mounts JSON files and live REST APIs as a navigable POSIX directory tree — schema-enforced writes rejected at the syscall layer, atomic write-back, and live URL mounting with TTL refresh.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
         }
       ]
     }
