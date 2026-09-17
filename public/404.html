@@ -22,7 +22,11 @@
       // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
       // https://username.github.io/repo-name/?/one/two&a=b~and~c=d#qwe
       // Otherwise, leave pathSegmentsToKeep as 0.
-      var pathSegmentsToKeep = 0;
+      // This site is a Project Pages site (hsley13.github.io/portfolio/, no
+      // custom domain), so it must be 1 -- otherwise a direct visit or
+      // refresh on any route but "/" strips the "/portfolio" segment and
+      // 404s at the domain root instead of redirecting back into the app.
+      var pathSegmentsToKeep = 1;
 
       var l = window.location;
       l.replace(
