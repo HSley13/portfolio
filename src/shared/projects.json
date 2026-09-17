@@ -63,10 +63,10 @@
       ]
     },
     {
-      "id": "ntsrigaud-maestro",
+      "id": "hsley13-maestro",
       "name": "Maestro",
       "createdAt": "2025-09-09T00:00:00Z",
-      "url": "https://github.com/ntsrigaud/Maestro",
+      "url": "https://github.com/HSley13/Maestro",
       "description": "Two-stream BiLSTM real-time hand-gesture recognition system for hands-free presentation control — MediaPipe Hands feature pipeline, PySide6 control UI, cross-platform packaged app. NDHU Undergraduate Project Excellent Award, 2026.",
       "isFork": false,
       "languages": [
@@ -77,10 +77,10 @@
       ]
     },
     {
-      "id": "ntsrigaud-ndhu-shbs",
+      "id": "hsley13-ndhu-shbs",
       "name": "NDHU Second-Hand Book Store",
       "createdAt": "2026-06-03T00:00:00Z",
-      "url": "https://github.com/ntsrigaud/NDHU-SHBS",
+      "url": "https://github.com/HSley13/NDHU-SHBS",
       "description": "Campus marketplace for NDHU students to buy and sell used textbooks. Led the Go/Fiber backend architecture and REST API design end to end, and integrated an AI-based book condition classification model into the pipeline.",
       "isFork": false,
       "languages": [
