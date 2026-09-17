@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ashutoshhathidara.com/</loc>
+    <loc>https://hsley13.github.io/portfolio/</loc>
     <changefreq>yearly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ashutoshhathidara.com/experience</loc>
+    <loc>https://hsley13.github.io/portfolio/experience</loc>
     <changefreq>yearly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://ashutoshhathidara.com/education</loc>
+    <loc>https://hsley13.github.io/portfolio/education</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ashutoshhathidara.com/contact</loc>
+    <loc>https://hsley13.github.io/portfolio/contact</loc>
     <changefreq>yearly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://ashutoshhathidara.com/projects</loc>
+    <loc>https://hsley13.github.io/portfolio/projects</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ashutoshhathidara.com/opensource</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://ashutoshhathidara.com/resume</loc>
+    <loc>https://hsley13.github.io/portfolio/resume</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
