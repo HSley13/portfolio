@@ -34,26 +34,15 @@ class LogoLoader extends React.Component {
         >
           SH
         </text>
-        <g class="name-reveal">
-          <text
-            class="name-cursive"
-            x="220"
-            y="252"
-            textAnchor="middle"
-            fill={theme.body}
-          >
-            Sley
-          </text>
-          <text
-            class="name-caps"
-            x="220"
-            y="286"
-            textAnchor="middle"
-            fill={theme.body}
-          >
-            HORTES
-          </text>
-        </g>
+        <text
+          class="name-reveal name-cursive"
+          x="220"
+          y="270"
+          textAnchor="middle"
+          fill={theme.body}
+        >
+          Sley Hortes
+        </text>
         <defs>
           <style
             dangerouslySetInnerHTML={{
@@ -74,13 +63,7 @@ class LogoLoader extends React.Component {
 
       .name-cursive {
         font-family: "Agustina Regular", cursive;
-        font-size: 52px;
-      }
-
-      .name-caps {
-        font-family: "Google Sans Bold", sans-serif;
-        font-size: 24px;
-        letter-spacing: 6px;
+        font-size: 56px;
       }
 
       @-webkit-keyframes reveal {
