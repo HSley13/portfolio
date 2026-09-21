@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c706440ce227ad19eb11c2aa4839e340",
+    "revision": "6f02380047e113c5f7b05c47198c633c",
     "url": "/portfolio/index.html"
   },
   {
-    "revision": "3b1b2dcaf669c7fc362d",
-    "url": "/portfolio/static/css/main.941c8732.chunk.css"
+    "revision": "873938133105c887fb4a",
+    "url": "/portfolio/static/css/main.e7a95462.chunk.css"
   },
   {
-    "revision": "89e6e77625afec62a9aa",
-    "url": "/portfolio/static/js/2.d644bdfc.chunk.js"
+    "revision": "50673210425931d632ba",
+    "url": "/portfolio/static/js/2.bd09df99.chunk.js"
   },
   {
-    "revision": "3b1b2dcaf669c7fc362d",
-    "url": "/portfolio/static/js/main.3a7b18b3.chunk.js"
+    "revision": "873938133105c887fb4a",
+    "url": "/portfolio/static/js/main.d816bf88.chunk.js"
   },
   {
     "revision": "e73ac9e279836ecdfedf",
@@ -52,8 +52,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/portfolio/static/media/Montserrat-Regular.ee653992.ttf"
   },
   {
-    "revision": "b133a961d48df4bf9c972df956429f31",
-    "url": "/portfolio/static/media/Sley_Hortes_Resume.b133a961.pdf"
+    "revision": "9af1084ee2806fbb5b603a5969779bb1",
+    "url": "/portfolio/static/media/Sley_Hortes_Resume.9af1084e.pdf"
   },
   {
     "revision": "16559172ca1d4d552390b48f19e102ba",
