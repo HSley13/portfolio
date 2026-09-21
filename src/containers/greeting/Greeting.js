@@ -2,8 +2,9 @@ import React from "react";
 import "./Greeting.css";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
-import { greeting, contactPageData } from "../../portfolio";
+import { greeting } from "../../portfolio";
 import { Fade } from "react-reveal";
+import heroPhoto from "../../assets/images/sley_hortes.png";
 
 export default function Greeting(props) {
   const theme = props.theme;
@@ -52,7 +53,7 @@ export default function Greeting(props) {
               <img
                 className="hero-photo"
                 style={{ borderColor: theme.body }}
-                src={require(`../../assets/images/${contactPageData.contactSection.profile_image_path}`)}
+                src={heroPhoto}
                 alt={greeting.title}
               />
             </div>
