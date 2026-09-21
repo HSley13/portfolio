@@ -1,12 +1,16 @@
 #!/usr/bin/env node
-// Regenerates src/assets/docs/Sley_Hortes_Resume.pdf from src/portfolio.js and
-// src/shared/projects.json, so the downloadable resume never drifts out of
-// sync with the site. Runs automatically before `npm start` / `npm run build`
-// (see package.json's prestart/prebuild hooks) and in CI on every push.
+// Regenerates src/assets/docs/Sley_Hortes_Resume.pdf from the English
+// locale's data (src/i18n/portfolioData/en.js and
+// src/i18n/projectsData/en.json), so the downloadable resume never drifts
+// out of sync with the site's English content. The resume itself is not
+// localized yet — it's always generated in English regardless of which
+// language the visitor is browsing the site in. Runs automatically before
+// `npm start` / `npm run build` (see package.json's prestart/prebuild
+// hooks) and in CI on every push.
 //
-// Requires esbuild-register because src/portfolio.js is an ES module
-// (`export { ... }`) and this script runs as plain CommonJS Node, not through
-// CRA's webpack/babel pipeline.
+// Requires esbuild-register because the source files are ES modules
+// (`export default ...`) and this script runs as plain CommonJS Node, not
+// through CRA's webpack/babel pipeline.
 require("esbuild-register");
 
 const path = require("path");
@@ -33,13 +37,21 @@ const {
   spokenLanguages,
   contactPageData,
   seo,
-} = require(path.join(__dirname, "..", "src", "portfolio.js"));
+} = require(path.join(
+  __dirname,
+  "..",
+  "src",
+  "i18n",
+  "portfolioData",
+  "en.js"
+)).default;
 const projects = require(path.join(
   __dirname,
   "..",
   "src",
-  "shared",
-  "projects.json"
+  "i18n",
+  "projectsData",
+  "en.json"
 ));
 
 const OUTPUT_PATH = path.join(

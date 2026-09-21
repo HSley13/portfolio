@@ -1,0 +1,166 @@
+{
+  "data": [
+    {
+      "id": "hsley13-sigil",
+      "name": "Sigil",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "url": "https://github.com/HSley13/Sigil",
+      "description": "Local-first C++20 signal daemon with a lock-free signal bus and rule engine connecting sensor/event sources to actions entirely on-device, no cloud round-trip.",
+      "isFork": false,
+      "tagline": "A local-first signal daemon that connects real-world events to real-world actions, entirely on-device.",
+      "importance": "Sigil is a systems-programming project, not a scripted demo: it's built around a lock-free concurrent ring buffer, a plugin architecture, and a real-time rule engine, all running with zero cloud dependency. That combination of concurrency correctness and hardware-adjacent design is the kind of work that separates application code from infrastructure code.",
+      "highlights": [
+        "Designed a bounded, lock-free multi-producer/single-consumer ring buffer (the SignalBus) so concurrent source threads never block the rule engine, or each other",
+        "Built a plugin architecture (SourceBase / ActionBase) so a new sensor or a new effect can be added without touching the core engine at all",
+        "Implemented a rule engine with per-rule cooldowns, preventing a single noisy source from flooding the system with repeat alerts",
+        "Wrote a full GoogleTest suite covering every module, including a multi-threaded mock source that exercises the bus's concurrent-producer path outside of a single-threaded test",
+        "Scoped and documented a computer-vision extension (a camera source running on-device anomaly detection, trained on synthetically composited defect images) as the pipeline's next stress test"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "CMake",
+          "iconifyClass": "simple-icons:cmake"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-hotelops",
+      "name": "HotelOps",
+      "createdAt": "2026-08-22T00:00:00Z",
+      "url": "https://github.com/HSley13/HotelOps",
+      "description": "Digital operations platform for a hotel chain: real-time room status board, GPS-verified staff clock-in, linen tracking, and cross-device sync across manager and housekeeping apps, replacing Excel sheets and a magnetic scheduling board.",
+      "isFork": false,
+      "tagline": "A digital operations platform replacing a hotel chain's Excel sheets, magnetic scheduling board, and paper linen logs with one connected system.",
+      "importance": "This is real production software for a real hotel chain (Fullon Hotels and Resorts), built to model operational constraints that don't show up in a typical CRUD tutorial: crew-based room assignment instead of one-person-per-room, role-based data visibility enforced at the database layer, and attendance that can't be spoofed from a phone.",
+      "highlights": [
+        "Architected the database schema and row-level security policy layer so managers, housekeepers, and laundry staff each see exactly the data their role should, enforced by Postgres itself rather than hidden in the UI",
+        "Built a real-time room status board (Supabase Realtime) with per-team progress tracking and an availability-aware scheduling flow that a database trigger enforces server-side, not just client-side validation",
+        "Designed a priority-scoring engine that ranks dirty and in-progress rooms by proximity to check-in time, automatically driving the housekeeping task queue",
+        "Implemented GPS-verified clock-in through a server-side Postgres RPC function, so attendance can't be faked from the device",
+        "Shipped one shared codebase across a manager app (Vite + React, wrapped natively via Tauri) and a housekeeping app (Expo / React Native), both consuming the same Supabase client and TypeScript types so the two can't silently drift out of sync"
+      ],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "React",
+          "iconifyClass": "simple-icons:react"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-ndhu-task-management",
+      "name": "NDHU Task Management",
+      "createdAt": "2026-02-20T00:00:00Z",
+      "url": "https://github.com/HSley13/ndhu-task-management",
+      "description": "Full-stack mobile task management app with a local-first Expo/React Native client with offline SQLite sync, and a C++ (Drogon) REST API backend with JWT auth and automatic Moodle LMS assignment import.",
+      "isFork": false,
+      "tagline": "A local-first mobile task manager that syncs cleanly across devices and pulls assignments straight from Moodle automatically.",
+      "importance": "Cross-device sync is a genuinely hard distributed-systems problem, and this project solves it correctly rather than papering over it: a custom conflict-resolution protocol distinguishes fields a user owns from fields only Moodle should own, so a stale device can never silently overwrite a teammate's fresher data.",
+      "highlights": [
+        "Designed and implemented a two-way sync protocol between an offline-first SQLite client and a C++/Drogon backend, using per-row dirty flags and server timestamps to reconcile edits from multiple devices",
+        "Solved a subtle identity problem unique to Moodle-imported tasks (every device independently discovers the same assignment and mints its own local ID for it) by introducing a stable moodle_event_id as the real cross-device key, with field-level write protection so a stale device can't clobber a fresher one",
+        "Built a rich-text note editor as a WebView/contenteditable hybrid to support inline images, audio attachments, and links, capabilities a plain React Native text input can't offer",
+        "Hardened the system with RS256 JWT auth and revocation, AES-256-GCM at-rest encryption for stored Moodle session tokens, and hybrid RSA-OAEP for password transport",
+        "Added a CI pipeline (typecheck, lint, and tests gating every deploy) and a real test suite to a codebase that had neither, and deleted roughly 1,900 lines of dead code found during a structural review pass"
+      ],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-maestro",
+      "name": "Maestro",
+      "createdAt": "2025-09-09T00:00:00Z",
+      "url": "https://github.com/HSley13/Maestro",
+      "description": "Two-stream BiLSTM real-time hand-gesture recognition system for hands-free presentation control, with a MediaPipe Hands feature pipeline, PySide6 control UI, and cross-platform packaged app. Winner of the NDHU Undergraduate Project Excellent Award, 2026.",
+      "isFork": false,
+      "tagline": "A production-grade, real-time hand-gesture recognition system that turns a webcam into a hands-free presentation remote.",
+      "importance": "Winner of NDHU's Undergraduate Project Excellent Award, 2026. Runs real-time inference on ordinary consumer laptops with no GPU, packaged as a genuine cross-platform desktop app rather than a notebook demo, which is precisely the gap between a machine learning experiment and a machine learning product.",
+      "highlights": [
+        "Built a two-stream LSTM classifier recognizing a 10-class gesture vocabulary (a hybrid of the Jester and IPN datasets) from MediaPipe Hands landmarks, running in real time on CPU alone",
+        "Designed the full inference pipeline end to end: camera capture, hand selection, feature engineering, a sliding-window buffer, prediction stabilization, and command dispatch straight to OS-level keyboard and pointer events",
+        "Built a non-blocking PySide6 control UI, with inference running in a background QThread and state updates throttled to roughly 10Hz over Qt signals, so the interface never stutters the model or vice versa",
+        "Packaged and distributed standalone installers for macOS and Windows with the trained model bundled directly into the app, no Python runtime or internet connection required to run it"
+      ],
+      "languages": [
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-ndhu-shbs",
+      "name": "NDHU Second-Hand Book Store",
+      "createdAt": "2026-06-03T00:00:00Z",
+      "url": "https://github.com/HSley13/NDHU-SHBS",
+      "description": "Campus marketplace for NDHU students to buy and sell used textbooks. Led the Go/Fiber backend architecture and REST API design end to end, and integrated an AI-based book condition classification model into the pipeline.",
+      "isFork": false,
+      "tagline": "A campus marketplace where NDHU students buy and sell used textbooks, with AI-assisted condition grading.",
+      "importance": "A full team software-engineering project, built from a blank repository to a working three-service system across a semester. Owning the backend architecture on a team project means design decisions have to be explained and defended to teammates, not just made in isolation, a different and harder skill than solo development.",
+      "highlights": [
+        "Owned the Go/Fiber backend architecture end to end: REST API design, service logic, and database schema, integrated with a TypeScript/Next.js frontend and a separate Python AI microservice",
+        "Built the AI-based book condition classification model that plugs into the listing pipeline, automating a step sellers would otherwise have to do by hand",
+        "Set up the full local and staging Docker Compose stack behind Traefik, plus CI that lints, tests, and builds every pull request and an automated staging deploy on merge to main"
+      ],
+      "languages": [
+        {
+          "name": "Go",
+          "iconifyClass": "simple-icons:go"
+        },
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-jsonfs",
+      "name": "JsonFS",
+      "createdAt": "2026-03-09T00:00:00Z",
+      "url": "https://github.com/HSley13/JsonFS",
+      "description": "C++ FUSE virtual filesystem that mounts JSON files and live REST APIs as a navigable POSIX directory tree, with schema-enforced writes rejected at the syscall layer, atomic write-back, and live URL mounting with TTL refresh.",
+      "isFork": false,
+      "tagline": "A FUSE filesystem that turns any JSON file or live REST API into a navigable, writable POSIX directory tree.",
+      "importance": "Unix's \"everything is a file\" philosophy was never extended to structured data, so JsonFS extends it: grep, diff, watch, and every other Unix tool start working on live JSON with zero glue code. It's novel in three specific ways beyond prior JSON-FUSE projects: live URL mounting with TTL refresh, structural diffing on every refresh, and schema enforcement at the syscall layer rather than in application code.",
+      "highlights": [
+        "Implemented schema-enforced writes inside the FUSE write() callback itself, so an invalid value is rejected with a syscall-level EINVAL before any application code ever sees it, and deleting a required field is blocked at unlink()",
+        "Built live HTTP/HTTPS mounting with configurable TTL refresh, giving a REST endpoint a stable, composable mountpoint that grep, watch, and shell pipelines can use directly, something a one-shot `watch curl | jq` can't do",
+        "Designed atomic write-back (write-to-temp, then rename) so a crash mid-write can never corrupt the source file",
+        "Wrote 55 unit tests across 6 GoogleTest suites and full Doxygen documentation of the architecture and concurrency design"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        }
+      ]
+    }
+  ]
+}

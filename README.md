@@ -1,8 +1,10 @@
-# Sley Hortes — Portfolio
+# Sley HORTES — Portfolio
 
 Personal portfolio: education, experience, projects, and a resume that's
-generated from this repo's own data (`src/portfolio.js`) rather than
-uploaded by hand — see `scripts/generate-resume.js`.
+generated from this repo's own data rather than uploaded by hand — see
+`scripts/generate-resume.js`. Available in English, Traditional Chinese,
+and Spanish (`src/i18n/`) via the language switcher in the header; the
+resume PDF itself is generated from the English data only.
 
 **Live:** https://hsley13.github.io/portfolio/
 

@@ -1,11 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import ProjectLanguages from "../../components/projectLanguages/ProjectLanguages";
+import { useLocale } from "../../i18n/LocaleContext";
 import "./GithubRepoCard.css";
 import { Fade } from "react-reveal";
 
 export default function GithubRepoCard({ repo, theme }) {
   const history = useHistory();
+  const { t } = useLocale();
 
   return (
     <div className="repo-card-div" style={{ backgroundColor: theme.highlight }}>
@@ -37,7 +39,7 @@ export default function GithubRepoCard({ repo, theme }) {
               className="repo-creation-date subTitle"
               style={{ color: theme.secondaryText }}
             >
-              Created on {repo.createdAt.split("T")[0]}
+              {t("projects.createdOn", { date: repo.createdAt.split("T")[0] })}
             </p>
             <ProjectLanguages
               className="repo-languages"

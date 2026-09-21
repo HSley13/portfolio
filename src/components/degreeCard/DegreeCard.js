@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import "./DegreeCard.css";
 import { Fade, Flip } from "react-reveal";
 import BulletText from "../bulletText/BulletText";
+import { LocaleContext } from "../../i18n/LocaleContext";
 
 class DegreeCard extends Component {
+  static contextType = LocaleContext;
+
   render() {
     const degree = this.props.degree;
     const theme = this.props.theme;
+    const { t } = this.context;
     return (
       <div className="degree-card">
         {degree.logo_path && (
@@ -70,7 +74,7 @@ class DegreeCard extends Component {
                     style={{ backgroundColor: theme.headerColor }}
                   >
                     <p className="btn" style={{ color: theme.text }}>
-                      Visit Website
+                      {t("education.visitWebsite")}
                     </p>
                   </div>
                 </a>

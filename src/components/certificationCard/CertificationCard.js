@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import "./CertificationCard.css";
 import { Fade } from "react-reveal";
+import { LocaleContext } from "../../i18n/LocaleContext";
 
 class CertificationCard extends Component {
+  static contextType = LocaleContext;
+
   render() {
     const certificate = this.props.certificate;
     const theme = this.props.theme;
+    const { t } = this.context;
     return (
       <Fade bottom duration={2000} distance="20px">
         <div className="cert-card">
@@ -28,7 +32,7 @@ class CertificationCard extends Component {
               </div>
               <div className="content-details fadeIn-top">
                 <h3 className="content-title" style={{ color: theme.body }}>
-                  Certificate
+                  {t("education.certificateLabel")}
                 </h3>
               </div>
             </a>

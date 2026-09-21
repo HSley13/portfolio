@@ -6,14 +6,17 @@ import Educations from "../../containers/education/Educations";
 import Certifications from "../../containers/certifications/Certifications";
 import CompetitiveSites from "../../components/competitiveSites/CompetitiveSites";
 import EducationImg from "./EducationImg";
-import { competitiveSites } from "../../portfolio";
-import { certifications } from "../../portfolio";
+import { LocaleContext } from "../../i18n/LocaleContext";
 import "./EducationComponent.css";
 import { Fade } from "react-reveal";
 
 class Education extends Component {
+  static contextType = LocaleContext;
+
   render() {
     const theme = this.props.theme;
+    const { competitiveSites, certifications } = this.context.portfolio;
+    const { t } = this.context;
     return (
       <div className="education-main">
         <Header theme={this.props.theme} />
@@ -21,18 +24,14 @@ class Education extends Component {
           <Fade bottom duration={2000} distance="40px">
             <div className="heading-div">
               <div className="heading-img-div">
-                {/* <img
-									src={require("../../assets/images/education.svg")}
-									alt=""
-								/> */}
                 <EducationImg theme={theme} />
               </div>
               <div className="heading-text-div">
                 <h1 className="heading-text" style={{ color: theme.text }}>
-                  Education
+                  {t("education.heading")}
                 </h1>
                 <h3 className="heading-sub-text" style={{ color: theme.text }}>
-                  Basic Qualification and Certifcations
+                  {t("education.subheading")}
                 </h3>
                 <CompetitiveSites logos={competitiveSites.competitiveSites} />
               </div>

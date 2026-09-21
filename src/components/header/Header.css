@@ -123,6 +123,27 @@
   top: 0;
 }
 
+/* language switcher */
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+}
+
+.lang-switcher-btn {
+  font-family: "Google Sans Regular";
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border-width: 1px;
+  border-style: solid;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+
 /* 69em = 1104px */
 
 @media (min-width: 69em) {
@@ -139,5 +160,8 @@
   }
   .header .menu-icon {
     display: none;
+  }
+  .lang-switcher {
+    padding: 20px 10px;
   }
 }

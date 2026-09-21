@@ -7,15 +7,18 @@ import Button from "../../components/button/Button";
 import AddressImg from "./AddressImg";
 import { Fade } from "react-reveal";
 import "./ContactComponent.css";
-import { contactPageData } from "../../portfolio.js";
-
-const ContactData = contactPageData.contactSection;
-const addressSection = contactPageData.addressSection;
-const phoneSection = contactPageData.phoneSection;
+import { LocaleContext } from "../../i18n/LocaleContext";
 
 class Contact extends Component {
+  static contextType = LocaleContext;
+
   render() {
     const theme = this.props.theme;
+    const { contactPageData } = this.context.portfolio;
+    const { t } = this.context;
+    const ContactData = contactPageData.contactSection;
+    const addressSection = contactPageData.addressSection;
+    const phoneSection = contactPageData.phoneSection;
     return (
       <div className="contact-main">
         <Header theme={theme} />
@@ -45,7 +48,7 @@ class Contact extends Component {
                 <SocialMedia theme={theme} />
                 <div className="resume-btn-div">
                   <Button
-                    text="See My Resume"
+                    text={t("contact.seeMyResume")}
                     href={`${process.env.PUBLIC_URL}/resume`}
                     theme={theme}
                   />
@@ -56,10 +59,6 @@ class Contact extends Component {
           <Fade bottom duration={1000} distance="40px">
             <div className="address-heading-div">
               <div className="contact-heading-img-div">
-                {/* <img
-											src={require(`../../assets/images/${addressSection["avatar_image_path"]}`)}
-											alt=""
-										/> */}
                 <AddressImg theme={theme} />
               </div>
               <div className="address-heading-text-div">

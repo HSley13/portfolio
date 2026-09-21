@@ -1,0 +1,166 @@
+{
+  "data": [
+    {
+      "id": "hsley13-sigil",
+      "name": "Sigil",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "url": "https://github.com/HSley13/Sigil",
+      "description": "Local-first 的 C++20 訊號常駐程式，內建無鎖訊號匯流排與規則引擎，將感測器／事件來源連結到對應動作，全程在裝置端執行，無需雲端往返。",
+      "isFork": false,
+      "tagline": "一套 local-first 的訊號常駐程式，完全在裝置端將真實世界的事件連結到真實世界的動作。",
+      "importance": "Sigil 是一個系統程式設計專案，而非展示用的腳本：核心是無鎖並行環形緩衝區、外掛式架構，以及零雲端依賴的即時規則引擎。這種並行正確性與貼近硬體的設計組合，正是區分應用程式碼與基礎設施程式碼的關鍵能力。",
+      "highlights": [
+        "設計了有界、無鎖的多生產者／單消費者環形緩衝區（SignalBus），讓並行的來源執行緒彼此之間、以及與規則引擎之間都不會互相阻塞",
+        "打造外掛式架構（SourceBase／ActionBase），新增感測器或新增效果都不需要更動核心引擎",
+        "實作具備逐規則冷卻時間的規則引擎，避免單一雜訊來源觸發大量重複警示",
+        "撰寫涵蓋每個模組的完整 GoogleTest 測試套件，包含一個多執行緒的模擬來源，驗證匯流排在單執行緒測試之外的並行生產者路徑",
+        "規劃並記錄了一項電腦視覺擴充功能（在裝置端執行異常偵測的攝影機來源，以合成方式生成瑕疵影像進行訓練），作為此管線下一階段的壓力測試"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "CMake",
+          "iconifyClass": "simple-icons:cmake"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-hotelops",
+      "name": "HotelOps",
+      "createdAt": "2026-08-22T00:00:00Z",
+      "url": "https://github.com/HSley13/HotelOps",
+      "description": "為連鎖飯店打造的數位營運平台：即時房況看板、GPS 驗證員工打卡、布巾追蹤，以及主管端與房務端 App 之間的跨裝置同步，取代原本的 Excel 表格與磁鐵排班板。",
+      "isFork": false,
+      "tagline": "一套數位營運平台，將飯店連鎖業者的 Excel 表格、磁鐵排班板與紙本布巾紀錄整合為單一連動系統。",
+      "importance": "這是為實際飯店連鎖業者（Fullon Hotels and Resorts）打造的正式生產軟體，用來模擬一般 CRUD 教學不會出現的營運限制：以團隊為單位而非一人對一房的房間分派、在資料庫層強制執行的角色權限可見性，以及無法從手機端偽造的出勤紀錄。",
+      "highlights": [
+        "架構了資料庫綱要與資料列層級安全性（RLS）政策層，讓主管、房務人員與布巾人員各自只看到符合其角色的資料，且由 Postgres 本身強制執行，而非僅在介面上隱藏",
+        "打造即時房況看板（Supabase Realtime），具備依團隊統計進度、以及由資料庫觸發器在伺服器端強制執行（而非僅在前端驗證）的可用性排班流程",
+        "設計優先順序評分引擎，依入住時間的接近程度為待整理與整理中的房間排序，自動驅動房務任務佇列",
+        "透過伺服器端 Postgres RPC 函式實作 GPS 驗證打卡，讓出勤紀錄無法從裝置端偽造",
+        "以同一套共用程式碼打造主管端 App（Vite + React，透過 Tauri 包裝為原生應用）與房務端 App（Expo／React Native），兩者共用同一個 Supabase 客戶端與 TypeScript 型別，避免兩端資料結構悄悄失去同步"
+      ],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "React",
+          "iconifyClass": "simple-icons:react"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-ndhu-task-management",
+      "name": "NDHU Task Management",
+      "createdAt": "2026-02-20T00:00:00Z",
+      "url": "https://github.com/HSley13/ndhu-task-management",
+      "description": "全端行動待辦管理應用程式，前端為 local-first 的 Expo／React Native 用戶端並支援離線 SQLite 同步，後端則是具備 JWT 驗證與自動 Moodle LMS 作業匯入功能的 C++（Drogon）REST API。",
+      "isFork": false,
+      "tagline": "一套 local-first 的行動待辦管理應用程式，可在多裝置間乾淨同步，並自動從 Moodle 拉取作業資訊。",
+      "importance": "跨裝置同步是貨真價實的困難分散式系統問題，而這個專案是真正正確地解決它，而非草草帶過：透過自訂的衝突解決協定，區分「使用者擁有」與「僅 Moodle 應擁有」的欄位，讓過時的裝置永遠不會悄悄覆蓋隊友較新的資料。",
+      "highlights": [
+        "設計並實作了 offline-first SQLite 用戶端與 C++／Drogon 後端之間的雙向同步協定，透過逐列的髒資料旗標與伺服器時間戳記來協調多裝置的編輯",
+        "解決了 Moodle 匯入作業特有的身分識別問題（每台裝置各自獨立發現同一項作業，並各自產生自己的本機 ID），做法是引入穩定的 moodle_event_id 作為真正的跨裝置金鑰，並搭配欄位層級的寫入保護，避免過時裝置覆蓋較新的資料",
+        "以 WebView／contenteditable 混合方式打造了富文字筆記編輯器，支援內嵌圖片、語音附件與連結，這些都是純 React Native 文字輸入框無法提供的功能",
+        "以 RS256 JWT 驗證與撤銷機制、AES-256-GCM 加密儲存 Moodle 工作階段權杖、以及混合式 RSA-OAEP 密碼傳輸方式強化系統安全性",
+        "為原本完全沒有的程式碼庫加入 CI 流程（型別檢查、程式碼檢查與測試把關每次部署）與真正的測試套件，並在一次結構性檢視中刪除約 1,900 行無用程式碼"
+      ],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-maestro",
+      "name": "Maestro",
+      "createdAt": "2025-09-09T00:00:00Z",
+      "url": "https://github.com/HSley13/Maestro",
+      "description": "雙流 BiLSTM 即時手勢辨識系統，用於免持簡報控制，具備 MediaPipe Hands 特徵擷取管線、PySide6 控制介面，以及跨平台封裝應用程式。榮獲 2026 年東華大學大學部專題優良獎。",
+      "isFork": false,
+      "tagline": "一套正式等級的即時手勢辨識系統，讓網路攝影機化身為免持簡報遙控器。",
+      "importance": "榮獲 2026 年東華大學大學部專題優良獎。能在一般消費級筆電（無 GPU）上執行即時推論，並封裝為貨真價實的跨平台桌面應用程式，而非僅止於 notebook 展示——這正是機器學習「實驗」與機器學習「產品」之間的差距所在。",
+      "highlights": [
+        "打造雙流 LSTM 分類器，從 MediaPipe Hands 關鍵點辨識 10 類手勢詞彙（混合 Jester 與 IPN 資料集），全程僅以 CPU 即時運算",
+        "端到端設計完整推論管線：攝影機擷取、手部選取、特徵工程、滑動視窗緩衝區、預測穩定化，以及直接派送至作業系統層級的鍵盤與指標事件",
+        "打造非阻塞式的 PySide6 控制介面，推論在背景 QThread 執行，狀態更新透過 Qt 訊號節流至約 10Hz，確保介面不會卡頓模型、模型也不會被介面拖慢",
+        "為 macOS 與 Windows 封裝並發布獨立安裝程式，訓練好的模型直接內建於應用程式中，執行時無需 Python 執行環境或網路連線"
+      ],
+      "languages": [
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-ndhu-shbs",
+      "name": "NDHU Second-Hand Book Store",
+      "createdAt": "2026-06-03T00:00:00Z",
+      "url": "https://github.com/HSley13/NDHU-SHBS",
+      "description": "供東華大學學生買賣二手教科書的校園交易平台。主導 Go／Fiber 後端架構與 REST API 端到端設計，並將 AI 書況分級模型整合進上架流程。",
+      "isFork": false,
+      "tagline": "供東華大學學生買賣二手教科書的校園交易平台，並提供 AI 輔助的書況分級。",
+      "importance": "一項完整的團隊軟體工程專案，一學期內從空白的程式碼庫打造出可運作的三服務系統。在團隊專案中負責後端架構，代表設計決策必須向隊友說明並辯護，而不只是獨自做決定——這是比單人開發更難、也不同的能力。",
+      "highlights": [
+        "端到端主導 Go／Fiber 後端架構：REST API 設計、服務邏輯與資料庫綱要，並與 TypeScript／Next.js 前端及獨立的 Python AI 微服務整合",
+        "打造整合進上架流程的 AI 書況分級模型，將原本賣家需手動完成的步驟自動化",
+        "建置完整的本機與預備環境 Docker Compose 架構（搭配 Traefik），並設定 CI 在每個 Pull Request 執行程式碼檢查、測試與建置，於合併至 main 分支時自動部署至預備環境"
+      ],
+      "languages": [
+        {
+          "name": "Go",
+          "iconifyClass": "simple-icons:go"
+        },
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-jsonfs",
+      "name": "JsonFS",
+      "createdAt": "2026-03-09T00:00:00Z",
+      "url": "https://github.com/HSley13/JsonFS",
+      "description": "C++ 打造的 FUSE 虛擬檔案系統，將 JSON 檔案與即時 REST API 掛載為可瀏覽的 POSIX 目錄樹，寫入時於系統呼叫層強制執行綱要驗證、採原子式寫回，並支援具 TTL 更新機制的即時 URL 掛載。",
+      "isFork": false,
+      "tagline": "一套 FUSE 檔案系統，能將任何 JSON 檔案或即時 REST API 轉換為可瀏覽、可寫入的 POSIX 目錄樹。",
+      "importance": "Unix 的「一切皆檔案」哲學從未真正延伸到結構化資料，JsonFS 正是要補上這一塊：讓 grep、diff、watch 等所有 Unix 工具無需任何額外膠水程式碼即可直接操作即時 JSON。相較於既有的 JSON-FUSE 專案，它在三個層面上具有新意：支援 TTL 更新的即時 URL 掛載、每次更新時的結構化差異比對，以及在系統呼叫層（而非應用程式層）強制執行綱要驗證。",
+      "highlights": [
+        "直接在 FUSE 的 write() 回呼中實作綱要驗證，讓無效數值在任何應用程式碼看到之前，就在系統呼叫層以 EINVAL 被拒絕，且刪除必要欄位的操作會在 unlink() 被阻擋",
+        "打造具可設定 TTL 更新機制的即時 HTTP／HTTPS 掛載，讓 REST 端點擁有穩定、可組合的掛載點，使 grep、watch 與 shell 管線能直接操作，這是單次性的 `watch curl | jq` 做不到的事",
+        "設計了原子式寫回機制（先寫入暫存檔再重新命名），確保寫入過程中發生崩潰也不會損毀原始檔案",
+        "撰寫了橫跨 6 個 GoogleTest 套件、共 55 項單元測試，並完整記錄架構與並行設計的 Doxygen 文件"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        }
+      ]
+    }
+  ]
+}
