@@ -6,14 +6,17 @@ import TopButton from "../../components/topButton/TopButton";
 import Button from "../../components/button/Button";
 import ProjectLanguages from "../../components/projectLanguages/ProjectLanguages";
 import { Fade } from "react-reveal";
-import projectsData from "../../shared/projects.json";
+import { LocaleContext } from "../../i18n/LocaleContext";
 import "./ProjectDetail.css";
 
 class ProjectDetail extends Component {
+  static contextType = LocaleContext;
+
   render() {
     const theme = this.props.theme;
     const { id } = this.props.match.params;
-    const project = projectsData.data.find((p) => p.id === id);
+    const { projects, t } = this.context;
+    const project = projects.data.find((p) => p.id === id);
 
     if (!project) {
       return (
@@ -21,7 +24,9 @@ class ProjectDetail extends Component {
           <Header theme={theme} />
           <div className="project-detail-notfound">
             <Fade bottom duration={1000} distance="40px">
-              <h1 style={{ color: theme.text }}>Project not found</h1>
+              <h1 style={{ color: theme.text }}>
+                {t("projectDetail.notFound")}
+              </h1>
               <Link
                 className="main-button"
                 to="/projects"
@@ -32,7 +37,7 @@ class ProjectDetail extends Component {
                   display: "inline-flex",
                 }}
               >
-                Back to Projects
+                {t("projectDetail.backToProjectsButton")}
               </Link>
             </Fade>
           </div>
@@ -52,7 +57,7 @@ class ProjectDetail extends Component {
               to="/projects"
               style={{ color: theme.secondaryText }}
             >
-              ← Back to Projects
+              {t("projectDetail.backToProjects")}
             </Link>
             <h1 className="project-detail-title" style={{ color: theme.text }}>
               {project.name}
@@ -75,7 +80,9 @@ class ProjectDetail extends Component {
           {project.importance && (
             <Fade bottom duration={1000} distance="40px">
               <div className="project-detail-section">
-                <h2 style={{ color: theme.text }}>Why It Matters</h2>
+                <h2 style={{ color: theme.text }}>
+                  {t("projectDetail.whyItMatters")}
+                </h2>
                 <p style={{ color: theme.text }}>{project.importance}</p>
               </div>
             </Fade>
@@ -85,7 +92,7 @@ class ProjectDetail extends Component {
             <Fade bottom duration={1000} distance="40px">
               <div className="project-detail-section">
                 <h2 style={{ color: theme.text }}>
-                  Key Features &amp; Contributions
+                  {t("projectDetail.keyFeatures")}
                 </h2>
                 <ul className="project-detail-highlights">
                   {project.highlights.map((item, i) => (
@@ -101,7 +108,7 @@ class ProjectDetail extends Component {
           <Fade bottom duration={1000} distance="40px">
             <div className="project-detail-cta">
               <Button
-                text="View on GitHub"
+                text={t("projectDetail.viewOnGithub")}
                 newTab={true}
                 href={project.url}
                 theme={theme}

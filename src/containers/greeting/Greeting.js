@@ -2,12 +2,14 @@ import React from "react";
 import "./Greeting.css";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
-import { greeting } from "../../portfolio";
+import { useLocale } from "../../i18n/LocaleContext";
 import { Fade } from "react-reveal";
 import heroPhoto from "../../assets/images/sley_hortes.png";
 
 export default function Greeting(props) {
   const theme = props.theme;
+  const { portfolio, t } = useLocale();
+  const { greeting } = portfolio;
   return (
     <Fade bottom duration={2000} distance="40px">
       <div className="greet-main" id="greeting">
@@ -31,7 +33,7 @@ export default function Greeting(props) {
               <SocialMedia theme={theme} />
               <div className="portfolio-repo-btn-div">
                 <Button
-                  text="⭐ Star Me On Github"
+                  text={t("greeting.starButton")}
                   newTab={true}
                   href={greeting.portfolio_repository}
                   theme={theme}

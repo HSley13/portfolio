@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./Header.css";
 import { Fade } from "react-reveal";
 import { NavLink, Link } from "react-router-dom";
-import { greeting, settings } from "../../portfolio.js";
+import { settings } from "../../settings.js";
+import { LocaleContext } from "../../i18n/LocaleContext";
 import SeoHeader from "../seoHeader/SeoHeader";
 
 const onMouseEnter = (event, color) => {
@@ -16,9 +17,13 @@ const onMouseOut = (event) => {
 };
 
 class Header extends Component {
+  static contextType = LocaleContext;
+
   render() {
     const theme = this.props.theme;
     const link = settings.isSplash ? "/splash" : "home";
+    const { greeting } = this.context.portfolio;
+    const { t, locale, setLocale, locales } = this.context;
     return (
       <Fade top duration={1000} distance="20px">
         <SeoHeader />
@@ -45,7 +50,7 @@ class Header extends Component {
                   onMouseEnter={(event) => onMouseEnter(event, theme.highlight)}
                   onMouseOut={(event) => onMouseOut(event)}
                 >
-                  Home
+                  {t("nav.home")}
                 </NavLink>
               </li>
               <li>
@@ -57,7 +62,7 @@ class Header extends Component {
                   onMouseEnter={(event) => onMouseEnter(event, theme.highlight)}
                   onMouseOut={(event) => onMouseOut(event)}
                 >
-                  Education
+                  {t("nav.education")}
                 </NavLink>
               </li>
               <li>
@@ -69,7 +74,7 @@ class Header extends Component {
                   onMouseEnter={(event) => onMouseEnter(event, theme.highlight)}
                   onMouseOut={(event) => onMouseOut(event)}
                 >
-                  Experience
+                  {t("nav.experience")}
                 </NavLink>
               </li>
               <li>
@@ -81,7 +86,7 @@ class Header extends Component {
                   onMouseEnter={(event) => onMouseEnter(event, theme.highlight)}
                   onMouseOut={(event) => onMouseOut(event)}
                 >
-                  Projects
+                  {t("nav.projects")}
                 </NavLink>
               </li>
               <li>
@@ -93,8 +98,27 @@ class Header extends Component {
                   onMouseEnter={(event) => onMouseEnter(event, theme.highlight)}
                   onMouseOut={(event) => onMouseOut(event)}
                 >
-                  Contact Me
+                  {t("nav.contact")}
                 </NavLink>
+              </li>
+              <li className="lang-switcher">
+                {locales.map((l) => (
+                  <button
+                    key={l.code}
+                    type="button"
+                    className="lang-switcher-btn"
+                    aria-pressed={l.code === locale}
+                    onClick={() => setLocale(l.code)}
+                    style={{
+                      color: l.code === locale ? theme.body : theme.text,
+                      backgroundColor:
+                        l.code === locale ? theme.text : "transparent",
+                      borderColor: theme.text,
+                    }}
+                  >
+                    {l.label}
+                  </button>
+                ))}
               </li>
             </ul>
           </header>

@@ -1,0 +1,166 @@
+{
+  "data": [
+    {
+      "id": "hsley13-sigil",
+      "name": "Sigil",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "url": "https://github.com/HSley13/Sigil",
+      "description": "Demonio de señales local-first en C++20 con un bus de señales sin bloqueo y un motor de reglas que conecta fuentes de sensores/eventos con acciones, todo en el propio dispositivo, sin ida y vuelta a la nube.",
+      "isFork": false,
+      "tagline": "Un demonio de señales local-first que conecta eventos del mundo real con acciones del mundo real, completamente en el dispositivo.",
+      "importance": "Sigil es un proyecto de programación de sistemas, no una demo con guion: está construido alrededor de un buffer circular concurrente sin bloqueo, una arquitectura de plugins y un motor de reglas en tiempo real, todo sin ninguna dependencia de la nube. Esa combinación de corrección en concurrencia y diseño cercano al hardware es justo lo que separa el código de aplicación del código de infraestructura.",
+      "highlights": [
+        "Diseñé un buffer circular acotado, sin bloqueo, de múltiples productores y un solo consumidor (el SignalBus), para que los hilos de las fuentes concurrentes nunca bloqueen al motor de reglas ni se bloqueen entre sí",
+        "Construí una arquitectura de plugins (SourceBase / ActionBase) para poder añadir un nuevo sensor o un nuevo efecto sin tocar el motor central",
+        "Implementé un motor de reglas con tiempos de enfriamiento por regla, evitando que una sola fuente ruidosa inunde el sistema de alertas repetidas",
+        "Escribí una suite completa de GoogleTest que cubre cada módulo, incluyendo una fuente simulada multihilo que ejercita la ruta de productores concurrentes del bus más allá de una prueba de un solo hilo",
+        "Definí y documenté una extensión de visión por computadora (una fuente tipo cámara que ejecuta detección de anomalías en el dispositivo, entrenada con imágenes de defectos compuestas sintéticamente) como la siguiente prueba de estrés del pipeline"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "CMake",
+          "iconifyClass": "simple-icons:cmake"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-hotelops",
+      "name": "HotelOps",
+      "createdAt": "2026-08-22T00:00:00Z",
+      "url": "https://github.com/HSley13/HotelOps",
+      "description": "Plataforma de operaciones digitales para una cadena hotelera: tablero de estado de habitaciones en tiempo real, fichaje de personal verificado por GPS, control de blancos y sincronización entre dispositivos de las apps de gerencia y limpieza, reemplazando hojas de Excel y un tablero de programación magnético.",
+      "isFork": false,
+      "tagline": "Una plataforma de operaciones digitales que reemplaza las hojas de Excel, el tablero magnético de horarios y los registros de blancos en papel de una cadena hotelera con un solo sistema conectado.",
+      "importance": "Este es software de producción real para una cadena hotelera real (Fullon Hotels and Resorts), construido para modelar restricciones operativas que no aparecen en un tutorial típico de CRUD: asignación de habitaciones por equipo en lugar de una persona por habitación, visibilidad de datos por rol impuesta en la capa de base de datos, y asistencia que no se puede falsificar desde un teléfono.",
+      "highlights": [
+        "Diseñé el esquema de base de datos y la capa de políticas de seguridad a nivel de fila para que gerentes, personal de limpieza y de lavandería vean exactamente los datos que corresponden a su rol, impuesto por Postgres mismo y no solo oculto en la interfaz",
+        "Construí un tablero de estado de habitaciones en tiempo real (Supabase Realtime) con seguimiento de progreso por equipo y un flujo de programación consciente de la disponibilidad, impuesto por un trigger de base de datos en el servidor, no solo validación del lado del cliente",
+        "Diseñé un motor de puntuación de prioridad que ordena las habitaciones sucias y en proceso según la cercanía a la hora de check-in, impulsando automáticamente la cola de tareas de limpieza",
+        "Implementé fichaje verificado por GPS mediante una función RPC de Postgres en el servidor, para que la asistencia no pueda falsificarse desde el dispositivo",
+        "Entregué una única base de código compartida entre una app de gerencia (Vite + React, empaquetada de forma nativa con Tauri) y una app de limpieza (Expo / React Native), ambas usando el mismo cliente de Supabase y los mismos tipos de TypeScript para que no se desincronicen silenciosamente"
+      ],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "React",
+          "iconifyClass": "simple-icons:react"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-ndhu-task-management",
+      "name": "NDHU Task Management",
+      "createdAt": "2026-02-20T00:00:00Z",
+      "url": "https://github.com/HSley13/ndhu-task-management",
+      "description": "Aplicación móvil full-stack de gestión de tareas con un cliente local-first en Expo/React Native con sincronización SQLite sin conexión, y un backend REST API en C++ (Drogon) con autenticación JWT e importación automática de tareas desde Moodle LMS.",
+      "isFork": false,
+      "tagline": "Un gestor de tareas móvil local-first que se sincroniza correctamente entre dispositivos y trae tareas directamente desde Moodle de forma automática.",
+      "importance": "La sincronización entre dispositivos es un problema genuinamente difícil de sistemas distribuidos, y este proyecto lo resuelve correctamente en lugar de disimularlo: un protocolo de resolución de conflictos a medida distingue los campos que pertenecen al usuario de los que solo debería poseer Moodle, para que un dispositivo desactualizado nunca sobrescriba silenciosamente los datos más recientes de un compañero.",
+      "highlights": [
+        "Diseñé e implementé un protocolo de sincronización bidireccional entre un cliente SQLite offline-first y un backend en C++/Drogon, usando marcas de \"sucio\" por fila y timestamps del servidor para reconciliar ediciones de múltiples dispositivos",
+        "Resolví un problema de identidad particular de las tareas importadas de Moodle (cada dispositivo descubre la misma tarea de forma independiente y genera su propio ID local para ella) introduciendo un moodle_event_id estable como la verdadera clave entre dispositivos, con protección de escritura a nivel de campo para que un dispositivo desactualizado no pueda sobrescribir uno más reciente",
+        "Construí un editor de notas de texto enriquecido como híbrido WebView/contenteditable para soportar imágenes en línea, adjuntos de audio y enlaces, capacidades que un campo de texto plano de React Native no ofrece",
+        "Reforcé el sistema con autenticación y revocación JWT RS256, cifrado AES-256-GCM en reposo para los tokens de sesión de Moodle almacenados, y transporte híbrido RSA-OAEP para la contraseña",
+        "Añadí un pipeline de CI (verificación de tipos, linting y pruebas que condicionan cada despliegue) y una suite de pruebas real a una base de código que no tenía ninguna de las dos, y eliminé cerca de 1,900 líneas de código muerto encontradas durante una revisión estructural"
+      ],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-maestro",
+      "name": "Maestro",
+      "createdAt": "2025-09-09T00:00:00Z",
+      "url": "https://github.com/HSley13/Maestro",
+      "description": "Sistema de reconocimiento de gestos de mano en tiempo real de dos flujos BiLSTM para control de presentaciones manos libres, con un pipeline de características de MediaPipe Hands, interfaz de control en PySide6 y una app empaquetada multiplataforma. Ganador del Premio a la Excelencia en Proyecto de Pregrado de la NDHU, 2026.",
+      "isFork": false,
+      "tagline": "Un sistema de reconocimiento de gestos de mano en tiempo real de nivel producción que convierte una webcam en un control remoto de presentaciones manos libres.",
+      "importance": "Ganador del Premio a la Excelencia en Proyecto de Pregrado de la NDHU, 2026. Ejecuta inferencia en tiempo real en laptops de consumo comunes sin GPU, empaquetado como una verdadera app de escritorio multiplataforma en lugar de una demo en notebook, que es precisamente la diferencia entre un experimento de machine learning y un producto de machine learning.",
+      "highlights": [
+        "Construí un clasificador LSTM de dos flujos que reconoce un vocabulario de 10 clases de gestos (una combinación de los datasets Jester e IPN) a partir de puntos de referencia de MediaPipe Hands, funcionando en tiempo real solo con CPU",
+        "Diseñé el pipeline de inferencia completo de punta a punta: captura de cámara, selección de mano, ingeniería de características, un buffer de ventana deslizante, estabilización de predicciones y despacho de comandos directamente a eventos de teclado y puntero a nivel de sistema operativo",
+        "Construí una interfaz de control en PySide6 sin bloqueos, con la inferencia corriendo en un QThread en segundo plano y actualizaciones de estado limitadas a unos 10Hz mediante señales de Qt, para que la interfaz nunca ralentice al modelo ni viceversa",
+        "Empaqueté y distribuí instaladores independientes para macOS y Windows con el modelo entrenado incluido directamente en la app, sin necesitar entorno de Python ni conexión a internet para ejecutarla"
+      ],
+      "languages": [
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-ndhu-shbs",
+      "name": "NDHU Second-Hand Book Store",
+      "createdAt": "2026-06-03T00:00:00Z",
+      "url": "https://github.com/HSley13/NDHU-SHBS",
+      "description": "Mercado universitario para que los estudiantes de la NDHU compren y vendan libros de texto usados. Lideré la arquitectura del backend en Go/Fiber y el diseño de la REST API de principio a fin, e integré un modelo de clasificación del estado del libro basado en IA dentro del pipeline.",
+      "isFork": false,
+      "tagline": "Un mercado universitario donde los estudiantes de la NDHU compran y venden libros de texto usados, con clasificación de estado asistida por IA.",
+      "importance": "Un proyecto de ingeniería de software en equipo completo, construido desde un repositorio vacío hasta un sistema funcional de tres servicios a lo largo de un semestre. Ser responsable de la arquitectura del backend en un proyecto de equipo significa que las decisiones de diseño hay que explicarlas y defenderlas ante los compañeros, no solo tomarlas en aislamiento, una habilidad distinta y más difícil que el desarrollo en solitario.",
+      "highlights": [
+        "Lideré la arquitectura del backend en Go/Fiber de principio a fin: diseño de la REST API, lógica de servicio y esquema de base de datos, integrado con un frontend en TypeScript/Next.js y un microservicio de IA independiente en Python",
+        "Construí el modelo de clasificación del estado del libro basado en IA que se conecta al flujo de publicación de anuncios, automatizando un paso que los vendedores tendrían que hacer manualmente",
+        "Configuré la pila completa de Docker Compose local y de staging detrás de Traefik, además de CI que revisa el estilo, ejecuta pruebas y compila en cada pull request, con despliegue automático a staging al fusionar a main"
+      ],
+      "languages": [
+        {
+          "name": "Go",
+          "iconifyClass": "simple-icons:go"
+        },
+        {
+          "name": "TypeScript",
+          "iconifyClass": "simple-icons:typescript"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-jsonfs",
+      "name": "JsonFS",
+      "createdAt": "2026-03-09T00:00:00Z",
+      "url": "https://github.com/HSley13/JsonFS",
+      "description": "Sistema de archivos virtual FUSE en C++ que monta archivos JSON y APIs REST en vivo como un árbol de directorios POSIX navegable, con escrituras validadas por esquema rechazadas a nivel de syscall, escritura atómica y montaje de URLs en vivo con actualización por TTL.",
+      "isFork": false,
+      "tagline": "Un sistema de archivos FUSE que convierte cualquier archivo JSON o API REST en vivo en un árbol de directorios POSIX navegable y editable.",
+      "importance": "La filosofía de Unix de \"todo es un archivo\" nunca se extendió a los datos estructurados, así que JsonFS la extiende: grep, diff, watch y cualquier otra herramienta de Unix empiezan a funcionar sobre JSON en vivo sin código pegamento. Es novedoso en tres aspectos concretos frente a proyectos previos de JSON-FUSE: montaje de URLs en vivo con actualización por TTL, diferenciación estructural en cada actualización, y validación de esquema a nivel de syscall en lugar de en el código de la aplicación.",
+      "highlights": [
+        "Implementé escrituras validadas por esquema directamente dentro del callback write() de FUSE, para que un valor inválido sea rechazado con un EINVAL a nivel de syscall antes de que cualquier código de aplicación lo vea, y bloqueé la eliminación de campos obligatorios en unlink()",
+        "Construí montaje HTTP/HTTPS en vivo con actualización por TTL configurable, dando a un endpoint REST un punto de montaje estable y componible que grep, watch y las tuberías de shell pueden usar directamente, algo que un `watch curl | jq` de un solo uso no puede lograr",
+        "Diseñé escritura atómica (escribir a un archivo temporal y luego renombrar) para que un fallo a mitad de escritura nunca pueda corromper el archivo de origen",
+        "Escribí 55 pruebas unitarias distribuidas en 6 suites de GoogleTest, junto con documentación completa en Doxygen de la arquitectura y el diseño de concurrencia"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        }
+      ]
+    }
+  ]
+}

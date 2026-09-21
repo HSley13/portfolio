@@ -7,7 +7,7 @@ import Experience from "../pages/experience/Experience";
 import Contact from "../pages/contact/ContactComponent";
 import Projects from "../pages/projects/Projects";
 import ProjectDetail from "../pages/projectDetail/ProjectDetail";
-import { settings } from "../portfolio.js";
+import { settings } from "../settings.js";
 import Error404 from "../pages/errors/error404/Error";
 import ResumePage from "../pages/resume/Resume.js";
 

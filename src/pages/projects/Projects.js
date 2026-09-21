@@ -6,19 +6,22 @@ import PublicationCard from "../../components/publicationsCard/PublicationCard";
 import Button from "../../components/button/Button";
 import TopButton from "../../components/topButton/TopButton";
 import { Fade } from "react-reveal";
-import {
-  greeting,
-  projectsHeader,
-  publicationsHeader,
-  publications,
-} from "../../portfolio.js";
-import ProjectsData from "../../shared/projects.json";
+import { LocaleContext } from "../../i18n/LocaleContext";
 import "./Projects.css";
 import ProjectsImg from "./ProjectsImg";
 
 class Projects extends Component {
+  static contextType = LocaleContext;
+
   render() {
     const theme = this.props.theme;
+    const {
+      greeting,
+      projectsHeader,
+      publicationsHeader,
+      publications,
+    } = this.context.portfolio;
+    const { projects, t } = this.context;
     return (
       <div className="projects-main">
         <Header theme={theme} />
@@ -26,10 +29,6 @@ class Projects extends Component {
           <Fade bottom duration={2000} distance="40px">
             <div className="projects-heading-div">
               <div className="projects-heading-img-div">
-                {/* <img
-											src={require(`../../assets/images/${projectsHeader["avatar_image_path"]}`)}
-											alt=""
-										/> */}
                 <ProjectsImg theme={theme} />
               </div>
               <div className="projects-heading-text-div">
@@ -50,12 +49,12 @@ class Projects extends Component {
           </Fade>
         </div>
         <div className="repo-cards-div-main">
-          {ProjectsData.data.map((repo) => {
+          {projects.data.map((repo) => {
             return <GithubRepoCard repo={repo} theme={theme} />;
           })}
         </div>
         <Button
-          text={"More Projects"}
+          text={t("projects.moreProjects")}
           className="project-button"
           href={greeting.githubProfile}
           newTab={true}

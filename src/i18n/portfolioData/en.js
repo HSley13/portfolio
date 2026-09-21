@@ -1,25 +1,19 @@
-/* Change this file to get your personal Porfolio */
+// English portfolio content. This is the canonical structure every other
+// locale file (zh-TW.js, es.js) must mirror key-for-key.
 
-// Website related settings
-const settings = {
-  isSplash: true, // Change this to false if you don't want Splash screen.
-};
-
-//SEO Related settings
 const seo = {
-  title: "Sley Hortes' Portfolio",
+  title: "Sley HORTES' Portfolio",
   description:
     "Software Engineer with hands-on experience architecting and shipping production systems across multiple domains, from high-performance C++ backends and cross-platform mobile applications to full-stack web platforms and deep learning pipelines.",
   og: {
-    title: "Sley Hortes Portfolio",
+    title: "Sley HORTES Portfolio",
     type: "website",
     url: "https://hsley13.github.io/portfolio/",
   },
 };
 
-//Home Page
 const greeting = {
-  title: "Sley Hortes",
+  title: "Sley HORTES",
   role: "Software Engineer",
   logo_name: "SleyHortes",
   nickname: "",
@@ -34,14 +28,14 @@ const socialMediaLinks = [
   {
     name: "Github",
     link: "https://github.com/HSley13",
-    fontAwesomeIcon: "fa-github", // Reference https://fontawesome.com/icons/github?style=brands
-    backgroundColor: "#181717", // Reference https://simpleicons.org/?q=github
+    fontAwesomeIcon: "fa-github",
+    backgroundColor: "#181717",
   },
   {
     name: "Gmail",
     link: "mailto:sleyhortes13@gmail.com",
-    fontAwesomeIcon: "fa-google", // Reference https://fontawesome.com/icons/google?style=brands
-    backgroundColor: "#D14836", // Reference https://simpleicons.org/?q=gmail
+    fontAwesomeIcon: "fa-google",
+    backgroundColor: "#D14836",
   },
 ];
 
@@ -59,38 +53,27 @@ const skills = {
         {
           skillName: "C++",
           fontAwesomeClassname: "simple-icons:cplusplus",
-          style: {
-            color: "#00599C",
-          },
+          style: { color: "#00599C" },
         },
         {
           skillName: "Go",
           fontAwesomeClassname: "simple-icons:go",
-          style: {
-            color: "#00ADD8",
-          },
+          style: { color: "#00ADD8" },
         },
         {
           skillName: "Python",
           fontAwesomeClassname: "ion-logo-python",
-          style: {
-            backgroundColor: "transparent",
-            color: "#3776AB",
-          },
+          style: { backgroundColor: "transparent", color: "#3776AB" },
         },
         {
           skillName: "SQL",
           fontAwesomeClassname: "simple-icons:postgresql",
-          style: {
-            color: "#4169E1",
-          },
+          style: { color: "#4169E1" },
         },
         {
           skillName: "Drogon",
           fontAwesomeClassname: "simple-icons:cplusplus",
-          style: {
-            color: "#00599C",
-          },
+          style: { color: "#00599C" },
         },
       ],
     },
@@ -106,59 +89,42 @@ const skills = {
         {
           skillName: "TypeScript",
           fontAwesomeClassname: "simple-icons:typescript",
-          style: {
-            color: "#3178C6",
-          },
+          style: { color: "#3178C6" },
         },
         {
           skillName: "JavaScript",
           fontAwesomeClassname: "simple-icons:javascript",
-          style: {
-            backgroundColor: "#000000",
-            color: "#F7DF1E",
-          },
+          style: { backgroundColor: "#000000", color: "#F7DF1E" },
         },
         {
           skillName: "ReactJS",
           fontAwesomeClassname: "simple-icons:react",
-          style: {
-            color: "#61DAFB",
-          },
+          style: { color: "#61DAFB" },
         },
         {
           skillName: "React Native",
           fontAwesomeClassname: "simple-icons:react",
-          style: {
-            color: "#61DAFB",
-          },
+          style: { color: "#61DAFB" },
         },
         {
           skillName: "NodeJS",
           fontAwesomeClassname: "devicon-plain:nodejs-wordmark",
-          style: {
-            color: "#339933",
-          },
+          style: { color: "#339933" },
         },
         {
           skillName: "Qt",
           fontAwesomeClassname: "simple-icons:qt",
-          style: {
-            color: "#41CD52",
-          },
+          style: { color: "#41CD52" },
         },
         {
           skillName: "Flask",
           fontAwesomeClassname: "simple-icons:flask",
-          style: {
-            color: "#000000",
-          },
+          style: { color: "#000000" },
         },
         {
           skillName: "R",
           fontAwesomeClassname: "simple-icons:r",
-          style: {
-            color: "#276DC3",
-          },
+          style: { color: "#276DC3" },
         },
       ],
     },
@@ -174,65 +140,48 @@ const skills = {
         {
           skillName: "AWS",
           fontAwesomeClassname: "simple-icons:amazonaws",
-          style: {
-            color: "#FF9900",
-          },
+          style: { color: "#FF9900" },
         },
         {
           skillName: "GCP",
           fontAwesomeClassname: "simple-icons:googlecloud",
-          style: {
-            color: "#4285F4",
-          },
+          style: { color: "#4285F4" },
         },
         {
           skillName: "Cloudflare",
           fontAwesomeClassname: "simple-icons:cloudflare",
-          style: {
-            color: "#F38020",
-          },
+          style: { color: "#F38020" },
         },
         {
           skillName: "PostgreSQL",
           fontAwesomeClassname: "simple-icons:postgresql",
-          style: {
-            color: "#336791",
-          },
+          style: { color: "#336791" },
         },
         {
           skillName: "MongoDB",
           fontAwesomeClassname: "simple-icons:mongodb",
-          style: {
-            color: "#47A248",
-          },
+          style: { color: "#47A248" },
         },
         {
           skillName: "Redis",
           fontAwesomeClassname: "simple-icons:redis",
-          style: {
-            color: "#DC382D",
-          },
+          style: { color: "#DC382D" },
         },
         {
           skillName: "Docker",
           fontAwesomeClassname: "simple-icons:docker",
-          style: {
-            color: "#1488C6",
-          },
+          style: { color: "#1488C6" },
         },
         {
           skillName: "Git",
           fontAwesomeClassname: "simple-icons:git",
-          style: {
-            color: "#F05032",
-          },
+          style: { color: "#F05032" },
         },
       ],
     },
   ],
 };
 
-// Education Page
 const competitiveSites = {
   competitiveSites: [],
 };
@@ -245,8 +194,7 @@ const degrees = {
       alt_name: "National Dong Hwa University",
       duration: "Sep 2023 - Jun 2027",
       descriptions: [
-        "Relevant coursework: R (Beginner & Intermediate), Big Data, C++, Data Structures, Algorithms, Image Processing, Machine Learning, Scalable Computing.",
-        "Currently taking: Advanced Computer Vision, Introduction to Generative AI, Distributed Systems, Database Systems.",
+        "Relevant coursework: R (Beginner & Intermediate), Big Data, C++, Data Structures, Algorithms, Image Processing, Machine Learning, Scalable Computing, Advanced Computer Vision, Introduction to Generative AI, Distributed Systems, Database Systems.",
       ],
       website_link: "https://web.ndhu.edu.tw/",
     },
@@ -276,7 +224,6 @@ const spokenLanguages = {
   ],
 };
 
-// Experience Page
 const experience = {
   title: "Experience",
   subtitle: "Awards, Competitions, and Volunteering",
@@ -332,7 +279,6 @@ const experience = {
   ],
 };
 
-// Projects Page
 const projectsHeader = {
   title: "Projects",
   description:
@@ -350,7 +296,6 @@ const publications = {
   data: [],
 };
 
-// Contact Page
 const contactPageData = {
   contactSection: {
     title: "Contact Me",
@@ -380,8 +325,7 @@ const contactPageData = {
   },
 };
 
-export {
-  settings,
+const portfolioData = {
   seo,
   greeting,
   socialMediaLinks,
@@ -396,3 +340,5 @@ export {
   publications,
   contactPageData,
 };
+
+export default portfolioData;

@@ -1,15 +1,17 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import {
-  greeting,
-  seo,
-  socialMediaLinks,
-  experience,
-  contactPageData,
-  certifications,
-} from "../../portfolio.js";
+import { useLocale } from "../../i18n/LocaleContext";
 
 function SeoHeader() {
+  const { portfolio } = useLocale();
+  const {
+    greeting,
+    seo,
+    socialMediaLinks,
+    experience,
+    contactPageData,
+    certifications,
+  } = portfolio;
   let sameAs = [];
   socialMediaLinks
     .filter(

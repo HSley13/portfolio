@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Skills.css";
 import SoftwareSkill from "../../components/softwareSkills/SoftwareSkill";
 import BulletText from "../../components/bulletText/BulletText";
-import { skills } from "../../portfolio";
+import { LocaleContext } from "../../i18n/LocaleContext";
 import { Fade } from "react-reveal";
 import DataScienceImg from "./DataScienceImg";
 import FullStackImg from "./FullStackImg";
@@ -20,8 +20,11 @@ function GetSkillSvg(props) {
 }
 
 class SkillSection extends Component {
+  static contextType = LocaleContext;
+
   render() {
     const theme = this.props.theme;
+    const { skills } = this.context.portfolio;
     return (
       <div>
         {skills.data.map((skill, i) => {
