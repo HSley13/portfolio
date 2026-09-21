@@ -34,15 +34,26 @@ class LogoLoader extends React.Component {
         >
           SH
         </text>
-        <text
-          class="name-signature"
-          x="220"
-          y="270"
-          textAnchor="middle"
-          fill={theme.body}
-        >
-          Sley Hortes
-        </text>
+        <g class="name-reveal">
+          <text
+            class="name-cursive"
+            x="220"
+            y="252"
+            textAnchor="middle"
+            fill={theme.body}
+          >
+            Sley
+          </text>
+          <text
+            class="name-caps"
+            x="220"
+            y="286"
+            textAnchor="middle"
+            fill={theme.body}
+          >
+            HORTES
+          </text>
+        </g>
         <defs>
           <style
             dangerouslySetInnerHTML={{
@@ -53,14 +64,23 @@ class LogoLoader extends React.Component {
         letter-spacing: 2px;
       }
 
-      .name-signature {
-        font-family: "Agustina Regular", cursive;
-        font-size: 56px;
+      .name-reveal {
         clip-path: inset(0 100% 0 0);
         -webkit-animation: reveal 1.8s ease-out forwards 0.6s;
         -o-animation: reveal 1.8s ease-out forwards 0.6s;
         -moz-animation: reveal 1.8s ease-out forwards 0.6s;
         animation: reveal 1.8s ease-out forwards 0.6s;
+      }
+
+      .name-cursive {
+        font-family: "Agustina Regular", cursive;
+        font-size: 52px;
+      }
+
+      .name-caps {
+        font-family: "Google Sans Bold", sans-serif;
+        font-size: 24px;
+        letter-spacing: 6px;
       }
 
       @-webkit-keyframes reveal {
