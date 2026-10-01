@@ -223,9 +223,9 @@ const spokenLanguages = {
 
 const experience = {
   title: "經歷",
-  subtitle: "獎項、競賽與志工服務",
+  subtitle: "獎項與競賽",
   description:
-    "我打造涵蓋 C++ 後端、行動應用程式與深度學習流程的生產系統。課業之餘，我參與資料科學競賽，並在東華大學智慧運算與行動網路實驗室擔任研究助理志工。",
+    "我打造涵蓋 C++ 後端、行動應用程式與深度學習流程的生產系統。課業之餘，我也參與資料科學競賽。",
   header_image_path: "experience.svg",
   sections: [
     {
@@ -239,7 +239,7 @@ const experience = {
           duration: "2026年5月",
           location: "台灣花蓮",
           description:
-            "以 Maestro 獲獎——一套雙流 BiLSTM 即時手勢辨識系統，用於免持簡報控制。",
+            "以 Maestro 獲獎，一套雙流 BiLSTM 即時手勢辨識系統，用於免持簡報控制。",
           color: "#9b1578",
         },
       ],
@@ -256,20 +256,6 @@ const experience = {
           description:
             "使用 XGBoost 對 Moodle 平台的學習參與模式進行分類。透過 FFT 與尺度圖（scalogram）分析擷取頻域特徵。打造以 Gemini 驅動的 AI 助理，提供學生與教師個人化回饋。",
           color: "#0879bf",
-        },
-      ],
-    },
-    {
-      title: "志工服務",
-      experiences: [
-        {
-          title: "研究助理",
-          company: "東華大學資工系：智慧運算與行動網路實驗室",
-          company_url: "https://web.ndhu.edu.tw/",
-          duration: "2026年9月 - 至今",
-          location: "台灣花蓮",
-          description: "擔任研究助理志工。",
-          color: "#0071C5",
         },
       ],
     },
