@@ -27,3 +27,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 !/package-lock.json
+
+# graphify & Claude artifacts
+/graphify-out
+.claude/
+CLAUDE.md
