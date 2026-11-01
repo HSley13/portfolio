@@ -93,7 +93,7 @@
       "id": "hsley13-maestro",
       "name": "Maestro",
       "createdAt": "2025-09-09T00:00:00Z",
-      "url": "https://github.com/HSley13/Maestro",
+      "url": "https://github.com/ntsrigaud/Maestro",
       "description": "雙流 BiLSTM 即時手勢辨識系統，用於免持簡報控制，具備 MediaPipe Hands 特徵擷取管線、PySide6 控制介面，以及跨平台封裝應用程式。榮獲 2026 年東華大學大學部專題優良獎。",
       "isFork": false,
       "tagline": "一套正式等級的即時手勢辨識系統，讓網路攝影機化身為免持簡報遙控器。",
@@ -159,6 +159,37 @@
         {
           "name": "C++",
           "iconifyClass": "simple-icons:cplusplus"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-robot-arm-analyzer",
+      "name": "Robot Arm Load Analyzer",
+      "createdAt": "2026-10-26T00:00:00Z",
+      "url": "https://github.com/HSley13/robot-arm-analyzer",
+      "description": "用於機械臂承重安全的互動式物理＋AI 工具：從零打造的 C++ 運動學與動力學引擎（DH 運動學、Jacobian 轉置靜力學、完整的遞迴牛頓-歐拉動力學），搭配以 PyTorch 訓練並與其比較基準的神經網路替代模型，以及即時 Qt Quick 3D 介面，讓每個關節、連槍與承重參數都是可即時拖曳的控制項。",
+      "isFork": false,
+      "tagline": "從零打造的機械臂物理引擎，搭配經過實測評比的 AI 替代模型，包裝在即時 3D 介面中，把靜態的承重—可達範圍規格表變成可以拖曳探索的東西。",
+      "importance": "Robot Arm Load Analyzer 回答了每個真實機械臂在設計階段都必須回答的問題——這個姿態搭配這個承重，是否真的安全——並讓它變成即時可互動的東西，而不是規格表上印一次的數字。背後的物理是手動推導並交叉驗證的，而非借用現成的機器人函式庫；AI 替代模型的加速效果，是應用程式自身基準測試功能量測出來的結果，而非口頭宣稱。這種嚴謹推導、誠實量測與真正可用介面的組合，讓這個專案超越課堂運動學示範，成為一項真正的工程作品。",
+      "highlights": [
+        "從第一原理在 C++ 與 Eigen 中推導並實作正向／逆向運動學、Jacobian 轉置靜力學，以及完整的遞迴牛頓-歐拉動力學演算法，並以独立的虛功推導交叉驗證",
+        "以 PyTorch 訓練神經網路替代模型來計算相同的扭矩，並透過應用程式自身的工作空間掃描功能與精確引擎比較，在其設計鎖定的高量評估情境下量得 2.8 倍的加速",
+        "打造即時 Qt Quick 3D 介面，將每個關節角度、連槍長度、連槍質量與承重參數都公開為可即時拖曳的控制項，並支援直接在 3D 畫面中以滑鼠拖曳操作關節",
+        "以横跨 14 個執行檔、共 148 項 GoogleTest 測試案例支撑整個物理引擎，並捕捉到手動推導動力學中一個有兩項測試未能察覺、僅被第三項刻意正交設計的測試抓到的隱性符號錯誤",
+        "診斷並修正了機械臂可達邊界處一個奇異點所導致的效能問題，以及一個以除錯器回溯追蹤到根本原因的原生渲染當機"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "Qt",
+          "iconifyClass": "simple-icons:qt"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
         }
       ]
     }

@@ -93,7 +93,7 @@
       "id": "hsley13-maestro",
       "name": "Maestro",
       "createdAt": "2025-09-09T00:00:00Z",
-      "url": "https://github.com/HSley13/Maestro",
+      "url": "https://github.com/ntsrigaud/Maestro",
       "description": "Sistema de reconocimiento de gestos de mano en tiempo real de dos flujos BiLSTM para control de presentaciones manos libres, con un pipeline de características de MediaPipe Hands, interfaz de control en PySide6 y una app empaquetada multiplataforma. Ganador del Premio a la Excelencia en Proyecto de Pregrado de la NDHU, 2026.",
       "isFork": false,
       "tagline": "Un sistema de reconocimiento de gestos de mano en tiempo real de nivel producción que convierte una webcam en un control remoto de presentaciones manos libres.",
@@ -159,6 +159,37 @@
         {
           "name": "C++",
           "iconifyClass": "simple-icons:cplusplus"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-robot-arm-analyzer",
+      "name": "Robot Arm Load Analyzer",
+      "createdAt": "2026-10-26T00:00:00Z",
+      "url": "https://github.com/HSley13/robot-arm-analyzer",
+      "description": "Herramienta interactiva de física + IA para la seguridad de carga de un brazo robótico: un motor de cinemática y dinámica en C++ construido desde cero (cinemática DH, estática por Jacobiana transpuesta, dinámica completa de Newton-Euler recursivo), un sustituto neuronal entrenado con PyTorch comparado contra él, y una interfaz 3D en tiempo real con Qt Quick donde cada articulación, eslabón y parámetro de carga es un control en vivo y arrastrable.",
+      "isFork": false,
+      "tagline": "Un motor de física para brazos robóticos construido desde cero, emparejado con un sustituto de IA evaluado de forma medida, envuelto en una interfaz 3D en tiempo real que convierte una ficha técnica estática de carga-vs-alcance en algo que se puede arrastrar y explorar.",
+      "importance": "Robot Arm Load Analyzer responde una pregunta que todo brazo robótico real debe responder en la etapa de diseño — si esta pose, con esta carga, es realmente segura de sostener — y la vuelve interactiva en lugar de un número impreso una sola vez en una ficha técnica. La física detrás está derivada a mano y verificada de forma cruzada, no tomada de una librería de robótica, y la ganancia de velocidad del sustituto de IA es un resultado medido por la propia función de benchmarking de la aplicación, no una afirmación. Esa combinación de derivación rigurosa, medición honesta y una interfaz genuinamente usable es lo que convierte esto en una pieza de ingeniería real, más allá de una demostración de cinemática de aula.",
+      "highlights": [
+        "Derivé e implementé la cinemática directa/inversa, la estática por Jacobiana transpuesta y un algoritmo completo de dinámica recursiva de Newton-Euler desde primeros principios en C++ y Eigen, verificados de forma cruzada contra una derivación independiente de trabajo virtual",
+        "Entrené un sustituto de red neuronal en PyTorch para el mismo cálculo de torque y lo comparé contra el motor exacto mediante la propia función de escaneo del espacio de trabajo de la aplicación, midiendo una mejora de velocidad de 2.8x en el régimen de alto volumen para el que fue construido",
+        "Construí una interfaz 3D en tiempo real con Qt Quick que expone cada ángulo de articulación, longitud de eslabón, masa de eslabón y parámetro de carga como un control en vivo y arrastrable, incluyendo manipulación directa de articulaciones arrastrando en la propia vista 3D",
+        "Respaldé el motor de física con 148 casos de prueba de GoogleTest en 14 ejecutables, detectando un error de signo silencioso en la dinámica derivada a mano que dos pruebas pasaron por alto y que solo una tercera prueba, deliberadamente ortogonal, detectó",
+        "Diagnostiqué y corrigí un error de rendimiento causado por una singularidad cinemática en el límite de alcance del brazo, y un fallo de renderizado nativo cuyo origen rastreé con un backtrace de depurador"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "Qt",
+          "iconifyClass": "simple-icons:qt"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
         }
       ]
     }

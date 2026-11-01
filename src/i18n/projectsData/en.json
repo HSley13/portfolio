@@ -93,7 +93,7 @@
       "id": "hsley13-maestro",
       "name": "Maestro",
       "createdAt": "2025-09-09T00:00:00Z",
-      "url": "https://github.com/HSley13/Maestro",
+      "url": "https://github.com/ntsrigaud/Maestro",
       "description": "Two-stream BiLSTM real-time hand-gesture recognition system for hands-free presentation control, with a MediaPipe Hands feature pipeline, PySide6 control UI, and cross-platform packaged app. Winner of the NDHU Undergraduate Project Excellent Award, 2026.",
       "isFork": false,
       "tagline": "A production-grade, real-time hand-gesture recognition system that turns a webcam into a hands-free presentation remote.",
@@ -159,6 +159,37 @@
         {
           "name": "C++",
           "iconifyClass": "simple-icons:cplusplus"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-robot-arm-analyzer",
+      "name": "Robot Arm Load Analyzer",
+      "createdAt": "2026-10-26T00:00:00Z",
+      "url": "https://github.com/HSley13/robot-arm-analyzer",
+      "description": "Interactive physics + AI tool for robot-arm payload safety: a from-scratch C++ kinematics and dynamics engine (DH kinematics, Jacobian-transpose statics, full Recursive Newton-Euler dynamics), a PyTorch-trained neural surrogate benchmarked against it, and a real-time Qt Quick 3D interface where every joint, link, and payload parameter is a live, draggable control.",
+      "isFork": false,
+      "tagline": "A from-scratch robot-arm physics engine paired with a benchmarked AI surrogate, wrapped in a real-time 3D interface that turns a static payload-vs-reach spec sheet into something you can drag and explore.",
+      "importance": "Robot Arm Load Analyzer answers a question every real robot arm has to answer at design time — is this pose, with this payload, actually safe to hold — and makes it live and interactive instead of a number printed once on a spec sheet. The physics underneath is hand-derived and cross-checked, not borrowed from a robotics library, and the AI surrogate's speed-up is a measured result from the app's own benchmarking feature, not a claimed one. That combination of rigorous derivation, honest measurement, and a genuinely usable interface is what moves this from a classroom kinematics demo to a small piece of real engineering.",
+      "highlights": [
+        "Derived and implemented forward/inverse kinematics, Jacobian-transpose statics, and a full Recursive Newton-Euler dynamics algorithm from first principles in C++ and Eigen, cross-checked against an independent virtual-work derivation",
+        "Trained a PyTorch neural-network surrogate for the same torque computation and benchmarked it against the exact engine through the app's own workspace-scan feature, measuring a 2.8x speed-up in the high-volume regime it was built for",
+        "Built a real-time Qt Quick 3D interface exposing every joint angle, link length, link mass, and payload parameter as a live, draggable control, including direct click-and-drag joint manipulation in the 3D view itself",
+        "Backed the physics engine with 148 GoogleTest cases across 14 executables, catching a silent sign bug in the hand-derived dynamics that two tests missed and only a third, deliberately orthogonal test caught",
+        "Diagnosed and fixed a kinematic-singularity performance bug at the arm's reach boundary and a native-rendering crash traced to its root cause with a debugger backtrace"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "Qt",
+          "iconifyClass": "simple-icons:qt"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
         }
       ]
     }
