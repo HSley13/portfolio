@@ -226,9 +226,9 @@ const spokenLanguages = {
 
 const experience = {
   title: "Experience",
-  subtitle: "Awards, Competitions, and Volunteering",
+  subtitle: "Awards and Competitions",
   description:
-    "I build production systems spanning C++ backends, mobile apps, and deep learning pipelines. Alongside coursework, I compete in data science competitions and volunteer as a research assistant in NDHU's Intelligent Computing and Mobile Network Lab.",
+    "I build production systems spanning C++ backends, mobile apps, and deep learning pipelines. Alongside coursework, I compete in data science competitions.",
   header_image_path: "experience.svg",
   sections: [
     {
@@ -259,20 +259,6 @@ const experience = {
           description:
             "Classified Moodle engagement patterns using XGBoost. Extracted frequency-domain features via FFT and scalogram analysis. Built a Gemini-powered AI assistant for personalized student and instructor feedback.",
           color: "#0879bf",
-        },
-      ],
-    },
-    {
-      title: "Volunteerships",
-      experiences: [
-        {
-          title: "Research Assistant",
-          company: "NDHU CSIE: Intelligent Computing and Mobile Network Lab",
-          company_url: "https://web.ndhu.edu.tw/",
-          duration: "Sep 2026 - Present",
-          location: "Hualien, Taiwan",
-          description: "Volunteering as a research assistant.",
-          color: "#0071C5",
         },
       ],
     },
