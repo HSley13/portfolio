@@ -87,11 +87,35 @@
       ],
       "images": [
         {
-          "src": "projects/hotelops/01-architecture.webp",
+          "src": "projects/hotelops/01-room-board.webp",
+          "caption": "經理的即時房況看板：192 間房依樓層排列，顯示各狀態數量，即將入住的房間會標示優先分數。"
+        },
+        {
+          "src": "projects/hotelops/02-housekeeping-app.webp",
+          "caption": "房務人員登入後的行動應用：以 GPS 打卡、房間詳細頁（回報、布巾、聊天）、班表行事曆與可上班日。"
+        },
+        {
+          "src": "projects/hotelops/03-room-detail.webp",
+          "caption": "經理端的 205 號房：遺留物回報、顯示缺少項目的備品清單，以及房間聊天室，其中的系統訊息由資料庫觸發器自動發送。"
+        },
+        {
+          "src": "projects/hotelops/04-team-progress.webp",
+          "caption": "篩選單一小組的待清潔房間，橫幅顯示該小組當天的進度。"
+        },
+        {
+          "src": "projects/hotelops/05-teams-schedule.webp",
+          "caption": "小組與排班：各小組負責的樓層、今日完成的房間數，以及所選日期的排班人員。"
+        },
+        {
+          "src": "projects/hotelops/06-linen.webp",
+          "caption": "布巾清單：每件回收布巾及其狀況，破損與污漬項目會特別標示給洗衣部門。"
+        },
+        {
+          "src": "projects/hotelops/07-architecture.webp",
           "caption": "系統架構：經理用的桌面應用與房務用的行動應用共用 TypeScript 型別與同一個 Supabase 用戶端，由 Postgres 強制各角色的存取權限。"
         },
         {
-          "src": "projects/hotelops/02-workflow.webp",
+          "src": "projects/hotelops/08-workflow.webp",
           "caption": "房務的一天：從登記可上班日到房間打掃完成，以及房間優先順序與角色可見範圍如何決定。"
         }
       ],
@@ -151,11 +175,11 @@
       "images": [
         {
           "src": "projects/task-management/01-screens.webp",
-          "caption": "以 Moodle 帳號登入、自動匯入 Moodle 作業的任務清單、行事曆，以及任務詳細資料。"
+          "caption": "以 Moodle 登入、含已同步 Moodle 作業（示範資料）與個人任務的任務清單、行事曆單日檢視，以及含子任務的任務編輯器。"
         },
         {
-          "src": "projects/task-management/02-editor.webp",
-          "caption": "當日行程、新增選單、新增任務表單，以及附有檔案與照片的任務。"
+          "src": "projects/task-management/02-notes-settings.webp",
+          "caption": "Moodle 作業的選單（在 Moodle 中開啟）、含粗體與螢光標記的筆記、筆記列表，以及顯示同步狀態的設定頁。"
         },
         {
           "src": "projects/task-management/03-sync.webp",
@@ -281,11 +305,31 @@
       ],
       "images": [
         {
-          "src": "projects/shbs/01-architecture.webp",
+          "src": "projects/shbs/01-marketplace.webp",
+          "caption": "以學生身分登入的市集（示範資料）：每本書都有 AI 書況標籤，並可依書況、價格與系所篩選。"
+        },
+        {
+          "src": "projects/shbs/02-book-chat.webp",
+          "caption": "書籍頁面，內建聊天室中有買家的提問與賣家的回覆。"
+        },
+        {
+          "src": "projects/shbs/03-cart.webp",
+          "caption": "購物車，內有來自兩位不同賣家的書。"
+        },
+        {
+          "src": "projects/shbs/04-checkout.webp",
+          "caption": "結帳：下單後由買賣雙方直接安排付款。"
+        },
+        {
+          "src": "projects/shbs/05-create-listing.webp",
+          "caption": "刊登書籍：照片、書名、作者、價格、書況與課程資訊。"
+        },
+        {
+          "src": "projects/shbs/06-architecture.webp",
           "caption": "系統架構：Next.js 前端、Go/Fiber API 與 Python AI 服務，經由 Traefik 路由，並以 Docker Compose 一起執行。"
         },
         {
-          "src": "projects/shbs/02-condition.webp",
+          "src": "projects/shbs/07-condition.webp",
           "caption": "刊登照片如何變成書況標籤：偵測到的瑕疵依嚴重程度加權，由最差的一張照片決定結果。"
         }
       ],
