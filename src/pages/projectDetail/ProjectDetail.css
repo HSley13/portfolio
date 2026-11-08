@@ -79,6 +79,208 @@
   text-align: center;
 }
 
+/* ---------- images ---------- */
+.project-detail-content {
+  max-width: 860px;
+}
+
+.project-detail-hero,
+.project-detail-gallery-item {
+  margin: 0;
+}
+
+.project-detail-hero {
+  margin-top: 34px;
+}
+
+.project-detail-image-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0c111b;
+  cursor: zoom-in;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 12px 30px -14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-detail-image-button:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 18px 34px -14px;
+}
+
+.project-detail-image-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-detail-hero figcaption,
+.project-detail-gallery-item figcaption {
+  font-family: "Google Sans Regular";
+  font-size: 14px;
+  line-height: 1.55;
+  margin-top: 10px;
+}
+
+.project-detail-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 22px;
+}
+
+/* an odd last image (or a single one) takes the full row */
+.project-detail-gallery-item:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.project-detail-gallery-item .project-detail-image-button {
+  height: 0;
+  padding-top: 62.5%;
+  position: relative;
+}
+
+.project-detail-gallery-item .project-detail-image-button img {
+  position: absolute;
+  inset: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ---------- how it works ---------- */
+.project-detail-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-detail-steps li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid;
+}
+
+.project-detail-steps li:last-child {
+  border-bottom: none;
+}
+
+.project-detail-step-number {
+  flex: 0 0 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Google Sans Medium";
+  font-size: 15px;
+  margin-top: 1px;
+}
+
+.project-detail-steps h3 {
+  font-family: "Google Sans Medium";
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+
+.project-detail-section .project-detail-steps p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ---------- lightbox ---------- */
+.project-lightbox {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  background: rgba(5, 8, 14, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 70px;
+  cursor: zoom-out;
+}
+
+.project-lightbox figure {
+  margin: 0;
+  max-width: 1400px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
+}
+
+.project-lightbox img {
+  max-width: 100%;
+  max-height: calc(100vh - 150px);
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.project-lightbox figcaption {
+  color: #d6dcea;
+  font-family: "Google Sans Regular";
+  font-size: 15px;
+  line-height: 1.5;
+  margin-top: 14px;
+  max-width: 900px;
+  text-align: center;
+}
+
+.project-lightbox-count {
+  color: #8d99b3;
+  margin-right: 10px;
+}
+
+.project-lightbox-close,
+.project-lightbox-nav {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-lightbox-close:hover,
+.project-lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.project-lightbox-close {
+  top: 18px;
+  right: 18px;
+}
+
+.project-lightbox-nav.prev {
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.project-lightbox-nav.next {
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 @media (max-width: 768px) {
   .project-detail-content {
     padding: 30px 16px 40px;
@@ -103,5 +305,37 @@
   .project-detail-section p,
   .project-detail-highlights li {
     font-size: 15px;
+  }
+
+  .project-detail-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .project-detail-steps h3 {
+    font-size: 16px;
+  }
+
+  .project-detail-section .project-detail-steps p {
+    font-size: 15px;
+  }
+
+  .project-lightbox {
+    padding: 60px 12px;
+  }
+
+  .project-lightbox-nav {
+    top: auto;
+    bottom: 16px;
+    transform: none;
+  }
+
+  .project-lightbox-nav.prev {
+    left: calc(50% - 56px);
+    transform: none;
+  }
+
+  .project-lightbox-nav.next {
+    right: calc(50% - 56px);
+    transform: none;
   }
 }

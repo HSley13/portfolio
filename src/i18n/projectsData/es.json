@@ -25,6 +25,34 @@
           "name": "CMake",
           "iconifyClass": "simple-icons:cmake"
         }
+      ],
+      "images": [
+        {
+          "src": "projects/sigil/01-pipeline.webp",
+          "caption": "Las cuatro capas: las fuentes publican SignalEvents en un bus sin bloqueos, el motor de reglas los consume y las reglas que coinciden disparan acciones."
+        },
+        {
+          "src": "projects/sigil/02-run.webp",
+          "caption": "Una ejecución real del daemon con las fuentes simuladas, seguida de la suite de GoogleTest: 42 de 42 pruebas aprobadas."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Un solo tipo de evento para cada entrada",
+          "body": "Un sensor de humedad consultado periódicamente y un detector de movimiento con su propio hilo producen el mismo SignalEvent: nombre de la fuente, campo, valor (float, string o bool), marca de tiempo y metadatos. Nada aguas abajo necesita saber qué dispositivo lo generó."
+        },
+        {
+          "title": "Un bus en el que ningún hilo espera",
+          "body": "Los eventos entran al SignalBus, un búfer circular acotado en el que escriben muchos hilos productores mientras un único consumidor lee. Las posiciones se reservan con operaciones atómicas en lugar de un mutex, así que una fuente lenta nunca detiene al motor de reglas. Si el búfer está lleno, publish() devuelve false en vez de sobrescribir eventos anteriores."
+        },
+        {
+          "title": "Las reglas deciden qué importa",
+          "body": "El motor de reglas vacía el bus y compara cada evento con las reglas registradas, por ejemplo humedad > 70 con 30 segundos de espera, para que un sensor ruidoso no dispare la misma alerta en cada lectura."
+        },
+        {
+          "title": "Las acciones son plugins",
+          "body": "Una coincidencia se convierte en un ActionRequest que recibe un plugin ActionBase, el cual rellena marcadores como {value} con datos del evento y se ejecuta. Hoy imprime en la consola; los siguientes plugins serán pines GPIO y notificaciones. Se agregan fuentes y acciones sin tocar el núcleo."
+        }
       ]
     },
     {
@@ -55,6 +83,38 @@
         {
           "name": "PostgreSQL",
           "iconifyClass": "logos-postgresql"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/hotelops/01-architecture.webp",
+          "caption": "Arquitectura: la app de escritorio del gerente y la app móvil de limpieza comparten tipos de TypeScript y un único cliente de Supabase, y Postgres impone lo que cada rol puede ver."
+        },
+        {
+          "src": "projects/hotelops/02-workflow.webp",
+          "caption": "Un día de limpieza, desde marcar la disponibilidad hasta una habitación lista, y cómo se deciden la prioridad de las habitaciones y la visibilidad por rol."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Un modelo de datos en lugar de papel",
+          "body": "El hotel funcionaba con una planilla de Excel, un tablero magnético de turnos y hojas de lencería en papel. HotelOps modela todo como tablas de Postgres (habitaciones, personal, equipos, turnos, lencería, insumos, incidentes y mensajes), construidas en 28 migraciones versionadas."
+        },
+        {
+          "title": "Los equipos se forman cada día",
+          "body": "La limpieza se organiza en equipos que cubren pisos, no una persona por habitación. Quién integra un equipo depende de los turnos de ese día, y un gerente solo puede asignar a alguien en un día que marcó como disponible. Un trigger de la base de datos rechaza lo demás."
+        },
+        {
+          "title": "Las reglas viven en la base de datos",
+          "body": "La seguridad a nivel de fila decide qué puede leer y escribir cada rol: los gerentes ven todo, el personal de limpieza solo las habitaciones de los pisos que cubre su equipo hoy y lavandería solo la lencería. Como lo impone Postgres, una app modificada tampoco puede ver más."
+        },
+        {
+          "title": "Verificación en el servidor donde no se puede confiar en el teléfono",
+          "body": "Al marcar entrada, la posición GPS del teléfono se envía a una función de Postgres que la verifica, así que la asistencia no se puede falsificar. Un trigger asigna a cada habitación pendiente una prioridad de 0 a 100 según lo cerca que esté su próximo check-in, y eso ordena la cola de trabajo."
+        },
+        {
+          "title": "En vivo en cada pantalla",
+          "body": "Los cambios de estado llegan por Supabase Realtime, así que el tablero del gerente se actualiza cuando una habitación pasa de Sucia a En progreso y a Limpia. Ambas apps importan los mismos tipos compartidos, y la de escritorio también se distribuye como app nativa de macOS con Tauri."
         }
       ]
     },
@@ -87,6 +147,42 @@
           "name": "PostgreSQL",
           "iconifyClass": "logos-postgresql"
         }
+      ],
+      "images": [
+        {
+          "src": "projects/task-management/01-screens.webp",
+          "caption": "Inicio de sesión con la cuenta de Moodle, la lista de tareas con las asignaciones de Moodle importadas automáticamente, el calendario y el detalle de una tarea."
+        },
+        {
+          "src": "projects/task-management/02-editor.webp",
+          "caption": "La agenda de un día, el menú de creación, el formulario de nueva tarea y una tarea con archivos y fotos adjuntos."
+        },
+        {
+          "src": "projects/task-management/03-sync.webp",
+          "caption": "Cómo dos teléfonos con la misma cuenta se mantienen sincronizados sin sobrescribir los cambios del otro."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Primero sin conexión",
+          "body": "Cada pantalla lee y escribe en una base SQLite del teléfono, así que la app funciona sin red. El servidor solo hace falta para traer las asignaciones de Moodle y para que los dispositivos de un usuario se pongan de acuerdo."
+        },
+        {
+          "title": "Moodle llega solo",
+          "body": "El servidor en C++ inicia sesión en Moodle en nombre del usuario, con la sesión guardada cifrada (AES-256-GCM), y extrae las asignaciones. Un proceso en segundo plano vuelve a consultar periódicamente y envía notificaciones push cuando hay asignaciones nuevas o modificadas."
+        },
+        {
+          "title": "Sincronización en un solo viaje",
+          "body": "Cada edición local marca su fila como pendiente. Al sincronizar, el teléfono envía esas filas; el servidor solo conserva una fila entrante si es más reciente que la guardada y luego devuelve todo lo que otros dispositivos cambiaron desde la última sincronización de ese teléfono, con la hora del propio servidor."
+        },
+        {
+          "title": "Dos tipos de tarea, dos conjuntos de reglas",
+          "body": "Una tarea creada por el usuario tiene un único ID generado por un dispositivo, así que todos sus campos se sincronizan. Una asignación de Moodle la descubre cada dispositivo por separado, por eso se identifica con el ID de evento de Moodle y solo se pueden enviar los campos del usuario (hecha, fijada, notas). Un teléfono desactualizado nunca puede sobrescribir un título o una fecha límite más recientes."
+        },
+        {
+          "title": "Notas enriquecidas",
+          "body": "Las notas se editan en un WebView con un editor contenteditable propio, lo que permite imágenes en línea, grabaciones de audio, enlaces y formato que un campo de texto nativo no ofrece."
+        }
       ]
     },
     {
@@ -108,6 +204,50 @@
         {
           "name": "Python",
           "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/maestro/01-pipeline.webp",
+          "caption": "El pipeline de inferencia y el vocabulario de 10 gestos con el comando que activa cada uno."
+        },
+        {
+          "src": "projects/maestro/02-running.webp",
+          "caption": "La app de control en PySide6 durante una sesión: modo en vivo, gesto detectado, confianza, FPS y latencia, con el registro de eventos abajo."
+        },
+        {
+          "src": "projects/maestro/03-settings.webp",
+          "caption": "Ajustes de cámara, longitud y paso de ventana, proporción de validez y tiempo de espera entre comandos, todos editables desde la app."
+        },
+        {
+          "src": "projects/maestro/04-confusion-matrix.webp",
+          "caption": "Matriz de confusión normalizada en el conjunto de prueba híbrido: todas las clases de gesto en 0.94 o más."
+        },
+        {
+          "src": "projects/maestro/05-latency.webp",
+          "caption": "Latencia de inferencia por clip frente a modelos de video RGB en el benchmark IPN Hand: el modelo basado en puntos clave es el más rápido, con 3.1 ms."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "De píxeles a puntos clave",
+          "body": "Cada cuadro de la cámara pasa por MediaPipe Hands, que devuelve 21 puntos clave por mano. Trabajar con puntos clave en lugar de video crudo es lo que mantiene el modelo lo bastante pequeño para la CPU de una laptop."
+        },
+        {
+          "title": "Movimiento, no una pose",
+          "body": "El sistema elige la mano activa, normaliza sus puntos clave como características y mantiene una ventana deslizante de cuadros recientes (24 cuadros, avanzando de 3 en 3), para que el modelo vea cómo se mueve la mano."
+        },
+        {
+          "title": "LSTM de dos flujos",
+          "body": "Un LSTM de dos flujos clasifica cada ventana en una de 10 clases: nueve gestos más una clase 'desconocido' que absorbe los movimientos normales de la mano para que no activen nada."
+        },
+        {
+          "title": "Actuar solo con seguridad",
+          "body": "Las predicciones se estabilizan en el tiempo y pasan por un controlador de activación con umbrales de confianza y un tiempo de espera antes de convertirse en eventos reales de teclado y puntero: deslizar cambia de diapositiva y señalar controla un puntero láser o un lápiz."
+        },
+        {
+          "title": "Una app de escritorio real",
+          "body": "La interfaz en PySide6 ejecuta la inferencia en un hilo en segundo plano y recibe actualizaciones unas 10 veces por segundo, así que ninguno bloquea al otro. Los instaladores para macOS y Windows incluyen el modelo entrenado, sin necesidad de Python ni de conexión a internet."
         }
       ]
     },
@@ -138,6 +278,34 @@
           "name": "Python",
           "iconifyClass": "logos-python"
         }
+      ],
+      "images": [
+        {
+          "src": "projects/shbs/01-architecture.webp",
+          "caption": "Arquitectura: un cliente Next.js, una API en Go/Fiber y un servicio de IA en Python, enrutados por Traefik y ejecutados juntos con Docker Compose."
+        },
+        {
+          "src": "projects/shbs/02-condition.webp",
+          "caption": "Cómo las fotos de una publicación se convierten en una etiqueta de estado: los defectos detectados se ponderan por gravedad y decide la peor foto."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Iniciar sesión como estudiante",
+          "body": "Los estudiantes entran con el inicio de sesión único CAS de la NDHU. La API valida el ticket de CAS de servidor a servidor, crea la cuenta en el primer acceso y emite un JWT que el middleware verifica en cada ruta protegida."
+        },
+        {
+          "title": "Publicar un libro",
+          "body": "Las fotos se suben primero y se registran en una tabla de imágenes; luego la publicación las referencia. Las publicaciones se devuelven con todas sus URLs de imágenes agregadas en una sola consulta SQL, en lugar de una consulta extra por imagen."
+        },
+        {
+          "title": "Evaluar su estado",
+          "body": "La API envía las fotos al servicio interno de IA. Un modelo de detección de objetos encuentra defectos como rasgaduras, manchas y pliegues, cada uno ponderado por gravedad y confianza. La peor foto fija la puntuación y el libro se etiqueta como bueno, regular o malo."
+        },
+        {
+          "title": "Comprar con seguridad",
+          "body": "Agregar al carrito es idempotente. El pago bloquea las publicaciones elegidas con SELECT ... FOR UPDATE para que dos compradores no se lleven el mismo ejemplar, y guarda el precio pagado en cada línea del pedido para que el comprobante siga siendo correcto aunque el vendedor edite la publicación."
+        }
       ]
     },
     {
@@ -160,6 +328,34 @@
           "name": "C++",
           "iconifyClass": "simple-icons:cplusplus"
         }
+      ],
+      "images": [
+        {
+          "src": "projects/jsonfs/01-mapping.webp",
+          "caption": "Cada objeto JSON se vuelve un directorio y cada valor un archivo. Las lecturas pasan por una caché con TTL; las escrituras se validan contra el esquema y se guardan de forma atómica."
+        },
+        {
+          "src": "projects/jsonfs/02-session.webp",
+          "caption": "Una sesión real en Linux: las herramientas Unix leen los datos, una escritura válida llega a config.json y las inválidas se rechazan con EINVAL."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "JSON como un árbol de archivos",
+          "body": "JsonFS convierte la fuente en un árbol en memoria. Los objetos y arreglos se vuelven directorios (los elementos de un arreglo se llaman 0, 1, 2, etc.) y cada valor final se vuelve un pequeño archivo cuyo contenido es ese valor como texto."
+        },
+        {
+          "title": "El kernel pregunta, JsonFS responde",
+          "body": "Es un sistema de archivos FUSE: cuando cualquier programa abre, lee o escribe una ruta dentro del punto de montaje, el kernel le pasa la llamada a JsonFS. Callbacks mínimos en C entregan cada llamada a una clase de C++ que busca la ruta en el árbol."
+        },
+        {
+          "title": "Fuentes en vivo con TTL",
+          "body": "La fuente puede ser un archivo local o una URL HTTP(S). Una caché con TTL, segura entre hilos, decide cuándo los datos están desactualizados; la siguiente lectura vuelve a descargar la fuente y reconstruye el árbol, así que watch cat sobre una API montada siempre muestra un valor reciente."
+        },
+        {
+          "title": "Escrituras validadas y a prueba de fallos",
+          "body": "Con --schema, cada escritura se valida contra el JSON Schema dentro del callback write() (tipo, rango, enum, patrón, campos obligatorios). Un valor inválido devuelve EINVAL a la terminal antes de que cambie nada. Un valor válido se escribe en un archivo temporal que luego se renombra sobre el original, así que una caída nunca deja un JSON a medio escribir."
+        }
       ]
     },
     {
@@ -167,16 +363,16 @@
       "name": "Robot Arm Load Analyzer",
       "createdAt": "2026-10-26T00:00:00Z",
       "url": "https://github.com/HSley13/robot-arm-analyzer",
-      "description": "Herramienta interactiva de física + IA para la seguridad de carga de un brazo robótico: un motor de cinemática y dinámica en C++ construido desde cero (cinemática DH, estática por Jacobiana transpuesta, dinámica completa de Newton-Euler recursivo), un sustituto neuronal entrenado con PyTorch comparado contra él, y una interfaz 3D en tiempo real con Qt Quick donde cada articulación, eslabón y parámetro de carga es un control en vivo y arrastrable.",
+      "description": "Simulador de robot humanoide en tiempo real que responde si una pose y una carga sobrecargan alguna articulación: un motor de física en C++ hecho desde cero (cinemática DH, estática por Jacobiana, dinámica de Newton-Euler recursivo), un sustituto neuronal en PyTorch comparado contra él y un planificador de agarre que recoge objetos, todo en una interfaz Qt Quick 3D controlada con el mouse.",
       "isFork": false,
-      "tagline": "Un motor de física para brazos robóticos construido desde cero, emparejado con un sustituto de IA evaluado de forma medida, envuelto en una interfaz 3D en tiempo real que convierte una ficha técnica estática de carga-vs-alcance en algo que se puede arrastrar y explorar.",
-      "importance": "Robot Arm Load Analyzer responde una pregunta que todo brazo robótico real debe responder en la etapa de diseño — si esta pose, con esta carga, es realmente segura de sostener — y la vuelve interactiva en lugar de un número impreso una sola vez en una ficha técnica. La física detrás está derivada a mano y verificada de forma cruzada, no tomada de una librería de robótica, y la ganancia de velocidad del sustituto de IA es un resultado medido por la propia función de benchmarking de la aplicación, no una afirmación. Esa combinación de derivación rigurosa, medición honesta y una interfaz genuinamente usable es lo que convierte esto en una pieza de ingeniería real, más allá de una demostración de cinemática de aula.",
+      "tagline": "¿Puede este robot sostener ese peso, en esa pose, sin sobrecargar ninguna articulación? ¿Y puede ir a recoger el objeto? Pregúntaselo en vivo, en 3D.",
+      "importance": "Todo robot real debe responder esta pregunta en la etapa de diseño, y la respuesta suele ser un número impreso una sola vez en una ficha técnica. Aquí es en vivo: arrastras el robot, cambias una masa y la carga de cada articulación se actualiza. La física está derivada a mano y verificada de forma cruzada, no tomada de una librería de robótica, y la ganancia de velocidad de la red neuronal la mide la propia app, no es una afirmación. Cinemática, aprendizaje, búsqueda y planificación se encuentran en un mismo sistema que funciona, en lugar de ejercicios separados.",
       "highlights": [
-        "Derivé e implementé la cinemática directa/inversa, la estática por Jacobiana transpuesta y un algoritmo completo de dinámica recursiva de Newton-Euler desde primeros principios en C++ y Eigen, verificados de forma cruzada contra una derivación independiente de trabajo virtual",
-        "Entrené un sustituto de red neuronal en PyTorch para el mismo cálculo de torque y lo comparé contra el motor exacto mediante la propia función de escaneo del espacio de trabajo de la aplicación, midiendo una mejora de velocidad de 2.8x en el régimen de alto volumen para el que fue construido",
-        "Construí una interfaz 3D en tiempo real con Qt Quick que expone cada ángulo de articulación, longitud de eslabón, masa de eslabón y parámetro de carga como un control en vivo y arrastrable, incluyendo manipulación directa de articulaciones arrastrando en la propia vista 3D",
-        "Respaldé el motor de física con 148 casos de prueba de GoogleTest en 14 ejecutables, detectando un error de signo silencioso en la dinámica derivada a mano que dos pruebas pasaron por alto y que solo una tercera prueba, deliberadamente ortogonal, detectó",
-        "Diagnostiqué y corrigí un error de rendimiento causado por una singularidad cinemática en el límite de alcance del brazo, y un fallo de renderizado nativo cuyo origen rastreé con un backtrace de depurador"
+        "Derivé e implementé cinemática directa e inversa, estática por Jacobiana y dinámica completa de Newton-Euler recursivo desde primeros principios en C++17 y Eigen, verificadas contra una derivación independiente por trabajo virtual",
+        "Entrené un sustituto MLP en PyTorch con 30,000 poses etiquetadas por el motor exacto y lo ejecuté con un forward pass escrito a mano en C++, sin ningún runtime de ML, midiendo una mejora de unas 9 veces en el propio escaneo de capacidad de carga de la app",
+        "Construí un planificador de agarre que busca poses de cuerpo completo (cintura, columna, inclinación de cadera, brazo), descarta las que violan límites de articulación o de torque y ejecuta acercarse, agarrar, levantar y transportar con movimientos suaves y de velocidad limitada",
+        "Construí la interfaz Qt Quick 3D con mallas procedurales posicionadas por cinemática directa, con control por clic y arrastre de la mano, cada articulación, el torso y la columna",
+        "La respaldé con 256 pruebas de GoogleTest en 20 suites, incluidas secuencias completas de pick-and-place para cada tipo de objeto; una prueba deliberadamente ortogonal detectó un error de signo silencioso en la dinámica derivada a mano que otras dos pruebas pasaron por alto"
       ],
       "languages": [
         {
@@ -190,6 +386,58 @@
         {
           "name": "Python",
           "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/robot-arm/01-overview.webp",
+          "caption": "El robot entre muebles y objetos. El indicador de cada articulación muestra su carga en vivo frente a su límite de torque."
+        },
+        {
+          "src": "projects/robot-arm/02-pick-and-place.webp",
+          "caption": "Un pick-and-place planificado: alcanzar la botella, agarrarla y levantarla, inclinarse sobre la mesa, dejarla de pie y volver al inicio."
+        },
+        {
+          "src": "projects/robot-arm/03-overload.webp",
+          "caption": "Brazo extendido sosteniendo 14 kg: todas las articulaciones superan su límite y se vuelven rojas."
+        },
+        {
+          "src": "projects/robot-arm/04-payload-scan.webp",
+          "caption": "Escaneo de capacidad de carga de brazo extendido a plegado: física exacta y red neuronal en el mismo gráfico, con tiempos medidos."
+        },
+        {
+          "src": "projects/robot-arm/05-hand.webp",
+          "caption": "La mano de 17 articulaciones cerrándose alrededor de una botella."
+        },
+        {
+          "src": "projects/robot-arm/06-warehouse-arm.webp",
+          "caption": "Cambiado a un brazo industrial de cinco articulaciones con pinza de dos dedos, sosteniendo una lata que tomó desde arriba."
+        },
+        {
+          "src": "projects/robot-arm/07-drag.webp",
+          "caption": "Arrastrando la mano: la cintura gira, la columna baja y el torso se inclina para que la mano alcance el punto."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Física exacta desde primeros principios",
+          "body": "Cada articulación del brazo se describe con parámetros de Denavit-Hartenberg. La cinemática directa encadena las transformaciones, la Jacobiana convierte el peso de los eslabones y la carga en el torque que debe sostener cada articulación, y un Newton-Euler recursivo completo suma los términos de inercia y Coriolis cuando el brazo se mueve. Todo está escrito a mano en C++ con Eigen."
+        },
+        {
+          "title": "Una red neuronal que la imita",
+          "body": "Un generador en C++ muestrea 30,000 poses y cargas aleatorias y las etiqueta con el motor exacto. Un pequeño MLP de PyTorch aprende pose + carga a torques; sus pesos se exportan a JSON y los ejecuta un forward pass escrito a mano en C++, unas 9 veces más rápido en el propio escaneo de la app (0.57 ms frente a 5.19 ms para 40 poses). Si se cambia la geometría del brazo, el modo IA se desactiva solo, porque la red fue entrenada para otro brazo."
+        },
+        {
+          "title": "Planificar un agarre",
+          "body": "Al hacer clic en un objeto, el planificador recorre una cuadrícula de alturas de columna e inclinaciones de cadera, resuelve los ángulos del brazo en cada caso (forma cerrada para el brazo humanoide, mínimos cuadrados amortiguados en otro caso), descarta las poses que violan límites de articulación o de torque y se queda con la que menos carga las articulaciones. Si ninguna sirve, indica qué articulación se sobrecargaría."
+        },
+        {
+          "title": "Ejecutarlo",
+          "body": "El agarre se ejecuta como subobjetivos (acercarse, agarrar, levantar, transportar) con movimientos suaves y de velocidad limitada. Mientras el robot sostiene un objeto, su masa es la carga, así que cada indicador muestra lo que realmente está cargando."
+        },
+        {
+          "title": "Construido en Qt Quick 3D",
+          "body": "El robot, los muebles y los objetos son mallas procedurales posicionadas por cinemática directa, y los controladores en C++ se exponen a QML como un módulo. 256 pruebas de GoogleTest en 20 suites cubren la física y secuencias completas de pick-and-place."
         }
       ]
     }

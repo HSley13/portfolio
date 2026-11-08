@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import ProjectLanguages from "../../components/projectLanguages/ProjectLanguages";
+import { projectImageUrl } from "../../projectImages";
 import { useLocale } from "../../i18n/LocaleContext";
 import "./GithubRepoCard.css";
 import { Fade } from "react-reveal";
@@ -13,6 +14,15 @@ export default function GithubRepoCard({ repo, theme }) {
     <div className="repo-card-div" style={{ backgroundColor: theme.highlight }}>
       <Fade bottom duration={2000} distance="40px">
         <div key={repo.id} onClick={() => history.push(`/projects/${repo.id}`)}>
+          {repo.images && repo.images.length > 0 && (
+            <div className="repo-cover">
+              <img
+                src={projectImageUrl(repo.images[0].src)}
+                alt={repo.images[0].caption}
+                loading="lazy"
+              />
+            </div>
+          )}
           <div className="repo-name-div">
             <svg
               aria-hidden="true"
