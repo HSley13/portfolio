@@ -87,11 +87,35 @@
       ],
       "images": [
         {
-          "src": "projects/hotelops/01-architecture.webp",
+          "src": "projects/hotelops/01-room-board.webp",
+          "caption": "El tablero en vivo del gerente: 192 habitaciones por piso, conteo por estado y las habitaciones con check-in próximo marcadas con su prioridad."
+        },
+        {
+          "src": "projects/hotelops/02-housekeeping-app.webp",
+          "caption": "La app de limpieza con la sesión de una empleada: entrada registrada por GPS, el detalle de una habitación con reportes, lencería y chat, su calendario de turnos y su disponibilidad."
+        },
+        {
+          "src": "projects/hotelops/03-room-detail.webp",
+          "caption": "La habitación 205 vista por el gerente: un reporte de objeto olvidado, la lista de insumos con un faltante y el chat de la habitación, donde un trigger de la base de datos publicó el mensaje del sistema."
+        },
+        {
+          "src": "projects/hotelops/04-team-progress.webp",
+          "caption": "Filtrando las habitaciones sucias de un equipo; el aviso muestra el progreso de ese equipo en el día."
+        },
+        {
+          "src": "projects/hotelops/05-teams-schedule.webp",
+          "caption": "Equipos y turnos: los pisos de cada equipo, las habitaciones terminadas hoy y quién trabaja el día elegido."
+        },
+        {
+          "src": "projects/hotelops/06-linen.webp",
+          "caption": "El manifiesto de lencería: cada artículo recogido con su estado, con los rotos y manchados resaltados para lavandería."
+        },
+        {
+          "src": "projects/hotelops/07-architecture.webp",
           "caption": "Arquitectura: la app de escritorio del gerente y la app móvil de limpieza comparten tipos de TypeScript y un único cliente de Supabase, y Postgres impone lo que cada rol puede ver."
         },
         {
-          "src": "projects/hotelops/02-workflow.webp",
+          "src": "projects/hotelops/08-workflow.webp",
           "caption": "Un día de limpieza, desde marcar la disponibilidad hasta una habitación lista, y cómo se deciden la prioridad de las habitaciones y la visibilidad por rol."
         }
       ],
@@ -151,11 +175,11 @@
       "images": [
         {
           "src": "projects/task-management/01-screens.webp",
-          "caption": "Inicio de sesión con la cuenta de Moodle, la lista de tareas con las asignaciones de Moodle importadas automáticamente, el calendario y el detalle de una tarea."
+          "caption": "Inicio de sesión con Moodle, la lista de tareas con asignaciones de Moodle sincronizadas (datos de demostración) y una tarea personal, la vista diaria del calendario y el editor de tareas con subtareas."
         },
         {
-          "src": "projects/task-management/02-editor.webp",
-          "caption": "La agenda de un día, el menú de creación, el formulario de nueva tarea y una tarea con archivos y fotos adjuntos."
+          "src": "projects/task-management/02-notes-settings.webp",
+          "caption": "El menú de una asignación de Moodle con Abrir en Moodle, una nota con texto en negrita y resaltado, la lista de notas y los ajustes con el estado de sincronización."
         },
         {
           "src": "projects/task-management/03-sync.webp",
@@ -281,11 +305,31 @@
       ],
       "images": [
         {
-          "src": "projects/shbs/01-architecture.webp",
+          "src": "projects/shbs/01-marketplace.webp",
+          "caption": "El mercado con sesión de estudiante y publicaciones de demostración: etiquetas de estado de la IA en cada libro y filtros por estado, precio y departamento."
+        },
+        {
+          "src": "projects/shbs/02-book-chat.webp",
+          "caption": "La página de un libro con la pregunta del comprador y la respuesta del vendedor en el chat integrado."
+        },
+        {
+          "src": "projects/shbs/03-cart.webp",
+          "caption": "El carrito, con libros de dos vendedores distintos."
+        },
+        {
+          "src": "projects/shbs/04-checkout.webp",
+          "caption": "El pago: se acuerda directamente con el vendedor una vez hecho el pedido."
+        },
+        {
+          "src": "projects/shbs/05-create-listing.webp",
+          "caption": "Crear una publicación: fotos, título, autor, precio, estado y datos del curso."
+        },
+        {
+          "src": "projects/shbs/06-architecture.webp",
           "caption": "Arquitectura: un cliente Next.js, una API en Go/Fiber y un servicio de IA en Python, enrutados por Traefik y ejecutados juntos con Docker Compose."
         },
         {
-          "src": "projects/shbs/02-condition.webp",
+          "src": "projects/shbs/07-condition.webp",
           "caption": "Cómo las fotos de una publicación se convierten en una etiqueta de estado: los defectos detectados se ponderan por gravedad y decide la peor foto."
         }
       ],

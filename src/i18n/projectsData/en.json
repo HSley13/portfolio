@@ -87,11 +87,35 @@
       ],
       "images": [
         {
-          "src": "projects/hotelops/01-architecture.webp",
+          "src": "projects/hotelops/01-room-board.webp",
+          "caption": "The manager's live room board: 192 rooms by floor, counts per status, and rooms with a check-in coming up flagged with their priority score."
+        },
+        {
+          "src": "projects/hotelops/02-housekeeping-app.webp",
+          "caption": "The housekeeping app, signed in as a housekeeper: clocked in by GPS, a room's detail with report, linen and chat sections, her shift calendar, and her availability."
+        },
+        {
+          "src": "projects/hotelops/03-room-detail.webp",
+          "caption": "Room 205 from the manager's side: a found-item report, the materials checklist showing a missing item, and the room chat, where a database trigger posted the system message."
+        },
+        {
+          "src": "projects/hotelops/04-team-progress.webp",
+          "caption": "Filtering to one crew's dirty rooms; the banner shows that team's progress for the day."
+        },
+        {
+          "src": "projects/hotelops/05-teams-schedule.webp",
+          "caption": "Teams & schedule: each crew's floors, rooms done today, and who is scheduled on the selected day."
+        },
+        {
+          "src": "projects/hotelops/06-linen.webp",
+          "caption": "The linen manifest: every collected item with its condition, with torn and stained items highlighted for laundry."
+        },
+        {
+          "src": "projects/hotelops/07-architecture.webp",
           "caption": "Architecture: a manager desktop app and a housekeeping mobile app share TypeScript types and one Supabase client, and Postgres enforces what each role can access."
         },
         {
-          "src": "projects/hotelops/02-workflow.webp",
+          "src": "projects/hotelops/08-workflow.webp",
           "caption": "A housekeeping day, from marking availability to a clean room, plus how room priority and role visibility are decided."
         }
       ],
@@ -151,11 +175,11 @@
       "images": [
         {
           "src": "projects/task-management/01-screens.webp",
-          "caption": "Sign-in with Moodle credentials, the task list with Moodle assignments imported automatically, the calendar, and a task's detail sheet."
+          "caption": "Sign-in with Moodle, the task list with synced Moodle assignments (demo data) and a personal task, the calendar's day view, and the task editor with subtasks."
         },
         {
-          "src": "projects/task-management/02-editor.webp",
-          "caption": "A day's agenda, the create menu, the new-task sheet, and a task with file and photo attachments."
+          "src": "projects/task-management/02-notes-settings.webp",
+          "caption": "A Moodle assignment's menu with Open in Moodle, a note with bold and highlighted text, the notes list, and settings with the sync status."
         },
         {
           "src": "projects/task-management/03-sync.webp",
@@ -281,11 +305,31 @@
       ],
       "images": [
         {
-          "src": "projects/shbs/01-architecture.webp",
+          "src": "projects/shbs/01-marketplace.webp",
+          "caption": "The marketplace, signed in as a student, with demo listings: AI condition labels on each book and filters for condition, price and department."
+        },
+        {
+          "src": "projects/shbs/02-book-chat.webp",
+          "caption": "A listing page with the buyer's question and the seller's reply in the built-in chat."
+        },
+        {
+          "src": "projects/shbs/03-cart.webp",
+          "caption": "The cart, holding books from two different sellers."
+        },
+        {
+          "src": "projects/shbs/04-checkout.webp",
+          "caption": "Checkout: payment is arranged directly with the seller once the order is placed."
+        },
+        {
+          "src": "projects/shbs/05-create-listing.webp",
+          "caption": "Creating a listing: photos, title, author, price, condition and course details."
+        },
+        {
+          "src": "projects/shbs/06-architecture.webp",
           "caption": "Architecture: a Next.js client, a Go/Fiber API and a Python AI service, routed through Traefik and run together with Docker Compose."
         },
         {
-          "src": "projects/shbs/02-condition.webp",
+          "src": "projects/shbs/07-condition.webp",
           "caption": "How a listing's photos become a condition label: detected defects are weighted by severity, and the worst photo decides."
         }
       ],
