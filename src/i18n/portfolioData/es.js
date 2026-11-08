@@ -226,9 +226,9 @@ const spokenLanguages = {
 
 const experience = {
   title: "Experiencia",
-  subtitle: "Premios, Competencias y Voluntariado",
+  subtitle: "Premios y Competencias",
   description:
-    "Construyo sistemas en producción que abarcan backends en C++, aplicaciones móviles y pipelines de deep learning. Además de mis estudios, compito en concursos de ciencia de datos y colaboro como asistente de investigación voluntario en el Laboratorio de Computación Inteligente y Redes Móviles de la NDHU.",
+    "Construyo sistemas en producción que abarcan backends en C++, aplicaciones móviles y pipelines de deep learning. Además de mis estudios, compito en concursos de ciencia de datos.",
   header_image_path: "experience.svg",
   sections: [
     {
@@ -259,21 +259,6 @@ const experience = {
           description:
             "Clasifiqué patrones de participación en Moodle usando XGBoost. Extraje características en el dominio de la frecuencia mediante análisis FFT y escalogramas. Construí un asistente de IA impulsado por Gemini para retroalimentación personalizada a estudiantes y docentes.",
           color: "#0879bf",
-        },
-      ],
-    },
-    {
-      title: "Voluntariados",
-      experiences: [
-        {
-          title: "Asistente de Investigación",
-          company:
-            "NDHU CSIE: Laboratorio de Computación Inteligente y Redes Móviles",
-          company_url: "https://web.ndhu.edu.tw/",
-          duration: "sep. 2026 - Presente",
-          location: "Hualien, Taiwán",
-          description: "Colaboro como asistente de investigación voluntario.",
-          color: "#0071C5",
         },
       ],
     },
