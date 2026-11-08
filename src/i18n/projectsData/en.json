@@ -25,6 +25,34 @@
           "name": "CMake",
           "iconifyClass": "simple-icons:cmake"
         }
+      ],
+      "images": [
+        {
+          "src": "projects/sigil/01-pipeline.webp",
+          "caption": "The four layers: sources publish SignalEvents onto a lock-free bus, the rule engine drains it, and matching rules fire actions."
+        },
+        {
+          "src": "projects/sigil/02-run.webp",
+          "caption": "A real run of the daemon with the mock sources, followed by the GoogleTest suite: 42 of 42 tests passing."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "One event shape for every input",
+          "body": "A polled humidity sensor and a motion detector running on its own thread both produce the same SignalEvent: a source name, a field, a value (float, string or bool), a timestamp and a metadata map. Nothing downstream needs to know which device produced it."
+        },
+        {
+          "title": "A bus no thread has to wait on",
+          "body": "Events go onto the SignalBus, a bounded ring buffer that many producer threads write to while a single consumer reads. Slots are claimed with atomic operations instead of a mutex, so a slow source never stalls the rule engine. When the ring is full, publish() returns false instead of overwriting older events."
+        },
+        {
+          "title": "Rules decide what matters",
+          "body": "The rule engine drains the bus and checks each event against registered rules, for example humidity > 70 with a 30-second cooldown, so one noisy sensor can't fire the same alert on every reading."
+        },
+        {
+          "title": "Actions are plugins",
+          "body": "A match becomes an ActionRequest sent to an ActionBase plugin, which fills placeholders such as {value} from the triggering event and runs. Today that prints to the console; GPIO pins and notifications are the next plugins. New sources and actions are added without touching the core."
+        }
       ]
     },
     {
@@ -55,6 +83,38 @@
         {
           "name": "PostgreSQL",
           "iconifyClass": "logos-postgresql"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/hotelops/01-architecture.webp",
+          "caption": "Architecture: a manager desktop app and a housekeeping mobile app share TypeScript types and one Supabase client, and Postgres enforces what each role can access."
+        },
+        {
+          "src": "projects/hotelops/02-workflow.webp",
+          "caption": "A housekeeping day, from marking availability to a clean room, plus how room priority and role visibility are decided."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Replacing paper with one data model",
+          "body": "The hotel ran on an Excel room grid, a magnetic scheduling board and paper linen sheets. HotelOps models all of it as Postgres tables (rooms, staff, teams, shifts, linen, room materials, incidents and messages), built up through 28 versioned migrations."
+        },
+        {
+          "title": "Teams form day by day",
+          "body": "Housekeeping works as crews covering floors, not one person per room. Who is on a team is decided by that day's shifts, and a manager can only schedule someone on a day they marked available. A database trigger rejects anything else."
+        },
+        {
+          "title": "The rules live in the database",
+          "body": "Row-level security decides what each role can read and write: managers see everything, housekeepers only the rooms on the floors their team covers today, and laundry only linen. Because Postgres enforces it, a modified app still can't see more."
+        },
+        {
+          "title": "Server-side checks where a phone can't be trusted",
+          "body": "Clock-in sends the phone's GPS position to a Postgres function that verifies it, so attendance can't be faked. A trigger gives each room that still needs cleaning a priority score from 0 to 100 based on how close its next check-in is, which orders the housekeepers' queue."
+        },
+        {
+          "title": "Live on every screen",
+          "body": "Status changes stream through Supabase Realtime, so the manager's floor board updates as rooms move from Dirty to In progress to Clean. Both apps import the same shared types, and the desktop app also ships as a native macOS app through Tauri."
         }
       ]
     },
@@ -87,6 +147,42 @@
           "name": "PostgreSQL",
           "iconifyClass": "logos-postgresql"
         }
+      ],
+      "images": [
+        {
+          "src": "projects/task-management/01-screens.webp",
+          "caption": "Sign-in with Moodle credentials, the task list with Moodle assignments imported automatically, the calendar, and a task's detail sheet."
+        },
+        {
+          "src": "projects/task-management/02-editor.webp",
+          "caption": "A day's agenda, the create menu, the new-task sheet, and a task with file and photo attachments."
+        },
+        {
+          "src": "projects/task-management/03-sync.webp",
+          "caption": "How two phones on the same account stay in sync without overwriting each other's changes."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Offline first",
+          "body": "Every screen reads from and writes to a SQLite database on the phone, so the app works with no network at all. The server is only needed to fetch Moodle assignments and to let a user's devices reconcile."
+        },
+        {
+          "title": "Moodle comes to you",
+          "body": "The C++ server signs in to Moodle on the user's behalf, with the session stored encrypted (AES-256-GCM), and scrapes assignments. A background worker re-polls on an interval and sends push notifications for new or changed ones."
+        },
+        {
+          "title": "Sync in one round trip",
+          "body": "Every local edit marks its row dirty. On sync, the phone pushes its dirty rows; the server keeps an incoming row only if it is newer than the stored one, then returns everything other devices changed since this phone last synced, stamped with the server's own clock."
+        },
+        {
+          "title": "Two kinds of task, two sets of rules",
+          "body": "A task the user typed has one ID created by one device, so every field syncs. A Moodle assignment is discovered separately by each device, so it is matched by Moodle's own event ID instead, and only user-owned fields (done, pinned, notes) can be pushed. A stale phone can never overwrite a fresher title or due date."
+        },
+        {
+          "title": "Rich notes",
+          "body": "Notes are edited in a WebView running a custom contenteditable editor, which is what allows inline images, audio recordings, links and formatting that a native text field can't provide."
+        }
       ]
     },
     {
@@ -108,6 +204,50 @@
         {
           "name": "Python",
           "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/maestro/01-pipeline.webp",
+          "caption": "The inference pipeline, and the 10-class gesture vocabulary with the command each gesture triggers."
+        },
+        {
+          "src": "projects/maestro/02-running.webp",
+          "caption": "The PySide6 control app during a session: live mode, detected gesture, confidence, FPS and latency, with the event log below."
+        },
+        {
+          "src": "projects/maestro/03-settings.webp",
+          "caption": "Settings for the camera, window length and step, validity ratio and command cooldown, all editable from the app."
+        },
+        {
+          "src": "projects/maestro/04-confusion-matrix.webp",
+          "caption": "Normalized confusion matrix on the hybrid test set: every gesture class at 0.94 or higher."
+        },
+        {
+          "src": "projects/maestro/05-latency.webp",
+          "caption": "Per-clip inference latency against RGB video models on the IPN Hand benchmark: the landmark-based model is the fastest at 3.1 ms."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "From pixels to landmarks",
+          "body": "Each webcam frame goes through MediaPipe Hands, which returns 21 keypoints per hand. Working on keypoints instead of raw video is what keeps the model small enough for a laptop CPU."
+        },
+        {
+          "title": "Motion, not a single pose",
+          "body": "The system picks the active hand, normalizes its landmarks into features and keeps a sliding window of recent frames (24 frames, advancing 3 at a time), so the model sees how the hand moves."
+        },
+        {
+          "title": "Two-stream LSTM",
+          "body": "A two-stream LSTM classifies each window into one of 10 classes: nine gestures plus an 'unknown' class that absorbs ordinary hand movement so it doesn't trigger anything."
+        },
+        {
+          "title": "Act only when sure",
+          "body": "Predictions are stabilized over time and pass through an activation controller with confidence thresholds and a cooldown before they become real keyboard and pointer events: swipes change slides, pointing drives a laser pointer or a pen."
+        },
+        {
+          "title": "A real desktop app",
+          "body": "The PySide6 interface runs inference in a background thread and receives updates about 10 times a second, so neither blocks the other. Installers for macOS and Windows bundle the trained model, with no Python or internet connection needed."
         }
       ]
     },
@@ -138,6 +278,34 @@
           "name": "Python",
           "iconifyClass": "logos-python"
         }
+      ],
+      "images": [
+        {
+          "src": "projects/shbs/01-architecture.webp",
+          "caption": "Architecture: a Next.js client, a Go/Fiber API and a Python AI service, routed through Traefik and run together with Docker Compose."
+        },
+        {
+          "src": "projects/shbs/02-condition.webp",
+          "caption": "How a listing's photos become a condition label: detected defects are weighted by severity, and the worst photo decides."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Sign in as a student",
+          "body": "Students sign in through NDHU's own CAS single sign-on. The API validates the CAS ticket server to server, creates the account on first login and issues a JWT that middleware checks on every protected route."
+        },
+        {
+          "title": "List a book",
+          "body": "Photos are uploaded first and registered in an images table, and the listing then references them. Listings come back with all their image URLs aggregated in a single SQL query instead of one extra query per image."
+        },
+        {
+          "title": "Grade its condition",
+          "body": "The API forwards the photos to the internal AI service. An object-detection model finds defects such as tears, stains and creases, each weighted by severity and confidence. The worst photo sets the score, and the book is labeled good, moderate or poor."
+        },
+        {
+          "title": "Buy it safely",
+          "body": "Adding to the cart is idempotent. Checkout locks the selected listings with SELECT ... FOR UPDATE so two buyers can't purchase the same copy, and stores the price paid on each order line so receipts stay correct if a seller later edits the listing."
+        }
       ]
     },
     {
@@ -160,6 +328,34 @@
           "name": "C++",
           "iconifyClass": "simple-icons:cplusplus"
         }
+      ],
+      "images": [
+        {
+          "src": "projects/jsonfs/01-mapping.webp",
+          "caption": "Each JSON object becomes a directory and each value a file. Reads go through a TTL cache; writes are validated against the schema, then saved atomically."
+        },
+        {
+          "src": "projects/jsonfs/02-session.webp",
+          "caption": "A real session on Linux: Unix tools read the data, a valid write lands in config.json, and invalid writes are refused with EINVAL."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "JSON as a tree of files",
+          "body": "JsonFS parses the source into an in-memory tree. Objects and arrays become directories (array items are named 0, 1, 2, and so on) and every leaf value becomes a small file whose content is that value as text."
+        },
+        {
+          "title": "The kernel asks, JsonFS answers",
+          "body": "It is a FUSE filesystem: when any program opens, reads or writes a path under the mountpoint, the kernel forwards the call to JsonFS. Thin C callbacks hand each call to one C++ class, which looks the path up in the tree."
+        },
+        {
+          "title": "Live sources with a TTL",
+          "body": "The source can be a local file or an HTTP(S) URL. A thread-safe TTL cache decides when the data is stale, and the next read after that refetches the source and rebuilds the tree, so watch cat on a mounted API always shows a recent value."
+        },
+        {
+          "title": "Validated, crash-safe writes",
+          "body": "With --schema, every write is checked against the JSON Schema inside the write() callback (type, range, enum, pattern, required). A bad value returns EINVAL to the shell before anything changes. A good value is written to a temporary file that is then renamed over the original, so a crash can never leave half-written JSON."
+        }
       ]
     },
     {
@@ -167,16 +363,16 @@
       "name": "Robot Arm Load Analyzer",
       "createdAt": "2026-10-26T00:00:00Z",
       "url": "https://github.com/HSley13/robot-arm-analyzer",
-      "description": "Interactive physics + AI tool for robot-arm payload safety: a from-scratch C++ kinematics and dynamics engine (DH kinematics, Jacobian-transpose statics, full Recursive Newton-Euler dynamics), a PyTorch-trained neural surrogate benchmarked against it, and a real-time Qt Quick 3D interface where every joint, link, and payload parameter is a live, draggable control.",
+      "description": "Real-time humanoid robot simulator that answers whether a pose and payload overload any joint: a from-scratch C++ physics engine (DH kinematics, Jacobian statics, Recursive Newton-Euler dynamics), a PyTorch neural surrogate benchmarked against it, and a grasp planner that picks objects up, all in a Qt Quick 3D interface driven with the mouse.",
       "isFork": false,
-      "tagline": "A from-scratch robot-arm physics engine paired with a benchmarked AI surrogate, wrapped in a real-time 3D interface that turns a static payload-vs-reach spec sheet into something you can drag and explore.",
-      "importance": "Robot Arm Load Analyzer answers a question every real robot arm has to answer at design time — is this pose, with this payload, actually safe to hold — and makes it live and interactive instead of a number printed once on a spec sheet. The physics underneath is hand-derived and cross-checked, not borrowed from a robotics library, and the AI surrogate's speed-up is a measured result from the app's own benchmarking feature, not a claimed one. That combination of rigorous derivation, honest measurement, and a genuinely usable interface is what moves this from a classroom kinematics demo to a small piece of real engineering.",
+      "tagline": "Can this robot hold that weight, in that pose, without overloading a joint, and can it go and pick the object up? Ask it live, in 3D.",
+      "importance": "Every real robot has to answer this question at design time, and the answer is usually a number printed once on a spec sheet. Here it is live: drag the robot, change a mass, and every joint's load updates. The physics underneath is derived by hand and cross-checked, not borrowed from a robotics library, and the neural network's speed-up is measured by the app itself, not claimed. Kinematics, learning, search and planning all meet in one working system instead of separate exercises.",
       "highlights": [
-        "Derived and implemented forward/inverse kinematics, Jacobian-transpose statics, and a full Recursive Newton-Euler dynamics algorithm from first principles in C++ and Eigen, cross-checked against an independent virtual-work derivation",
-        "Trained a PyTorch neural-network surrogate for the same torque computation and benchmarked it against the exact engine through the app's own workspace-scan feature, measuring a 2.8x speed-up in the high-volume regime it was built for",
-        "Built a real-time Qt Quick 3D interface exposing every joint angle, link length, link mass, and payload parameter as a live, draggable control, including direct click-and-drag joint manipulation in the 3D view itself",
-        "Backed the physics engine with 148 GoogleTest cases across 14 executables, catching a silent sign bug in the hand-derived dynamics that two tests missed and only a third, deliberately orthogonal test caught",
-        "Diagnosed and fixed a kinematic-singularity performance bug at the arm's reach boundary and a native-rendering crash traced to its root cause with a debugger backtrace"
+        "Derived and implemented forward and inverse kinematics, Jacobian statics and full Recursive Newton-Euler dynamics from first principles in C++17 and Eigen, cross-checked against an independent virtual-work derivation",
+        "Trained a PyTorch MLP surrogate on 30,000 poses labeled by the exact engine and ran it through a hand-written C++ forward pass with no ML runtime, measuring about a 9x speed-up in the app's own payload-capacity scan",
+        "Built a grasp planner that searches whole-body poses (waist, lift, hip lean, arm), rejects any that break joint or torque limits, and executes approach, grasp, lift and carry with smooth, speed-limited motion",
+        "Built the Qt Quick 3D interface from procedural meshes placed by forward kinematics, with click-and-drag control of the hand, every joint, the torso and the lift",
+        "Backed it with 256 GoogleTest cases in 20 suites, including whole pick-and-place sequences for every object type; one deliberately orthogonal test caught a silent sign bug in the hand-derived dynamics that two other tests missed"
       ],
       "languages": [
         {
@@ -190,6 +386,58 @@
         {
           "name": "Python",
           "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/robot-arm/01-overview.webp",
+          "caption": "The robot among furniture and objects. Each joint's gauge shows its live load against its torque limit."
+        },
+        {
+          "src": "projects/robot-arm/02-pick-and-place.webp",
+          "caption": "A planned pick-and-place: reach the bottle, grasp and lift it, lean over the table, set it down upright and return home."
+        },
+        {
+          "src": "projects/robot-arm/03-overload.webp",
+          "caption": "Arm straight out holding 14 kg: every joint is past its limit and turns red."
+        },
+        {
+          "src": "projects/robot-arm/04-payload-scan.webp",
+          "caption": "Payload capacity scan from stretched out to folded: exact physics and the neural network on the same chart, with measured run times."
+        },
+        {
+          "src": "projects/robot-arm/05-hand.webp",
+          "caption": "The 17-joint hand closing around a bottle."
+        },
+        {
+          "src": "projects/robot-arm/06-warehouse-arm.webp",
+          "caption": "Switched to a five-joint warehouse arm with a two-finger gripper, holding a can it picked from above."
+        },
+        {
+          "src": "projects/robot-arm/07-drag.webp",
+          "caption": "Dragging the hand: the waist turns, the lift lowers and the torso leans so the hand can reach the point."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Exact physics from first principles",
+          "body": "Each arm joint is described with Denavit-Hartenberg parameters. Forward kinematics chains the transforms, the Jacobian turns link weights and the payload into the torque every joint must hold, and a full Recursive Newton-Euler pass adds inertia and Coriolis terms when the arm moves. All of it is hand-written C++ with Eigen."
+        },
+        {
+          "title": "A neural network that imitates it",
+          "body": "A C++ generator samples 30,000 random poses and payloads and labels them with the exact engine. A small PyTorch MLP learns pose + payload to torques; its weights are exported to JSON and run by a hand-written C++ forward pass, about 9x faster in the app's own scan (0.57 ms vs 5.19 ms for 40 poses). Change the arm's geometry and AI mode switches itself off, because the network was trained for a different arm."
+        },
+        {
+          "title": "Planning a pick-up",
+          "body": "Click an object and the planner searches a grid of lift heights and hip leans, solves the arm's joint angles for each (closed-form for the humanoid arm, damped least squares otherwise), rejects poses that break joint or torque limits, and keeps the one that loads the joints least. If none works, it says which joint would be overloaded."
+        },
+        {
+          "title": "Acting it out",
+          "body": "The pick-up runs as sub-goals (approach, grasp, lift, carry) with smooth, speed-limited motion. While the robot holds an object, that object's mass is the payload, so every gauge shows what it is really carrying."
+        },
+        {
+          "title": "Built in Qt Quick 3D",
+          "body": "The robot, furniture and objects are procedural meshes positioned by forward kinematics, and the C++ controllers are exposed to QML as a module. 256 GoogleTest cases in 20 suites cover the physics and whole pick-and-place sequences."
         }
       ]
     }
