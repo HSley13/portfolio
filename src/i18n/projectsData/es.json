@@ -1,6 +1,155 @@
 {
   "data": [
     {
+      "id": "hsley13-robot-arm-analyzer",
+      "name": "Robot Arm Load Analyzer",
+      "createdAt": "2026-10-26T00:00:00Z",
+      "url": "https://github.com/HSley13/robot-arm-analyzer",
+      "description": "Simulador de robot humanoide en tiempo real que responde si una pose y una carga sobrecargan alguna articulación: un motor de física en C++ hecho desde cero (cinemática DH, estática por Jacobiana, dinámica de Newton-Euler recursivo), un sustituto neuronal en PyTorch comparado contra él y un planificador de agarre que recoge objetos, todo en una interfaz Qt Quick 3D controlada con el mouse.",
+      "isFork": false,
+      "tagline": "¿Puede este robot sostener ese peso, en esa pose, sin sobrecargar ninguna articulación? ¿Y puede ir a recoger el objeto? Pregúntaselo en vivo, en 3D.",
+      "importance": "Todo robot real debe responder esta pregunta en la etapa de diseño, y la respuesta suele ser un número impreso una sola vez en una ficha técnica. Aquí es en vivo: arrastras el robot, cambias una masa y la carga de cada articulación se actualiza. La física está derivada a mano y verificada de forma cruzada, no tomada de una librería de robótica, y la ganancia de velocidad de la red neuronal la mide la propia app, no es una afirmación. Cinemática, aprendizaje, búsqueda y planificación se encuentran en un mismo sistema que funciona, en lugar de ejercicios separados.",
+      "highlights": [
+        "Derivé e implementé cinemática directa e inversa, estática por Jacobiana y dinámica completa de Newton-Euler recursivo desde primeros principios en C++17 y Eigen, verificadas contra una derivación independiente por trabajo virtual",
+        "Entrené un sustituto MLP en PyTorch con 30,000 poses etiquetadas por el motor exacto y lo ejecuté con un forward pass escrito a mano en C++, sin ningún runtime de ML, midiendo una mejora de unas 9 veces en el propio escaneo de capacidad de carga de la app",
+        "Construí un planificador de agarre que busca poses de cuerpo completo (cintura, columna, inclinación de cadera, brazo), descarta las que violan límites de articulación o de torque y ejecuta acercarse, agarrar, levantar y transportar con movimientos suaves y de velocidad limitada",
+        "Construí la interfaz Qt Quick 3D con mallas procedurales posicionadas por cinemática directa, con control por clic y arrastre de la mano, cada articulación, el torso y la columna",
+        "La respaldé con 256 pruebas de GoogleTest en 20 suites, incluidas secuencias completas de pick-and-place para cada tipo de objeto; una prueba deliberadamente ortogonal detectó un error de signo silencioso en la dinámica derivada a mano que otras dos pruebas pasaron por alto"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "Qt",
+          "iconifyClass": "simple-icons:qt"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/robot-arm/01-overview.webp",
+          "caption": "El robot entre muebles y objetos. El indicador de cada articulación muestra su carga en vivo frente a su límite de torque."
+        },
+        {
+          "src": "projects/robot-arm/02-pick-and-place.webp",
+          "caption": "Un pick-and-place planificado: alcanzar la botella, agarrarla y levantarla, inclinarse sobre la mesa, dejarla de pie y volver al inicio."
+        },
+        {
+          "src": "projects/robot-arm/03-overload.webp",
+          "caption": "Brazo extendido sosteniendo 14 kg: todas las articulaciones superan su límite y se vuelven rojas."
+        },
+        {
+          "src": "projects/robot-arm/04-payload-scan.webp",
+          "caption": "Escaneo de capacidad de carga de brazo extendido a plegado: física exacta y red neuronal en el mismo gráfico, con tiempos medidos."
+        },
+        {
+          "src": "projects/robot-arm/05-hand.webp",
+          "caption": "La mano de 17 articulaciones cerrándose alrededor de una botella."
+        },
+        {
+          "src": "projects/robot-arm/06-warehouse-arm.webp",
+          "caption": "Cambiado a un brazo industrial de cinco articulaciones con pinza de dos dedos, sosteniendo una lata que tomó desde arriba."
+        },
+        {
+          "src": "projects/robot-arm/07-drag.webp",
+          "caption": "Arrastrando la mano: la cintura gira, la columna baja y el torso se inclina para que la mano alcance el punto."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Física exacta desde primeros principios",
+          "body": "Cada articulación del brazo se describe con parámetros de Denavit-Hartenberg. La cinemática directa encadena las transformaciones, la Jacobiana convierte el peso de los eslabones y la carga en el torque que debe sostener cada articulación, y un Newton-Euler recursivo completo suma los términos de inercia y Coriolis cuando el brazo se mueve. Todo está escrito a mano en C++ con Eigen."
+        },
+        {
+          "title": "Una red neuronal que la imita",
+          "body": "Un generador en C++ muestrea 30,000 poses y cargas aleatorias y las etiqueta con el motor exacto. Un pequeño MLP de PyTorch aprende pose + carga a torques; sus pesos se exportan a JSON y los ejecuta un forward pass escrito a mano en C++, unas 9 veces más rápido en el propio escaneo de la app (0.57 ms frente a 5.19 ms para 40 poses). Si se cambia la geometría del brazo, el modo IA se desactiva solo, porque la red fue entrenada para otro brazo."
+        },
+        {
+          "title": "Planificar un agarre",
+          "body": "Al hacer clic en un objeto, el planificador recorre una cuadrícula de alturas de columna e inclinaciones de cadera, resuelve los ángulos del brazo en cada caso (forma cerrada para el brazo humanoide, mínimos cuadrados amortiguados en otro caso), descarta las poses que violan límites de articulación o de torque y se queda con la que menos carga las articulaciones. Si ninguna sirve, indica qué articulación se sobrecargaría."
+        },
+        {
+          "title": "Ejecutarlo",
+          "body": "El agarre se ejecuta como subobjetivos (acercarse, agarrar, levantar, transportar) con movimientos suaves y de velocidad limitada. Mientras el robot sostiene un objeto, su masa es la carga, así que cada indicador muestra lo que realmente está cargando."
+        },
+        {
+          "title": "Construido en Qt Quick 3D",
+          "body": "El robot, los muebles y los objetos son mallas procedurales posicionadas por cinemática directa, y los controladores en C++ se exponen a QML como un módulo. 256 pruebas de GoogleTest en 20 suites cubren la física y secuencias completas de pick-and-place."
+        }
+      ]
+    },
+    {
+      "id": "hsley13-maestro",
+      "name": "Maestro",
+      "createdAt": "2025-09-09T00:00:00Z",
+      "url": "https://github.com/ntsrigaud/Maestro",
+      "description": "Sistema de reconocimiento de gestos de mano en tiempo real de dos flujos BiLSTM para control de presentaciones manos libres, con un pipeline de características de MediaPipe Hands, interfaz de control en PySide6 y una app empaquetada multiplataforma. Ganador del Premio a la Excelencia en Proyecto de Pregrado de la NDHU, 2026.",
+      "isFork": false,
+      "tagline": "Un sistema de reconocimiento de gestos de mano en tiempo real de nivel producción que convierte una webcam en un control remoto de presentaciones manos libres.",
+      "importance": "Ganador del Premio a la Excelencia en Proyecto de Pregrado de la NDHU, 2026. Ejecuta inferencia en tiempo real en laptops de consumo comunes sin GPU, empaquetado como una verdadera app de escritorio multiplataforma en lugar de una demo en notebook, que es precisamente la diferencia entre un experimento de machine learning y un producto de machine learning.",
+      "highlights": [
+        "Construí un clasificador LSTM de dos flujos que reconoce un vocabulario de 10 clases de gestos (una combinación de los datasets Jester e IPN) a partir de puntos de referencia de MediaPipe Hands, funcionando en tiempo real solo con CPU",
+        "Diseñé el pipeline de inferencia completo de punta a punta: captura de cámara, selección de mano, ingeniería de características, un buffer de ventana deslizante, estabilización de predicciones y despacho de comandos directamente a eventos de teclado y puntero a nivel de sistema operativo",
+        "Construí una interfaz de control en PySide6 sin bloqueos, con la inferencia corriendo en un QThread en segundo plano y actualizaciones de estado limitadas a unos 10Hz mediante señales de Qt, para que la interfaz nunca ralentice al modelo ni viceversa",
+        "Empaqueté y distribuí instaladores independientes para macOS y Windows con el modelo entrenado incluido directamente en la app, sin necesitar entorno de Python ni conexión a internet para ejecutarla"
+      ],
+      "languages": [
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/maestro/01-pipeline.webp",
+          "caption": "El pipeline de inferencia y el vocabulario de 10 gestos con el comando que activa cada uno."
+        },
+        {
+          "src": "projects/maestro/02-running.webp",
+          "caption": "La app de control en PySide6 durante una sesión: modo en vivo, gesto detectado, confianza, FPS y latencia, con el registro de eventos abajo."
+        },
+        {
+          "src": "projects/maestro/03-settings.webp",
+          "caption": "Ajustes de cámara, longitud y paso de ventana, proporción de validez y tiempo de espera entre comandos, todos editables desde la app."
+        },
+        {
+          "src": "projects/maestro/04-confusion-matrix.webp",
+          "caption": "Matriz de confusión normalizada en el conjunto de prueba híbrido: todas las clases de gesto en 0.94 o más."
+        },
+        {
+          "src": "projects/maestro/05-latency.webp",
+          "caption": "Latencia de inferencia por clip frente a modelos de video RGB en el benchmark IPN Hand: el modelo basado en puntos clave es el más rápido, con 3.1 ms."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "De píxeles a puntos clave",
+          "body": "Cada cuadro de la cámara pasa por MediaPipe Hands, que devuelve 21 puntos clave por mano. Trabajar con puntos clave en lugar de video crudo es lo que mantiene el modelo lo bastante pequeño para la CPU de una laptop."
+        },
+        {
+          "title": "Movimiento, no una pose",
+          "body": "El sistema elige la mano activa, normaliza sus puntos clave como características y mantiene una ventana deslizante de cuadros recientes (24 cuadros, avanzando de 3 en 3), para que el modelo vea cómo se mueve la mano."
+        },
+        {
+          "title": "LSTM de dos flujos",
+          "body": "Un LSTM de dos flujos clasifica cada ventana en una de 10 clases: nueve gestos más una clase 'desconocido' que absorbe los movimientos normales de la mano para que no activen nada."
+        },
+        {
+          "title": "Actuar solo con seguridad",
+          "body": "Las predicciones se estabilizan en el tiempo y pasan por un controlador de activación con umbrales de confianza y un tiempo de espera antes de convertirse en eventos reales de teclado y puntero: deslizar cambia de diapositiva y señalar controla un puntero láser o un lápiz."
+        },
+        {
+          "title": "Una app de escritorio real",
+          "body": "La interfaz en PySide6 ejecuta la inferencia en un hilo en segundo plano y recibe actualizaciones unas 10 veces por segundo, así que ninguno bloquea al otro. Los instaladores para macOS y Windows incluyen el modelo entrenado, sin necesidad de Python ni de conexión a internet."
+        }
+      ]
+    },
+    {
       "id": "hsley13-sigil",
       "name": "Sigil",
       "createdAt": "2026-07-18T00:00:00Z",
@@ -210,72 +359,6 @@
       ]
     },
     {
-      "id": "hsley13-maestro",
-      "name": "Maestro",
-      "createdAt": "2025-09-09T00:00:00Z",
-      "url": "https://github.com/ntsrigaud/Maestro",
-      "description": "Sistema de reconocimiento de gestos de mano en tiempo real de dos flujos BiLSTM para control de presentaciones manos libres, con un pipeline de características de MediaPipe Hands, interfaz de control en PySide6 y una app empaquetada multiplataforma. Ganador del Premio a la Excelencia en Proyecto de Pregrado de la NDHU, 2026.",
-      "isFork": false,
-      "tagline": "Un sistema de reconocimiento de gestos de mano en tiempo real de nivel producción que convierte una webcam en un control remoto de presentaciones manos libres.",
-      "importance": "Ganador del Premio a la Excelencia en Proyecto de Pregrado de la NDHU, 2026. Ejecuta inferencia en tiempo real en laptops de consumo comunes sin GPU, empaquetado como una verdadera app de escritorio multiplataforma en lugar de una demo en notebook, que es precisamente la diferencia entre un experimento de machine learning y un producto de machine learning.",
-      "highlights": [
-        "Construí un clasificador LSTM de dos flujos que reconoce un vocabulario de 10 clases de gestos (una combinación de los datasets Jester e IPN) a partir de puntos de referencia de MediaPipe Hands, funcionando en tiempo real solo con CPU",
-        "Diseñé el pipeline de inferencia completo de punta a punta: captura de cámara, selección de mano, ingeniería de características, un buffer de ventana deslizante, estabilización de predicciones y despacho de comandos directamente a eventos de teclado y puntero a nivel de sistema operativo",
-        "Construí una interfaz de control en PySide6 sin bloqueos, con la inferencia corriendo en un QThread en segundo plano y actualizaciones de estado limitadas a unos 10Hz mediante señales de Qt, para que la interfaz nunca ralentice al modelo ni viceversa",
-        "Empaqueté y distribuí instaladores independientes para macOS y Windows con el modelo entrenado incluido directamente en la app, sin necesitar entorno de Python ni conexión a internet para ejecutarla"
-      ],
-      "languages": [
-        {
-          "name": "Python",
-          "iconifyClass": "logos-python"
-        }
-      ],
-      "images": [
-        {
-          "src": "projects/maestro/01-pipeline.webp",
-          "caption": "El pipeline de inferencia y el vocabulario de 10 gestos con el comando que activa cada uno."
-        },
-        {
-          "src": "projects/maestro/02-running.webp",
-          "caption": "La app de control en PySide6 durante una sesión: modo en vivo, gesto detectado, confianza, FPS y latencia, con el registro de eventos abajo."
-        },
-        {
-          "src": "projects/maestro/03-settings.webp",
-          "caption": "Ajustes de cámara, longitud y paso de ventana, proporción de validez y tiempo de espera entre comandos, todos editables desde la app."
-        },
-        {
-          "src": "projects/maestro/04-confusion-matrix.webp",
-          "caption": "Matriz de confusión normalizada en el conjunto de prueba híbrido: todas las clases de gesto en 0.94 o más."
-        },
-        {
-          "src": "projects/maestro/05-latency.webp",
-          "caption": "Latencia de inferencia por clip frente a modelos de video RGB en el benchmark IPN Hand: el modelo basado en puntos clave es el más rápido, con 3.1 ms."
-        }
-      ],
-      "howItWorks": [
-        {
-          "title": "De píxeles a puntos clave",
-          "body": "Cada cuadro de la cámara pasa por MediaPipe Hands, que devuelve 21 puntos clave por mano. Trabajar con puntos clave en lugar de video crudo es lo que mantiene el modelo lo bastante pequeño para la CPU de una laptop."
-        },
-        {
-          "title": "Movimiento, no una pose",
-          "body": "El sistema elige la mano activa, normaliza sus puntos clave como características y mantiene una ventana deslizante de cuadros recientes (24 cuadros, avanzando de 3 en 3), para que el modelo vea cómo se mueve la mano."
-        },
-        {
-          "title": "LSTM de dos flujos",
-          "body": "Un LSTM de dos flujos clasifica cada ventana en una de 10 clases: nueve gestos más una clase 'desconocido' que absorbe los movimientos normales de la mano para que no activen nada."
-        },
-        {
-          "title": "Actuar solo con seguridad",
-          "body": "Las predicciones se estabilizan en el tiempo y pasan por un controlador de activación con umbrales de confianza y un tiempo de espera antes de convertirse en eventos reales de teclado y puntero: deslizar cambia de diapositiva y señalar controla un puntero láser o un lápiz."
-        },
-        {
-          "title": "Una app de escritorio real",
-          "body": "La interfaz en PySide6 ejecuta la inferencia en un hilo en segundo plano y recibe actualizaciones unas 10 veces por segundo, así que ninguno bloquea al otro. Los instaladores para macOS y Windows incluyen el modelo entrenado, sin necesidad de Python ni de conexión a internet."
-        }
-      ]
-    },
-    {
       "id": "hsley13-ndhu-shbs",
       "name": "NDHU Second-Hand Book Store",
       "createdAt": "2026-06-03T00:00:00Z",
@@ -399,89 +482,6 @@
         {
           "title": "Escrituras validadas y a prueba de fallos",
           "body": "Con --schema, cada escritura se valida contra el JSON Schema dentro del callback write() (tipo, rango, enum, patrón, campos obligatorios). Un valor inválido devuelve EINVAL a la terminal antes de que cambie nada. Un valor válido se escribe en un archivo temporal que luego se renombra sobre el original, así que una caída nunca deja un JSON a medio escribir."
-        }
-      ]
-    },
-    {
-      "id": "hsley13-robot-arm-analyzer",
-      "name": "Robot Arm Load Analyzer",
-      "createdAt": "2026-10-26T00:00:00Z",
-      "url": "https://github.com/HSley13/robot-arm-analyzer",
-      "description": "Simulador de robot humanoide en tiempo real que responde si una pose y una carga sobrecargan alguna articulación: un motor de física en C++ hecho desde cero (cinemática DH, estática por Jacobiana, dinámica de Newton-Euler recursivo), un sustituto neuronal en PyTorch comparado contra él y un planificador de agarre que recoge objetos, todo en una interfaz Qt Quick 3D controlada con el mouse.",
-      "isFork": false,
-      "tagline": "¿Puede este robot sostener ese peso, en esa pose, sin sobrecargar ninguna articulación? ¿Y puede ir a recoger el objeto? Pregúntaselo en vivo, en 3D.",
-      "importance": "Todo robot real debe responder esta pregunta en la etapa de diseño, y la respuesta suele ser un número impreso una sola vez en una ficha técnica. Aquí es en vivo: arrastras el robot, cambias una masa y la carga de cada articulación se actualiza. La física está derivada a mano y verificada de forma cruzada, no tomada de una librería de robótica, y la ganancia de velocidad de la red neuronal la mide la propia app, no es una afirmación. Cinemática, aprendizaje, búsqueda y planificación se encuentran en un mismo sistema que funciona, en lugar de ejercicios separados.",
-      "highlights": [
-        "Derivé e implementé cinemática directa e inversa, estática por Jacobiana y dinámica completa de Newton-Euler recursivo desde primeros principios en C++17 y Eigen, verificadas contra una derivación independiente por trabajo virtual",
-        "Entrené un sustituto MLP en PyTorch con 30,000 poses etiquetadas por el motor exacto y lo ejecuté con un forward pass escrito a mano en C++, sin ningún runtime de ML, midiendo una mejora de unas 9 veces en el propio escaneo de capacidad de carga de la app",
-        "Construí un planificador de agarre que busca poses de cuerpo completo (cintura, columna, inclinación de cadera, brazo), descarta las que violan límites de articulación o de torque y ejecuta acercarse, agarrar, levantar y transportar con movimientos suaves y de velocidad limitada",
-        "Construí la interfaz Qt Quick 3D con mallas procedurales posicionadas por cinemática directa, con control por clic y arrastre de la mano, cada articulación, el torso y la columna",
-        "La respaldé con 256 pruebas de GoogleTest en 20 suites, incluidas secuencias completas de pick-and-place para cada tipo de objeto; una prueba deliberadamente ortogonal detectó un error de signo silencioso en la dinámica derivada a mano que otras dos pruebas pasaron por alto"
-      ],
-      "languages": [
-        {
-          "name": "C++",
-          "iconifyClass": "simple-icons:cplusplus"
-        },
-        {
-          "name": "Qt",
-          "iconifyClass": "simple-icons:qt"
-        },
-        {
-          "name": "Python",
-          "iconifyClass": "logos-python"
-        }
-      ],
-      "images": [
-        {
-          "src": "projects/robot-arm/01-overview.webp",
-          "caption": "El robot entre muebles y objetos. El indicador de cada articulación muestra su carga en vivo frente a su límite de torque."
-        },
-        {
-          "src": "projects/robot-arm/02-pick-and-place.webp",
-          "caption": "Un pick-and-place planificado: alcanzar la botella, agarrarla y levantarla, inclinarse sobre la mesa, dejarla de pie y volver al inicio."
-        },
-        {
-          "src": "projects/robot-arm/03-overload.webp",
-          "caption": "Brazo extendido sosteniendo 14 kg: todas las articulaciones superan su límite y se vuelven rojas."
-        },
-        {
-          "src": "projects/robot-arm/04-payload-scan.webp",
-          "caption": "Escaneo de capacidad de carga de brazo extendido a plegado: física exacta y red neuronal en el mismo gráfico, con tiempos medidos."
-        },
-        {
-          "src": "projects/robot-arm/05-hand.webp",
-          "caption": "La mano de 17 articulaciones cerrándose alrededor de una botella."
-        },
-        {
-          "src": "projects/robot-arm/06-warehouse-arm.webp",
-          "caption": "Cambiado a un brazo industrial de cinco articulaciones con pinza de dos dedos, sosteniendo una lata que tomó desde arriba."
-        },
-        {
-          "src": "projects/robot-arm/07-drag.webp",
-          "caption": "Arrastrando la mano: la cintura gira, la columna baja y el torso se inclina para que la mano alcance el punto."
-        }
-      ],
-      "howItWorks": [
-        {
-          "title": "Física exacta desde primeros principios",
-          "body": "Cada articulación del brazo se describe con parámetros de Denavit-Hartenberg. La cinemática directa encadena las transformaciones, la Jacobiana convierte el peso de los eslabones y la carga en el torque que debe sostener cada articulación, y un Newton-Euler recursivo completo suma los términos de inercia y Coriolis cuando el brazo se mueve. Todo está escrito a mano en C++ con Eigen."
-        },
-        {
-          "title": "Una red neuronal que la imita",
-          "body": "Un generador en C++ muestrea 30,000 poses y cargas aleatorias y las etiqueta con el motor exacto. Un pequeño MLP de PyTorch aprende pose + carga a torques; sus pesos se exportan a JSON y los ejecuta un forward pass escrito a mano en C++, unas 9 veces más rápido en el propio escaneo de la app (0.57 ms frente a 5.19 ms para 40 poses). Si se cambia la geometría del brazo, el modo IA se desactiva solo, porque la red fue entrenada para otro brazo."
-        },
-        {
-          "title": "Planificar un agarre",
-          "body": "Al hacer clic en un objeto, el planificador recorre una cuadrícula de alturas de columna e inclinaciones de cadera, resuelve los ángulos del brazo en cada caso (forma cerrada para el brazo humanoide, mínimos cuadrados amortiguados en otro caso), descarta las poses que violan límites de articulación o de torque y se queda con la que menos carga las articulaciones. Si ninguna sirve, indica qué articulación se sobrecargaría."
-        },
-        {
-          "title": "Ejecutarlo",
-          "body": "El agarre se ejecuta como subobjetivos (acercarse, agarrar, levantar, transportar) con movimientos suaves y de velocidad limitada. Mientras el robot sostiene un objeto, su masa es la carga, así que cada indicador muestra lo que realmente está cargando."
-        },
-        {
-          "title": "Construido en Qt Quick 3D",
-          "body": "El robot, los muebles y los objetos son mallas procedurales posicionadas por cinemática directa, y los controladores en C++ se exponen a QML como un módulo. 256 pruebas de GoogleTest en 20 suites cubren la física y secuencias completas de pick-and-place."
         }
       ]
     }

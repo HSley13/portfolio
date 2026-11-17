@@ -1,6 +1,155 @@
 {
   "data": [
     {
+      "id": "hsley13-robot-arm-analyzer",
+      "name": "Robot Arm Load Analyzer",
+      "createdAt": "2026-10-26T00:00:00Z",
+      "url": "https://github.com/HSley13/robot-arm-analyzer",
+      "description": "即時人形機器人模擬器，回答某個姿勢與承重是否會讓任何關節超載：從零打造的 C++ 物理引擎（DH 運動學、Jacobian 靜力學、遞迴牛頓-歐拉動力學）、以 PyTorch 訓練並與其比較的神經網路替代模型，以及能實際取放物品的抓取規劃器，全部整合在可用滑鼠操作的 Qt Quick 3D 介面中。",
+      "isFork": false,
+      "tagline": "這個機器人能不能以這個姿勢拿住這個重量而不讓任何關節超載？它能不能過去把物品拿起來？在 3D 中即時問它。",
+      "importance": "每個真實機器人在設計階段都必須回答這個問題，而答案通常只是規格表上印一次的數字。在這裡它是即時的：拖曳機器人、修改質量，每個關節的負載就會更新。背後的物理是手動推導並交叉驗證的，不是借用現成的機器人函式庫；神經網路的加速效果由應用程式自己量測，而不是口頭宣稱。運動學、機器學習、搜尋與規劃在同一個可運作的系統中結合，而不是各自獨立的練習。",
+      "highlights": [
+        "以 C++17 與 Eigen 從第一原理推導並實作正向與逆向運動學、Jacobian 靜力學與完整的遞迴牛頓-歐拉動力學，並以獨立的虛功推導交叉驗證",
+        "以精確引擎標註的 30,000 組姿勢訓練 PyTorch MLP 替代模型，並以不依賴任何機器學習執行環境的手寫 C++ 前向傳播執行，在應用程式自己的承重能力掃描中量得約 9 倍加速",
+        "打造抓取規劃器，搜尋全身姿勢（腰部、升降、髖部前傾、手臂），排除違反關節或扭矩限制的姿勢，並以平順、受速度限制的動作完成接近、抓取、抬起與搬運",
+        "以正向運動學定位的程序生成網格打造 Qt Quick 3D 介面，可用滑鼠直接拖曳手部、各關節、軀幹與升降柱",
+        "以 20 個測試套件、共 256 項 GoogleTest 測試支撐整個系統，包含每種物品的完整取放流程；其中一項刻意設計為正交的測試，抓到了另外兩項測試都漏掉的手推動力學符號錯誤"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "Qt",
+          "iconifyClass": "simple-icons:qt"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/robot-arm/01-overview.webp",
+          "caption": "機器人與家具和物品。每個關節的儀表顯示即時負載與扭矩上限的比例。"
+        },
+        {
+          "src": "projects/robot-arm/02-pick-and-place.webp",
+          "caption": "規劃好的取放動作：伸手拿瓶子、抓起、越過桌子傾身、直立放下後回到原位。"
+        },
+        {
+          "src": "projects/robot-arm/03-overload.webp",
+          "caption": "手臂伸直拿著 14 公斤：每個關節都超過上限並變成紅色。"
+        },
+        {
+          "src": "projects/robot-arm/04-payload-scan.webp",
+          "caption": "從伸直到收起的承重能力掃描：精確物理與神經網路畫在同一張圖上，並附實測執行時間。"
+        },
+        {
+          "src": "projects/robot-arm/05-hand.webp",
+          "caption": "17 個關節的手握住瓶子。"
+        },
+        {
+          "src": "projects/robot-arm/06-warehouse-arm.webp",
+          "caption": "切換為五關節倉儲手臂與雙指夾爪，拿著它從上方夾起的罐子。"
+        },
+        {
+          "src": "projects/robot-arm/07-drag.webp",
+          "caption": "拖曳手部：腰部旋轉、升降柱降低、軀幹前傾，讓手能碰到目標點。"
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "從第一原理推導的精確物理",
+          "body": "每個手臂關節以 Denavit-Hartenberg 參數描述。正向運動學串接各個轉換矩陣，Jacobian 把連桿重量與承重轉換成每個關節必須承受的扭矩，手臂移動時再以完整的遞迴牛頓-歐拉演算法加上慣性與科氏力項。全部以 C++ 與 Eigen 手寫完成。"
+        },
+        {
+          "title": "模仿物理的神經網路",
+          "body": "C++ 產生器隨機取樣 30,000 組姿勢與承重，並以精確引擎標註。小型 PyTorch MLP 學習「姿勢＋承重 → 扭矩」；權重匯出為 JSON，由手寫的 C++ 前向傳播執行，在應用程式自己的掃描中快約 9 倍（40 個姿勢 0.57 毫秒對 5.19 毫秒）。一旦改變手臂幾何，AI 模式會自動關閉，因為網路是為另一支手臂訓練的。"
+        },
+        {
+          "title": "規劃取物",
+          "body": "點選物品後，規劃器會搜尋升降高度與髖部前傾角度的網格，逐一解出手臂關節角度（人形手臂用解析解，其他用阻尼最小平方法），排除違反關節或扭矩限制的姿勢，並保留關節負載最小的那一個。若沒有可行解，會說明哪個關節會超載。"
+        },
+        {
+          "title": "執行動作",
+          "body": "取物以子目標（接近、抓取、抬起、搬運）依序執行，動作平順且受速度限制。機器人拿著物品時，物品質量就是承重，所以每個儀表顯示的都是它真正承受的負載。"
+        },
+        {
+          "title": "以 Qt Quick 3D 打造",
+          "body": "機器人、家具與物品都是程序生成的網格，由正向運動學決定位置；C++ 控制器以模組形式提供給 QML。20 個測試套件、共 256 項 GoogleTest 測試涵蓋物理運算與完整的取放流程。"
+        }
+      ]
+    },
+    {
+      "id": "hsley13-maestro",
+      "name": "Maestro",
+      "createdAt": "2025-09-09T00:00:00Z",
+      "url": "https://github.com/ntsrigaud/Maestro",
+      "description": "雙流 BiLSTM 即時手勢辨識系統，用於免持簡報控制，具備 MediaPipe Hands 特徵擷取管線、PySide6 控制介面，以及跨平台封裝應用程式。榮獲 2026 年東華大學大學部專題優良獎。",
+      "isFork": false,
+      "tagline": "一套正式等級的即時手勢辨識系統，讓網路攝影機化身為免持簡報遙控器。",
+      "importance": "榮獲 2026 年東華大學大學部專題優良獎。能在一般消費級筆電（無 GPU）上執行即時推論，並封裝為貨真價實的跨平台桌面應用程式，而非僅止於 notebook 展示，這正是機器學習「實驗」與機器學習「產品」之間的差距所在。",
+      "highlights": [
+        "打造雙流 LSTM 分類器，從 MediaPipe Hands 關鍵點辨識 10 類手勢詞彙（混合 Jester 與 IPN 資料集），全程僅以 CPU 即時運算",
+        "端到端設計完整推論管線：攝影機擷取、手部選取、特徵工程、滑動視窗緩衝區、預測穩定化，以及直接派送至作業系統層級的鍵盤與指標事件",
+        "打造非阻塞式的 PySide6 控制介面，推論在背景 QThread 執行，狀態更新透過 Qt 訊號節流至約 10Hz，確保介面不會卡頓模型、模型也不會被介面拖慢",
+        "為 macOS 與 Windows 封裝並發布獨立安裝程式，訓練好的模型直接內建於應用程式中，執行時無需 Python 執行環境或網路連線"
+      ],
+      "languages": [
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/maestro/01-pipeline.webp",
+          "caption": "推論流程，以及 10 類手勢詞彙與各手勢觸發的指令。"
+        },
+        {
+          "src": "projects/maestro/02-running.webp",
+          "caption": "執行中的 PySide6 控制介面：即時模式、偵測到的手勢、信心度、FPS 與延遲，下方為事件紀錄。"
+        },
+        {
+          "src": "projects/maestro/03-settings.webp",
+          "caption": "攝影機、視窗長度與步長、有效比例與指令冷卻時間的設定，皆可在應用程式中編輯。"
+        },
+        {
+          "src": "projects/maestro/04-confusion-matrix.webp",
+          "caption": "混合測試集上的正規化混淆矩陣：每個手勢類別皆達 0.94 以上。"
+        },
+        {
+          "src": "projects/maestro/05-latency.webp",
+          "caption": "在 IPN Hand 基準上與 RGB 影片模型比較每段片段的推論延遲：以關鍵點為基礎的模型最快，為 3.1 毫秒。"
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "從像素到關鍵點",
+          "body": "每一幀網路攝影機畫面都經過 MediaPipe Hands，取得每隻手 21 個關鍵點。以關鍵點而非原始影片作為輸入，模型才能小到在筆電 CPU 上執行。"
+        },
+        {
+          "title": "看的是動作，不是單一姿勢",
+          "body": "系統選出正在操作的手，將關鍵點正規化為特徵，並保留最近畫面的滑動視窗（24 幀，每次前進 3 幀），讓模型看到手是怎麼移動的。"
+        },
+        {
+          "title": "雙流 LSTM",
+          "body": "雙流 LSTM 將每個視窗分類為 10 類之一：9 種手勢，加上一個「未知」類別，吸收一般的手部動作，避免誤觸發。"
+        },
+        {
+          "title": "有把握才行動",
+          "body": "預測結果會隨時間穩定化，並經過具信心門檻與冷卻時間的啟動控制器，才轉成真正的鍵盤與游標事件：揮手換投影片，指向則操作雷射筆或畫筆。"
+        },
+        {
+          "title": "真正的桌面應用程式",
+          "body": "PySide6 介面在背景執行緒中執行推論，每秒約接收 10 次更新，兩者互不阻塞。macOS 與 Windows 安裝程式內含訓練好的模型，不需要 Python 也不需要網路。"
+        }
+      ]
+    },
+    {
       "id": "hsley13-sigil",
       "name": "Sigil",
       "createdAt": "2026-07-18T00:00:00Z",
@@ -210,72 +359,6 @@
       ]
     },
     {
-      "id": "hsley13-maestro",
-      "name": "Maestro",
-      "createdAt": "2025-09-09T00:00:00Z",
-      "url": "https://github.com/ntsrigaud/Maestro",
-      "description": "雙流 BiLSTM 即時手勢辨識系統，用於免持簡報控制，具備 MediaPipe Hands 特徵擷取管線、PySide6 控制介面，以及跨平台封裝應用程式。榮獲 2026 年東華大學大學部專題優良獎。",
-      "isFork": false,
-      "tagline": "一套正式等級的即時手勢辨識系統，讓網路攝影機化身為免持簡報遙控器。",
-      "importance": "榮獲 2026 年東華大學大學部專題優良獎。能在一般消費級筆電（無 GPU）上執行即時推論，並封裝為貨真價實的跨平台桌面應用程式，而非僅止於 notebook 展示，這正是機器學習「實驗」與機器學習「產品」之間的差距所在。",
-      "highlights": [
-        "打造雙流 LSTM 分類器，從 MediaPipe Hands 關鍵點辨識 10 類手勢詞彙（混合 Jester 與 IPN 資料集），全程僅以 CPU 即時運算",
-        "端到端設計完整推論管線：攝影機擷取、手部選取、特徵工程、滑動視窗緩衝區、預測穩定化，以及直接派送至作業系統層級的鍵盤與指標事件",
-        "打造非阻塞式的 PySide6 控制介面，推論在背景 QThread 執行，狀態更新透過 Qt 訊號節流至約 10Hz，確保介面不會卡頓模型、模型也不會被介面拖慢",
-        "為 macOS 與 Windows 封裝並發布獨立安裝程式，訓練好的模型直接內建於應用程式中，執行時無需 Python 執行環境或網路連線"
-      ],
-      "languages": [
-        {
-          "name": "Python",
-          "iconifyClass": "logos-python"
-        }
-      ],
-      "images": [
-        {
-          "src": "projects/maestro/01-pipeline.webp",
-          "caption": "推論流程，以及 10 類手勢詞彙與各手勢觸發的指令。"
-        },
-        {
-          "src": "projects/maestro/02-running.webp",
-          "caption": "執行中的 PySide6 控制介面：即時模式、偵測到的手勢、信心度、FPS 與延遲，下方為事件紀錄。"
-        },
-        {
-          "src": "projects/maestro/03-settings.webp",
-          "caption": "攝影機、視窗長度與步長、有效比例與指令冷卻時間的設定，皆可在應用程式中編輯。"
-        },
-        {
-          "src": "projects/maestro/04-confusion-matrix.webp",
-          "caption": "混合測試集上的正規化混淆矩陣：每個手勢類別皆達 0.94 以上。"
-        },
-        {
-          "src": "projects/maestro/05-latency.webp",
-          "caption": "在 IPN Hand 基準上與 RGB 影片模型比較每段片段的推論延遲：以關鍵點為基礎的模型最快，為 3.1 毫秒。"
-        }
-      ],
-      "howItWorks": [
-        {
-          "title": "從像素到關鍵點",
-          "body": "每一幀網路攝影機畫面都經過 MediaPipe Hands，取得每隻手 21 個關鍵點。以關鍵點而非原始影片作為輸入，模型才能小到在筆電 CPU 上執行。"
-        },
-        {
-          "title": "看的是動作，不是單一姿勢",
-          "body": "系統選出正在操作的手，將關鍵點正規化為特徵，並保留最近畫面的滑動視窗（24 幀，每次前進 3 幀），讓模型看到手是怎麼移動的。"
-        },
-        {
-          "title": "雙流 LSTM",
-          "body": "雙流 LSTM 將每個視窗分類為 10 類之一：9 種手勢，加上一個「未知」類別，吸收一般的手部動作，避免誤觸發。"
-        },
-        {
-          "title": "有把握才行動",
-          "body": "預測結果會隨時間穩定化，並經過具信心門檻與冷卻時間的啟動控制器，才轉成真正的鍵盤與游標事件：揮手換投影片，指向則操作雷射筆或畫筆。"
-        },
-        {
-          "title": "真正的桌面應用程式",
-          "body": "PySide6 介面在背景執行緒中執行推論，每秒約接收 10 次更新，兩者互不阻塞。macOS 與 Windows 安裝程式內含訓練好的模型，不需要 Python 也不需要網路。"
-        }
-      ]
-    },
-    {
       "id": "hsley13-ndhu-shbs",
       "name": "NDHU Second-Hand Book Store",
       "createdAt": "2026-06-03T00:00:00Z",
@@ -399,89 +482,6 @@
         {
           "title": "經過驗證、不怕當機的寫入",
           "body": "加上 --schema 後，每次寫入都會在 write() 回呼中依 JSON Schema 檢查（型別、範圍、列舉、樣式、必填）。不合法的值會在任何資料改變前就向 shell 回傳 EINVAL。合法的值先寫入暫存檔，再以 rename 取代原檔，因此當機永遠不會留下寫到一半的 JSON。"
-        }
-      ]
-    },
-    {
-      "id": "hsley13-robot-arm-analyzer",
-      "name": "Robot Arm Load Analyzer",
-      "createdAt": "2026-10-26T00:00:00Z",
-      "url": "https://github.com/HSley13/robot-arm-analyzer",
-      "description": "即時人形機器人模擬器，回答某個姿勢與承重是否會讓任何關節超載：從零打造的 C++ 物理引擎（DH 運動學、Jacobian 靜力學、遞迴牛頓-歐拉動力學）、以 PyTorch 訓練並與其比較的神經網路替代模型，以及能實際取放物品的抓取規劃器，全部整合在可用滑鼠操作的 Qt Quick 3D 介面中。",
-      "isFork": false,
-      "tagline": "這個機器人能不能以這個姿勢拿住這個重量而不讓任何關節超載？它能不能過去把物品拿起來？在 3D 中即時問它。",
-      "importance": "每個真實機器人在設計階段都必須回答這個問題，而答案通常只是規格表上印一次的數字。在這裡它是即時的：拖曳機器人、修改質量，每個關節的負載就會更新。背後的物理是手動推導並交叉驗證的，不是借用現成的機器人函式庫；神經網路的加速效果由應用程式自己量測，而不是口頭宣稱。運動學、機器學習、搜尋與規劃在同一個可運作的系統中結合，而不是各自獨立的練習。",
-      "highlights": [
-        "以 C++17 與 Eigen 從第一原理推導並實作正向與逆向運動學、Jacobian 靜力學與完整的遞迴牛頓-歐拉動力學，並以獨立的虛功推導交叉驗證",
-        "以精確引擎標註的 30,000 組姿勢訓練 PyTorch MLP 替代模型，並以不依賴任何機器學習執行環境的手寫 C++ 前向傳播執行，在應用程式自己的承重能力掃描中量得約 9 倍加速",
-        "打造抓取規劃器，搜尋全身姿勢（腰部、升降、髖部前傾、手臂），排除違反關節或扭矩限制的姿勢，並以平順、受速度限制的動作完成接近、抓取、抬起與搬運",
-        "以正向運動學定位的程序生成網格打造 Qt Quick 3D 介面，可用滑鼠直接拖曳手部、各關節、軀幹與升降柱",
-        "以 20 個測試套件、共 256 項 GoogleTest 測試支撐整個系統，包含每種物品的完整取放流程；其中一項刻意設計為正交的測試，抓到了另外兩項測試都漏掉的手推動力學符號錯誤"
-      ],
-      "languages": [
-        {
-          "name": "C++",
-          "iconifyClass": "simple-icons:cplusplus"
-        },
-        {
-          "name": "Qt",
-          "iconifyClass": "simple-icons:qt"
-        },
-        {
-          "name": "Python",
-          "iconifyClass": "logos-python"
-        }
-      ],
-      "images": [
-        {
-          "src": "projects/robot-arm/01-overview.webp",
-          "caption": "機器人與家具和物品。每個關節的儀表顯示即時負載與扭矩上限的比例。"
-        },
-        {
-          "src": "projects/robot-arm/02-pick-and-place.webp",
-          "caption": "規劃好的取放動作：伸手拿瓶子、抓起、越過桌子傾身、直立放下後回到原位。"
-        },
-        {
-          "src": "projects/robot-arm/03-overload.webp",
-          "caption": "手臂伸直拿著 14 公斤：每個關節都超過上限並變成紅色。"
-        },
-        {
-          "src": "projects/robot-arm/04-payload-scan.webp",
-          "caption": "從伸直到收起的承重能力掃描：精確物理與神經網路畫在同一張圖上，並附實測執行時間。"
-        },
-        {
-          "src": "projects/robot-arm/05-hand.webp",
-          "caption": "17 個關節的手握住瓶子。"
-        },
-        {
-          "src": "projects/robot-arm/06-warehouse-arm.webp",
-          "caption": "切換為五關節倉儲手臂與雙指夾爪，拿著它從上方夾起的罐子。"
-        },
-        {
-          "src": "projects/robot-arm/07-drag.webp",
-          "caption": "拖曳手部：腰部旋轉、升降柱降低、軀幹前傾，讓手能碰到目標點。"
-        }
-      ],
-      "howItWorks": [
-        {
-          "title": "從第一原理推導的精確物理",
-          "body": "每個手臂關節以 Denavit-Hartenberg 參數描述。正向運動學串接各個轉換矩陣，Jacobian 把連桿重量與承重轉換成每個關節必須承受的扭矩，手臂移動時再以完整的遞迴牛頓-歐拉演算法加上慣性與科氏力項。全部以 C++ 與 Eigen 手寫完成。"
-        },
-        {
-          "title": "模仿物理的神經網路",
-          "body": "C++ 產生器隨機取樣 30,000 組姿勢與承重，並以精確引擎標註。小型 PyTorch MLP 學習「姿勢＋承重 → 扭矩」；權重匯出為 JSON，由手寫的 C++ 前向傳播執行，在應用程式自己的掃描中快約 9 倍（40 個姿勢 0.57 毫秒對 5.19 毫秒）。一旦改變手臂幾何，AI 模式會自動關閉，因為網路是為另一支手臂訓練的。"
-        },
-        {
-          "title": "規劃取物",
-          "body": "點選物品後，規劃器會搜尋升降高度與髖部前傾角度的網格，逐一解出手臂關節角度（人形手臂用解析解，其他用阻尼最小平方法），排除違反關節或扭矩限制的姿勢，並保留關節負載最小的那一個。若沒有可行解，會說明哪個關節會超載。"
-        },
-        {
-          "title": "執行動作",
-          "body": "取物以子目標（接近、抓取、抬起、搬運）依序執行，動作平順且受速度限制。機器人拿著物品時，物品質量就是承重，所以每個儀表顯示的都是它真正承受的負載。"
-        },
-        {
-          "title": "以 Qt Quick 3D 打造",
-          "body": "機器人、家具與物品都是程序生成的網格，由正向運動學決定位置；C++ 控制器以模組形式提供給 QML。20 個測試套件、共 256 項 GoogleTest 測試涵蓋物理運算與完整的取放流程。"
         }
       ]
     }

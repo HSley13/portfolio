@@ -1,6 +1,155 @@
 {
   "data": [
     {
+      "id": "hsley13-robot-arm-analyzer",
+      "name": "Robot Arm Load Analyzer",
+      "createdAt": "2026-10-26T00:00:00Z",
+      "url": "https://github.com/HSley13/robot-arm-analyzer",
+      "description": "Real-time humanoid robot simulator that answers whether a pose and payload overload any joint: a from-scratch C++ physics engine (DH kinematics, Jacobian statics, Recursive Newton-Euler dynamics), a PyTorch neural surrogate benchmarked against it, and a grasp planner that picks objects up, all in a Qt Quick 3D interface driven with the mouse.",
+      "isFork": false,
+      "tagline": "Can this robot hold that weight, in that pose, without overloading a joint, and can it go and pick the object up? Ask it live, in 3D.",
+      "importance": "Every real robot has to answer this question at design time, and the answer is usually a number printed once on a spec sheet. Here it is live: drag the robot, change a mass, and every joint's load updates. The physics underneath is derived by hand and cross-checked, not borrowed from a robotics library, and the neural network's speed-up is measured by the app itself, not claimed. Kinematics, learning, search and planning all meet in one working system instead of separate exercises.",
+      "highlights": [
+        "Derived and implemented forward and inverse kinematics, Jacobian statics and full Recursive Newton-Euler dynamics from first principles in C++17 and Eigen, cross-checked against an independent virtual-work derivation",
+        "Trained a PyTorch MLP surrogate on 30,000 poses labeled by the exact engine and ran it through a hand-written C++ forward pass with no ML runtime, measuring about a 9x speed-up in the app's own payload-capacity scan",
+        "Built a grasp planner that searches whole-body poses (waist, lift, hip lean, arm), rejects any that break joint or torque limits, and executes approach, grasp, lift and carry with smooth, speed-limited motion",
+        "Built the Qt Quick 3D interface from procedural meshes placed by forward kinematics, with click-and-drag control of the hand, every joint, the torso and the lift",
+        "Backed it with 256 GoogleTest cases in 20 suites, including whole pick-and-place sequences for every object type; one deliberately orthogonal test caught a silent sign bug in the hand-derived dynamics that two other tests missed"
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "iconifyClass": "simple-icons:cplusplus"
+        },
+        {
+          "name": "Qt",
+          "iconifyClass": "simple-icons:qt"
+        },
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/robot-arm/01-overview.webp",
+          "caption": "The robot among furniture and objects. Each joint's gauge shows its live load against its torque limit."
+        },
+        {
+          "src": "projects/robot-arm/02-pick-and-place.webp",
+          "caption": "A planned pick-and-place: reach the bottle, grasp and lift it, lean over the table, set it down upright and return home."
+        },
+        {
+          "src": "projects/robot-arm/03-overload.webp",
+          "caption": "Arm straight out holding 14 kg: every joint is past its limit and turns red."
+        },
+        {
+          "src": "projects/robot-arm/04-payload-scan.webp",
+          "caption": "Payload capacity scan from stretched out to folded: exact physics and the neural network on the same chart, with measured run times."
+        },
+        {
+          "src": "projects/robot-arm/05-hand.webp",
+          "caption": "The 17-joint hand closing around a bottle."
+        },
+        {
+          "src": "projects/robot-arm/06-warehouse-arm.webp",
+          "caption": "Switched to a five-joint warehouse arm with a two-finger gripper, holding a can it picked from above."
+        },
+        {
+          "src": "projects/robot-arm/07-drag.webp",
+          "caption": "Dragging the hand: the waist turns, the lift lowers and the torso leans so the hand can reach the point."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "Exact physics from first principles",
+          "body": "Each arm joint is described with Denavit-Hartenberg parameters. Forward kinematics chains the transforms, the Jacobian turns link weights and the payload into the torque every joint must hold, and a full Recursive Newton-Euler pass adds inertia and Coriolis terms when the arm moves. All of it is hand-written C++ with Eigen."
+        },
+        {
+          "title": "A neural network that imitates it",
+          "body": "A C++ generator samples 30,000 random poses and payloads and labels them with the exact engine. A small PyTorch MLP learns pose + payload to torques; its weights are exported to JSON and run by a hand-written C++ forward pass, about 9x faster in the app's own scan (0.57 ms vs 5.19 ms for 40 poses). Change the arm's geometry and AI mode switches itself off, because the network was trained for a different arm."
+        },
+        {
+          "title": "Planning a pick-up",
+          "body": "Click an object and the planner searches a grid of lift heights and hip leans, solves the arm's joint angles for each (closed-form for the humanoid arm, damped least squares otherwise), rejects poses that break joint or torque limits, and keeps the one that loads the joints least. If none works, it says which joint would be overloaded."
+        },
+        {
+          "title": "Acting it out",
+          "body": "The pick-up runs as sub-goals (approach, grasp, lift, carry) with smooth, speed-limited motion. While the robot holds an object, that object's mass is the payload, so every gauge shows what it is really carrying."
+        },
+        {
+          "title": "Built in Qt Quick 3D",
+          "body": "The robot, furniture and objects are procedural meshes positioned by forward kinematics, and the C++ controllers are exposed to QML as a module. 256 GoogleTest cases in 20 suites cover the physics and whole pick-and-place sequences."
+        }
+      ]
+    },
+    {
+      "id": "hsley13-maestro",
+      "name": "Maestro",
+      "createdAt": "2025-09-09T00:00:00Z",
+      "url": "https://github.com/ntsrigaud/Maestro",
+      "description": "Two-stream BiLSTM real-time hand-gesture recognition system for hands-free presentation control, with a MediaPipe Hands feature pipeline, PySide6 control UI, and cross-platform packaged app. Winner of the NDHU Undergraduate Project Excellent Award, 2026.",
+      "isFork": false,
+      "tagline": "A production-grade, real-time hand-gesture recognition system that turns a webcam into a hands-free presentation remote.",
+      "importance": "Winner of NDHU's Undergraduate Project Excellent Award, 2026. Runs real-time inference on ordinary consumer laptops with no GPU, packaged as a genuine cross-platform desktop app rather than a notebook demo, which is precisely the gap between a machine learning experiment and a machine learning product.",
+      "highlights": [
+        "Built a two-stream LSTM classifier recognizing a 10-class gesture vocabulary (a hybrid of the Jester and IPN datasets) from MediaPipe Hands landmarks, running in real time on CPU alone",
+        "Designed the full inference pipeline end to end: camera capture, hand selection, feature engineering, a sliding-window buffer, prediction stabilization, and command dispatch straight to OS-level keyboard and pointer events",
+        "Built a non-blocking PySide6 control UI, with inference running in a background QThread and state updates throttled to roughly 10Hz over Qt signals, so the interface never stutters the model or vice versa",
+        "Packaged and distributed standalone installers for macOS and Windows with the trained model bundled directly into the app, no Python runtime or internet connection required to run it"
+      ],
+      "languages": [
+        {
+          "name": "Python",
+          "iconifyClass": "logos-python"
+        }
+      ],
+      "images": [
+        {
+          "src": "projects/maestro/01-pipeline.webp",
+          "caption": "The inference pipeline, and the 10-class gesture vocabulary with the command each gesture triggers."
+        },
+        {
+          "src": "projects/maestro/02-running.webp",
+          "caption": "The PySide6 control app during a session: live mode, detected gesture, confidence, FPS and latency, with the event log below."
+        },
+        {
+          "src": "projects/maestro/03-settings.webp",
+          "caption": "Settings for the camera, window length and step, validity ratio and command cooldown, all editable from the app."
+        },
+        {
+          "src": "projects/maestro/04-confusion-matrix.webp",
+          "caption": "Normalized confusion matrix on the hybrid test set: every gesture class at 0.94 or higher."
+        },
+        {
+          "src": "projects/maestro/05-latency.webp",
+          "caption": "Per-clip inference latency against RGB video models on the IPN Hand benchmark: the landmark-based model is the fastest at 3.1 ms."
+        }
+      ],
+      "howItWorks": [
+        {
+          "title": "From pixels to landmarks",
+          "body": "Each webcam frame goes through MediaPipe Hands, which returns 21 keypoints per hand. Working on keypoints instead of raw video is what keeps the model small enough for a laptop CPU."
+        },
+        {
+          "title": "Motion, not a single pose",
+          "body": "The system picks the active hand, normalizes its landmarks into features and keeps a sliding window of recent frames (24 frames, advancing 3 at a time), so the model sees how the hand moves."
+        },
+        {
+          "title": "Two-stream LSTM",
+          "body": "A two-stream LSTM classifies each window into one of 10 classes: nine gestures plus an 'unknown' class that absorbs ordinary hand movement so it doesn't trigger anything."
+        },
+        {
+          "title": "Act only when sure",
+          "body": "Predictions are stabilized over time and pass through an activation controller with confidence thresholds and a cooldown before they become real keyboard and pointer events: swipes change slides, pointing drives a laser pointer or a pen."
+        },
+        {
+          "title": "A real desktop app",
+          "body": "The PySide6 interface runs inference in a background thread and receives updates about 10 times a second, so neither blocks the other. Installers for macOS and Windows bundle the trained model, with no Python or internet connection needed."
+        }
+      ]
+    },
+    {
       "id": "hsley13-sigil",
       "name": "Sigil",
       "createdAt": "2026-07-18T00:00:00Z",
@@ -210,72 +359,6 @@
       ]
     },
     {
-      "id": "hsley13-maestro",
-      "name": "Maestro",
-      "createdAt": "2025-09-09T00:00:00Z",
-      "url": "https://github.com/ntsrigaud/Maestro",
-      "description": "Two-stream BiLSTM real-time hand-gesture recognition system for hands-free presentation control, with a MediaPipe Hands feature pipeline, PySide6 control UI, and cross-platform packaged app. Winner of the NDHU Undergraduate Project Excellent Award, 2026.",
-      "isFork": false,
-      "tagline": "A production-grade, real-time hand-gesture recognition system that turns a webcam into a hands-free presentation remote.",
-      "importance": "Winner of NDHU's Undergraduate Project Excellent Award, 2026. Runs real-time inference on ordinary consumer laptops with no GPU, packaged as a genuine cross-platform desktop app rather than a notebook demo, which is precisely the gap between a machine learning experiment and a machine learning product.",
-      "highlights": [
-        "Built a two-stream LSTM classifier recognizing a 10-class gesture vocabulary (a hybrid of the Jester and IPN datasets) from MediaPipe Hands landmarks, running in real time on CPU alone",
-        "Designed the full inference pipeline end to end: camera capture, hand selection, feature engineering, a sliding-window buffer, prediction stabilization, and command dispatch straight to OS-level keyboard and pointer events",
-        "Built a non-blocking PySide6 control UI, with inference running in a background QThread and state updates throttled to roughly 10Hz over Qt signals, so the interface never stutters the model or vice versa",
-        "Packaged and distributed standalone installers for macOS and Windows with the trained model bundled directly into the app, no Python runtime or internet connection required to run it"
-      ],
-      "languages": [
-        {
-          "name": "Python",
-          "iconifyClass": "logos-python"
-        }
-      ],
-      "images": [
-        {
-          "src": "projects/maestro/01-pipeline.webp",
-          "caption": "The inference pipeline, and the 10-class gesture vocabulary with the command each gesture triggers."
-        },
-        {
-          "src": "projects/maestro/02-running.webp",
-          "caption": "The PySide6 control app during a session: live mode, detected gesture, confidence, FPS and latency, with the event log below."
-        },
-        {
-          "src": "projects/maestro/03-settings.webp",
-          "caption": "Settings for the camera, window length and step, validity ratio and command cooldown, all editable from the app."
-        },
-        {
-          "src": "projects/maestro/04-confusion-matrix.webp",
-          "caption": "Normalized confusion matrix on the hybrid test set: every gesture class at 0.94 or higher."
-        },
-        {
-          "src": "projects/maestro/05-latency.webp",
-          "caption": "Per-clip inference latency against RGB video models on the IPN Hand benchmark: the landmark-based model is the fastest at 3.1 ms."
-        }
-      ],
-      "howItWorks": [
-        {
-          "title": "From pixels to landmarks",
-          "body": "Each webcam frame goes through MediaPipe Hands, which returns 21 keypoints per hand. Working on keypoints instead of raw video is what keeps the model small enough for a laptop CPU."
-        },
-        {
-          "title": "Motion, not a single pose",
-          "body": "The system picks the active hand, normalizes its landmarks into features and keeps a sliding window of recent frames (24 frames, advancing 3 at a time), so the model sees how the hand moves."
-        },
-        {
-          "title": "Two-stream LSTM",
-          "body": "A two-stream LSTM classifies each window into one of 10 classes: nine gestures plus an 'unknown' class that absorbs ordinary hand movement so it doesn't trigger anything."
-        },
-        {
-          "title": "Act only when sure",
-          "body": "Predictions are stabilized over time and pass through an activation controller with confidence thresholds and a cooldown before they become real keyboard and pointer events: swipes change slides, pointing drives a laser pointer or a pen."
-        },
-        {
-          "title": "A real desktop app",
-          "body": "The PySide6 interface runs inference in a background thread and receives updates about 10 times a second, so neither blocks the other. Installers for macOS and Windows bundle the trained model, with no Python or internet connection needed."
-        }
-      ]
-    },
-    {
       "id": "hsley13-ndhu-shbs",
       "name": "NDHU Second-Hand Book Store",
       "createdAt": "2026-06-03T00:00:00Z",
@@ -399,89 +482,6 @@
         {
           "title": "Validated, crash-safe writes",
           "body": "With --schema, every write is checked against the JSON Schema inside the write() callback (type, range, enum, pattern, required). A bad value returns EINVAL to the shell before anything changes. A good value is written to a temporary file that is then renamed over the original, so a crash can never leave half-written JSON."
-        }
-      ]
-    },
-    {
-      "id": "hsley13-robot-arm-analyzer",
-      "name": "Robot Arm Load Analyzer",
-      "createdAt": "2026-10-26T00:00:00Z",
-      "url": "https://github.com/HSley13/robot-arm-analyzer",
-      "description": "Real-time humanoid robot simulator that answers whether a pose and payload overload any joint: a from-scratch C++ physics engine (DH kinematics, Jacobian statics, Recursive Newton-Euler dynamics), a PyTorch neural surrogate benchmarked against it, and a grasp planner that picks objects up, all in a Qt Quick 3D interface driven with the mouse.",
-      "isFork": false,
-      "tagline": "Can this robot hold that weight, in that pose, without overloading a joint, and can it go and pick the object up? Ask it live, in 3D.",
-      "importance": "Every real robot has to answer this question at design time, and the answer is usually a number printed once on a spec sheet. Here it is live: drag the robot, change a mass, and every joint's load updates. The physics underneath is derived by hand and cross-checked, not borrowed from a robotics library, and the neural network's speed-up is measured by the app itself, not claimed. Kinematics, learning, search and planning all meet in one working system instead of separate exercises.",
-      "highlights": [
-        "Derived and implemented forward and inverse kinematics, Jacobian statics and full Recursive Newton-Euler dynamics from first principles in C++17 and Eigen, cross-checked against an independent virtual-work derivation",
-        "Trained a PyTorch MLP surrogate on 30,000 poses labeled by the exact engine and ran it through a hand-written C++ forward pass with no ML runtime, measuring about a 9x speed-up in the app's own payload-capacity scan",
-        "Built a grasp planner that searches whole-body poses (waist, lift, hip lean, arm), rejects any that break joint or torque limits, and executes approach, grasp, lift and carry with smooth, speed-limited motion",
-        "Built the Qt Quick 3D interface from procedural meshes placed by forward kinematics, with click-and-drag control of the hand, every joint, the torso and the lift",
-        "Backed it with 256 GoogleTest cases in 20 suites, including whole pick-and-place sequences for every object type; one deliberately orthogonal test caught a silent sign bug in the hand-derived dynamics that two other tests missed"
-      ],
-      "languages": [
-        {
-          "name": "C++",
-          "iconifyClass": "simple-icons:cplusplus"
-        },
-        {
-          "name": "Qt",
-          "iconifyClass": "simple-icons:qt"
-        },
-        {
-          "name": "Python",
-          "iconifyClass": "logos-python"
-        }
-      ],
-      "images": [
-        {
-          "src": "projects/robot-arm/01-overview.webp",
-          "caption": "The robot among furniture and objects. Each joint's gauge shows its live load against its torque limit."
-        },
-        {
-          "src": "projects/robot-arm/02-pick-and-place.webp",
-          "caption": "A planned pick-and-place: reach the bottle, grasp and lift it, lean over the table, set it down upright and return home."
-        },
-        {
-          "src": "projects/robot-arm/03-overload.webp",
-          "caption": "Arm straight out holding 14 kg: every joint is past its limit and turns red."
-        },
-        {
-          "src": "projects/robot-arm/04-payload-scan.webp",
-          "caption": "Payload capacity scan from stretched out to folded: exact physics and the neural network on the same chart, with measured run times."
-        },
-        {
-          "src": "projects/robot-arm/05-hand.webp",
-          "caption": "The 17-joint hand closing around a bottle."
-        },
-        {
-          "src": "projects/robot-arm/06-warehouse-arm.webp",
-          "caption": "Switched to a five-joint warehouse arm with a two-finger gripper, holding a can it picked from above."
-        },
-        {
-          "src": "projects/robot-arm/07-drag.webp",
-          "caption": "Dragging the hand: the waist turns, the lift lowers and the torso leans so the hand can reach the point."
-        }
-      ],
-      "howItWorks": [
-        {
-          "title": "Exact physics from first principles",
-          "body": "Each arm joint is described with Denavit-Hartenberg parameters. Forward kinematics chains the transforms, the Jacobian turns link weights and the payload into the torque every joint must hold, and a full Recursive Newton-Euler pass adds inertia and Coriolis terms when the arm moves. All of it is hand-written C++ with Eigen."
-        },
-        {
-          "title": "A neural network that imitates it",
-          "body": "A C++ generator samples 30,000 random poses and payloads and labels them with the exact engine. A small PyTorch MLP learns pose + payload to torques; its weights are exported to JSON and run by a hand-written C++ forward pass, about 9x faster in the app's own scan (0.57 ms vs 5.19 ms for 40 poses). Change the arm's geometry and AI mode switches itself off, because the network was trained for a different arm."
-        },
-        {
-          "title": "Planning a pick-up",
-          "body": "Click an object and the planner searches a grid of lift heights and hip leans, solves the arm's joint angles for each (closed-form for the humanoid arm, damped least squares otherwise), rejects poses that break joint or torque limits, and keeps the one that loads the joints least. If none works, it says which joint would be overloaded."
-        },
-        {
-          "title": "Acting it out",
-          "body": "The pick-up runs as sub-goals (approach, grasp, lift, carry) with smooth, speed-limited motion. While the robot holds an object, that object's mass is the payload, so every gauge shows what it is really carrying."
-        },
-        {
-          "title": "Built in Qt Quick 3D",
-          "body": "The robot, furniture and objects are procedural meshes positioned by forward kinematics, and the C++ controllers are exposed to QML as a module. 256 GoogleTest cases in 20 suites cover the physics and whole pick-and-place sequences."
         }
       ]
     }
