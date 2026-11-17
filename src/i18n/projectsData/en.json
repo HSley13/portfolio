@@ -80,6 +80,10 @@
           "body": "The pick-up runs as sub-goals (approach, grasp, lift, carry) with smooth, speed-limited motion. While the robot holds an object, that object's mass is the payload, so every gauge shows what it is really carrying."
         },
         {
+          "title": "Controlled through the webcam",
+          "body": "A separate Python program runs Google's pre-trained MediaPipe pose and hand landmarkers on every webcam frame. Your wrist's position relative to your shoulder, scaled from your arm's length to the robot's reach, becomes the target for the robot's hand; the line across your knuckles gives the palm's twist, and how far your fingers bend gives the grip. Commands travel as JSON over a local WebSocket to the app, where the same planner moves the body, so the motion stays smooth and every joint's load is still computed. Step out of view and the robot holds still."
+        },
+        {
           "title": "Built in Qt Quick 3D",
           "body": "The robot, furniture and objects are procedural meshes positioned by forward kinematics, and the C++ controllers are exposed to QML as a module. 334 tests in 22 suites cover the physics, whole pick-and-place sequences and the webcam path."
         }

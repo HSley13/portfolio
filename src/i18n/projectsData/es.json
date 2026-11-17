@@ -80,6 +80,10 @@
           "body": "El agarre se ejecuta como subobjetivos (acercarse, agarrar, levantar, transportar) con movimientos suaves y de velocidad limitada. Mientras el robot sostiene un objeto, su masa es la carga, así que cada indicador muestra lo que realmente está cargando."
         },
         {
+          "title": "Controlado con la webcam",
+          "body": "Un programa aparte en Python ejecuta en cada fotograma de la webcam los detectores preentrenados de pose y de mano de MediaPipe, de Google. La posición de tu muñeca respecto a tu hombro, escalada del largo de tu brazo al alcance del robot, se convierte en el objetivo de la mano del robot; la línea que cruza tus nudillos da el giro de la palma, y cuánto se doblan tus dedos da el agarre. Los comandos viajan como JSON por un WebSocket local hasta la app, donde el mismo planificador mueve el cuerpo, así el movimiento sigue siendo suave y la carga de cada articulación se sigue calculando. Si sales del cuadro, el robot se queda quieto."
+        },
+        {
           "title": "Construido en Qt Quick 3D",
           "body": "El robot, los muebles y los objetos son mallas procedurales posicionadas por cinemática directa, y los controladores en C++ se exponen a QML como un módulo. 334 pruebas en 22 suites cubren la física, secuencias completas de pick-and-place y el control por webcam."
         }
