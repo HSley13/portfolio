@@ -3,7 +3,7 @@
 const seo = {
   title: "Portafolio de Sley HORTES",
   description:
-    "Ingeniero de Software con experiencia práctica diseñando y desplegando sistemas en producción en múltiples dominios: desde backends de alto rendimiento en C++ y aplicaciones móviles multiplataforma, hasta plataformas web full-stack y pipelines de deep learning.",
+    "Ingeniero de Software con experiencia práctica construyendo sistemas completos en múltiples dominios: backends de alto rendimiento en C++, simulación 3D en tiempo real y robótica, visión por computadora y deep learning, aplicaciones móviles multiplataforma y plataformas web full-stack.",
   og: {
     title: "Portafolio de Sley HORTES",
     type: "website",
@@ -17,7 +17,7 @@ const greeting = {
   logo_name: "SleyHortes",
   nickname: "",
   subTitle:
-    "Ingeniero de Software que diseña y despliega sistemas en producción en múltiples dominios: desde backends de alto rendimiento en C++ y aplicaciones móviles multiplataforma, hasta plataformas web full-stack y pipelines de deep learning. Con dominio de C++, Go, TypeScript y Python, y un fuerte énfasis en la arquitectura limpia.",
+    "Ingeniero de Software que construye sistemas completos en múltiples dominios: backends de alto rendimiento en C++, simulación 3D en tiempo real y robótica, visión por computadora y deep learning, aplicaciones móviles multiplataforma y plataformas web full-stack. Lo más reciente: un simulador de robot humanoide con física derivada a mano, un sustituto de red neuronal y control por webcam para moverlo con tu propio brazo. Con dominio de C++, Go, TypeScript y Python, y un fuerte énfasis en la arquitectura limpia y las pruebas exhaustivas.",
   resumeLink: "",
   portfolio_repository: "https://github.com/HSley13/portfolio",
   githubProfile: "https://github.com/HSley13",

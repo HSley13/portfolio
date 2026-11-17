@@ -3,7 +3,7 @@
 const seo = {
   title: "Sley HORTES 的作品集",
   description:
-    "軟體工程師，擁有跨多個領域打造並上線生產系統的實作經驗：從高效能的 C++ 後端、跨平台行動應用程式，到全端網頁平台與深度學習流程。",
+    "軟體工程師，擁有跨多個領域打造完整系統的實作經驗：高效能的 C++ 後端、即時 3D 模擬與機器人、電腦視覺與深度學習、跨平台行動應用程式，以及全端網頁平台。",
   og: {
     title: "Sley HORTES 作品集",
     type: "website",
@@ -17,7 +17,7 @@ const greeting = {
   logo_name: "SleyHortes",
   nickname: "",
   subTitle:
-    "軟體工程師，跨多個領域架構並上線生產系統：從高效能的 C++ 後端、跨平台行動應用程式，到全端網頁平台與深度學習流程。熟悉 C++、Go、TypeScript 與 Python，特別重視清晰的架構設計。",
+    "軟體工程師，跨多個領域打造完整系統：高效能的 C++ 後端、即時 3D 模擬與機器人、電腦視覺與深度學習、跨平台行動應用程式，以及全端網頁平台。最近的作品是一個人形機器人模擬器，具備手動推導的物理引擎、神經網路替代模型，以及讓你用自己的手臂操控它的網路攝影機控制。熟悉 C++、Go、TypeScript 與 Python，特別重視清晰的架構設計與完整的測試。",
   resumeLink: "",
   portfolio_repository: "https://github.com/HSley13/portfolio",
   githubProfile: "https://github.com/HSley13",

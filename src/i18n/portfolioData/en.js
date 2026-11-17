@@ -4,7 +4,7 @@
 const seo = {
   title: "Sley HORTES' Portfolio",
   description:
-    "Software Engineer with hands-on experience architecting and shipping production systems across multiple domains, from high-performance C++ backends and cross-platform mobile applications to full-stack web platforms and deep learning pipelines.",
+    "Software Engineer with hands-on experience building complete systems across multiple domains: high-performance C++ backends, real-time 3D simulation and robotics, computer vision and deep learning, cross-platform mobile apps and full-stack web platforms.",
   og: {
     title: "Sley HORTES Portfolio",
     type: "website",
@@ -18,7 +18,7 @@ const greeting = {
   logo_name: "SleyHortes",
   nickname: "",
   subTitle:
-    "Software Engineer architecting and shipping production systems across multiple domains, from high-performance C++ backends and cross-platform mobile applications to full-stack web platforms and deep learning pipelines. Proficient in C++, Go, TypeScript, and Python, with a strong emphasis on clean architecture.",
+    "Software Engineer who builds complete systems across multiple domains: high-performance C++ backends, real-time 3D simulation and robotics, computer vision and deep learning, cross-platform mobile apps and full-stack web platforms. Most recently, a humanoid robot simulator with hand-derived physics, a neural-network surrogate and webcam control that lets you move it with your own arm. Proficient in C++, Go, TypeScript, and Python, with a strong emphasis on clean architecture and thorough testing.",
   resumeLink: "",
   portfolio_repository: "https://github.com/HSley13/portfolio",
   githubProfile: "https://github.com/HSley13",
