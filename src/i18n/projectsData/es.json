@@ -5,16 +5,18 @@
       "name": "Robot Arm Load Analyzer",
       "createdAt": "2026-10-26T00:00:00Z",
       "url": "https://github.com/HSley13/robot-arm-analyzer",
-      "description": "Simulador de robot humanoide en tiempo real que responde si una pose y una carga sobrecargan alguna articulación: un motor de física en C++ hecho desde cero (cinemática DH, estática por Jacobiana, dinámica de Newton-Euler recursivo), un sustituto neuronal en PyTorch comparado contra él y un planificador de agarre que recoge objetos, todo en una interfaz Qt Quick 3D controlada con el mouse.",
+      "description": "Simulador de robot humanoide en tiempo real, hecho como proyecto de mitad de semestre del curso Introducción a la Inteligencia Artificial, que responde si una pose y una carga sobrecargan alguna articulación: un motor de física en C++ hecho desde cero (cinemática DH, estática por Jacobiana, dinámica de Newton-Euler recursivo), un sustituto neuronal en PyTorch comparado contra él, un planificador de agarre que recoge objetos y control por webcam para mover el robot con tu propio brazo, todo en una interfaz Qt Quick 3D.",
       "isFork": false,
-      "tagline": "¿Puede este robot sostener ese peso, en esa pose, sin sobrecargar ninguna articulación? ¿Y puede ir a recoger el objeto? Pregúntaselo en vivo, en 3D.",
-      "importance": "Todo robot real debe responder esta pregunta en la etapa de diseño, y la respuesta suele ser un número impreso una sola vez en una ficha técnica. Aquí es en vivo: arrastras el robot, cambias una masa y la carga de cada articulación se actualiza. La física está derivada a mano y verificada de forma cruzada, no tomada de una librería de robótica, y la ganancia de velocidad de la red neuronal la mide la propia app, no es una afirmación. Cinemática, aprendizaje, búsqueda y planificación se encuentran en un mismo sistema que funciona, en lugar de ejercicios separados.",
+      "tagline": "¿Puede este robot sostener ese peso, en esa pose, sin sobrecargar ninguna articulación? ¿Y puede ir a recoger el objeto? Pregúntaselo en vivo, en 3D, con el mouse o con tu propio brazo a través de la webcam.",
+      "importance": "Todo robot real debe responder esta pregunta en la etapa de diseño, y la respuesta suele ser un número impreso una sola vez en una ficha técnica. Aquí es en vivo: arrastras el robot, cambias una masa y la carga de cada articulación se actualiza. La física está derivada a mano y verificada de forma cruzada, no tomada de una librería de robótica, y la ganancia de velocidad de la red neuronal la mide la propia app, no es una afirmación. El control por webcam lo abre al mundo exterior: redes de visión preentrenadas leen el brazo y la mano de una persona, y el propio planificador del robot y el análisis de carga siguen funcionando sobre lo que recoja. Cinemática, aprendizaje, búsqueda, planificación y visión por computadora se encuentran en un mismo sistema que funciona, en lugar de ejercicios separados.",
       "highlights": [
         "Derivé e implementé cinemática directa e inversa, estática por Jacobiana y dinámica completa de Newton-Euler recursivo desde primeros principios en C++17 y Eigen, verificadas contra una derivación independiente por trabajo virtual",
         "Entrené un sustituto MLP en PyTorch con 30,000 poses etiquetadas por el motor exacto y lo ejecuté con un forward pass escrito a mano en C++, sin ningún runtime de ML, midiendo una mejora de unas 9 veces en el propio escaneo de capacidad de carga de la app",
         "Construí un planificador de agarre que busca poses de cuerpo completo (cintura, columna, inclinación de cadera, brazo), descarta las que violan límites de articulación o de torque y ejecuta acercarse, agarrar, levantar y transportar con movimientos suaves y de velocidad limitada",
+        "Construí el control por webcam en Python: los detectores de pose y de mano de MediaPipe siguen el brazo derecho de la persona, que se escala al alcance del robot y se envía por un puente de Qt WebSockets, así el robot copia la posición, la inclinación y el giro de la palma, y agarra o suelta objetos al cerrar o abrir la mano",
+        "Hice el seguimiento lo bastante estable para transportar cosas: un filtro 1€ elimina el temblor sin retraso, agarrar y soltar usan dos umbrales y una confirmación de tres fotogramas para que un fotograma mal leído no haga caer lo que sostiene el robot, y una segunda búsqueda ampliada sigue una mano girada de canto",
         "Construí la interfaz Qt Quick 3D con mallas procedurales posicionadas por cinemática directa, con control por clic y arrastre de la mano, cada articulación, el torso y la columna",
-        "La respaldé con 256 pruebas de GoogleTest en 20 suites, incluidas secuencias completas de pick-and-place para cada tipo de objeto; una prueba deliberadamente ortogonal detectó un error de signo silencioso en la dinámica derivada a mano que otras dos pruebas pasaron por alto"
+        "La respaldé con 334 pruebas en 22 suites, desde la física hasta secuencias completas de pick-and-place para cada tipo de objeto, el puente WebSocket sobre una conexión local real y el mapeo de movimientos en Python; una prueba deliberadamente ortogonal detectó un error de signo silencioso en la dinámica derivada a mano que otras dos pruebas pasaron por alto"
       ],
       "languages": [
         {
@@ -79,7 +81,7 @@
         },
         {
           "title": "Construido en Qt Quick 3D",
-          "body": "El robot, los muebles y los objetos son mallas procedurales posicionadas por cinemática directa, y los controladores en C++ se exponen a QML como un módulo. 256 pruebas de GoogleTest en 20 suites cubren la física y secuencias completas de pick-and-place."
+          "body": "El robot, los muebles y los objetos son mallas procedurales posicionadas por cinemática directa, y los controladores en C++ se exponen a QML como un módulo. 334 pruebas en 22 suites cubren la física, secuencias completas de pick-and-place y el control por webcam."
         }
       ]
     },

@@ -5,16 +5,18 @@
       "name": "Robot Arm Load Analyzer",
       "createdAt": "2026-10-26T00:00:00Z",
       "url": "https://github.com/HSley13/robot-arm-analyzer",
-      "description": "Real-time humanoid robot simulator that answers whether a pose and payload overload any joint: a from-scratch C++ physics engine (DH kinematics, Jacobian statics, Recursive Newton-Euler dynamics), a PyTorch neural surrogate benchmarked against it, and a grasp planner that picks objects up, all in a Qt Quick 3D interface driven with the mouse.",
+      "description": "Real-time humanoid robot simulator, built as the midterm project for Introduction to Artificial Intelligence, that answers whether a pose and payload overload any joint: a from-scratch C++ physics engine (DH kinematics, Jacobian statics, Recursive Newton-Euler dynamics), a PyTorch neural surrogate benchmarked against it, a grasp planner that picks objects up, and webcam control that lets you move the robot with your own arm, all in a Qt Quick 3D interface.",
       "isFork": false,
-      "tagline": "Can this robot hold that weight, in that pose, without overloading a joint, and can it go and pick the object up? Ask it live, in 3D.",
-      "importance": "Every real robot has to answer this question at design time, and the answer is usually a number printed once on a spec sheet. Here it is live: drag the robot, change a mass, and every joint's load updates. The physics underneath is derived by hand and cross-checked, not borrowed from a robotics library, and the neural network's speed-up is measured by the app itself, not claimed. Kinematics, learning, search and planning all meet in one working system instead of separate exercises.",
+      "tagline": "Can this robot hold that weight, in that pose, without overloading a joint, and can it go and pick the object up? Ask it live, in 3D, with the mouse or with your own arm through the webcam.",
+      "importance": "Every real robot has to answer this question at design time, and the answer is usually a number printed once on a spec sheet. Here it is live: drag the robot, change a mass, and every joint's load updates. The physics underneath is derived by hand and cross-checked, not borrowed from a robotics library, and the neural network's speed-up is measured by the app itself, not claimed. Webcam control opens it to the outside world: pre-trained vision networks read a person's arm and hand, and the robot's own planner and load analysis keep running on whatever it picks up. Kinematics, learning, search, planning and computer vision all meet in one working system instead of separate exercises.",
       "highlights": [
         "Derived and implemented forward and inverse kinematics, Jacobian statics and full Recursive Newton-Euler dynamics from first principles in C++17 and Eigen, cross-checked against an independent virtual-work derivation",
         "Trained a PyTorch MLP surrogate on 30,000 poses labeled by the exact engine and ran it through a hand-written C++ forward pass with no ML runtime, measuring about a 9x speed-up in the app's own payload-capacity scan",
         "Built a grasp planner that searches whole-body poses (waist, lift, hip lean, arm), rejects any that break joint or torque limits, and executes approach, grasp, lift and carry with smooth, speed-limited motion",
+        "Built webcam control in Python: MediaPipe pose and hand landmarkers track the person's right arm, which is scaled to the robot's reach and sent over a Qt WebSockets bridge, so the robot copies the hand's position, tilt and palm twist, and grabs or releases objects as the hand closes or opens",
+        "Made the tracking steady enough to carry things: a 1€ filter removes jitter without lag, grabbing and releasing use two thresholds plus a three-frame gate so one misread frame can't drop what the robot holds, and a zoomed-in second search keeps following a hand turned edge-on",
         "Built the Qt Quick 3D interface from procedural meshes placed by forward kinematics, with click-and-drag control of the hand, every joint, the torso and the lift",
-        "Backed it with 256 GoogleTest cases in 20 suites, including whole pick-and-place sequences for every object type; one deliberately orthogonal test caught a silent sign bug in the hand-derived dynamics that two other tests missed"
+        "Backed it with 334 tests in 22 suites, from the physics to whole pick-and-place sequences for every object type, the WebSocket bridge over a real local connection and the Python retargeting; one deliberately orthogonal test caught a silent sign bug in the hand-derived dynamics that two other tests missed"
       ],
       "languages": [
         {
@@ -79,7 +81,7 @@
         },
         {
           "title": "Built in Qt Quick 3D",
-          "body": "The robot, furniture and objects are procedural meshes positioned by forward kinematics, and the C++ controllers are exposed to QML as a module. 256 GoogleTest cases in 20 suites cover the physics and whole pick-and-place sequences."
+          "body": "The robot, furniture and objects are procedural meshes positioned by forward kinematics, and the C++ controllers are exposed to QML as a module. 334 tests in 22 suites cover the physics, whole pick-and-place sequences and the webcam path."
         }
       ]
     },
